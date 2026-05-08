@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Frankie Digitalz – About Us | Digital Solutions Agency</title>
+  <meta name="description" content="Frankie Digitalz is a forward-thinking digital agency dedicated to transforming businesses through innovative web solutions, design, and digital marketing.">
+  <meta name="author" content="Frankie Digitalz">
+  <meta property="og:title" content="Frankie Digitalz – About Us">
+  <meta property="og:description" content="Crafting digital excellence. Learn about our mission, values, and team.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', 'Poppins', sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+      overflow-x: hidden;
+    }
+    /* Navbar */
+    .fd-navbar { background-color: rgba(0,0,0,0.95) !important; backdrop-filter: blur(8px); }
+    /* Scroll reveal – 1.8s, re-animate on exit/entry */
+    .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
+      transition: opacity 1.8s ease-out, transform 1.8s ease-out;
+    }
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .reveal-up.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    .reveal-left.revealed {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right-scale {
+      opacity: 0;
+      transform: translateX(30px) scale(0.95);
+    }
+    .reveal-right-scale.revealed {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+    .reveal-fade {
+      opacity: 0;
+    }
+    .reveal-fade.revealed {
+      opacity: 1;
+    }
+    /* Sticky support */
+    .sticky-support {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #1a1a1a;
+      padding: 10px 16px;
+      border-radius: 40px;
+      cursor: pointer;
+      border: 1px solid rgba(176,176,176,0.3);
+      transition: all 0.2s;
+    }
+    .sticky-support:hover { transform: scale(1.05); background: #2a2a2a; }
+    .support-icon { width: 24px; height: 24px; stroke: #B0B0B0; stroke-width: 1.5; fill: none; }
+    .support-text { color: #B0B0B0; font-size: 14px; font-weight: 500; }
+    /* Back to top */
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #4a4a4a, #1a1a1a);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      transition: all 0.2s;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; }
+    .back-to-top:hover { transform: scale(1.1); }
+    /* Footer background faded logo + animations */
+    .footer-bg-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      max-width: 600px;
+      opacity: 0.07;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .footer-bg-logo svg {
+      width: 100%;
+      height: auto;
+      fill: #B0B0B0;
+    }
+    footer {
+      position: relative;
+      overflow: hidden;
+    }
+    footer .relative.z-10 {
+      position: relative;
+      z-index: 2;
+    }
+    /* Footer separate animations (1.8s) */
+    .animate-footer-fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1.8s ease-out, transform 1.8s ease-out;
+    }
+    .animate-footer-fade-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 1.8s ease-out, transform 1.8s ease-out;
+    }
+    .animate-footer-fade-right {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 1.8s ease-out, transform 1.8s ease-out;
+    }
+    .animate-footer-scale-up {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 1.8s ease-out, transform 1.8s ease-out;
+    }
+    .animate-footer-fade-in {
+      opacity: 0;
+      transition: opacity 1.8s ease-out;
+    }
+    .footer-animated {
+      opacity: 1 !important;
+      transform: translateX(0) translateY(0) scale(1) !important;
+    }
+    /* Stat card hover */
+    .stat-card {
+      transition: all 0.3s;
+    }
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+    .stat-number {
+      color: #B0B0B0;
+    }
+    .core-value-card {
+      transition: all 0.3s;
+    }
+    .core-value-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+    .core-value-icon {
+      color: #B0B0B0;
+    }
+    .cta-section {
+      background: linear-gradient(135deg, #1a1a1a, #000000);
+    }
+  </style>
+</head>
+<body class="font-inter">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 shadow-lg backdrop-blur-md py-2 fd-navbar">
+    <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <svg width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs><filter id="shadowLogo" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.6"/></filter></defs>
+          <g filter="url(#shadowLogo)">
+            <path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#B0B0B0"/>
+            <path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#B0B0B0"/>
+            <path d="M225 130 L305 210 L225 210 Z" fill="#B0B0B0"/>
+          </g>
+        </svg>
+        <div class="flex flex-col">
+          <span class="text-lg lg:text-xl font-bold tracking-wide leading-tight" style="color: #B0B0B0;">FRANKIE</span>
+          <span class="text-sm lg:text-base font-semibold tracking-wide leading-tight" style="color: #B0B0B0; margin-top: -2px;">DIGITALZ</span>
+        </div>
+      </div>
+      <div class="hidden lg:flex items-center gap-1">
+        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="index.html">Home</a>
+        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="about.html">About</a>
+        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="portfolio.html">Portfolio</a>
+        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="services.html">Services</a>
+        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="faq.html">FAQs</a>
+        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="contact.html">Contact</a>
+        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="blog.html">Blog</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a class="hidden lg:inline-flex px-5 py-2.5 bg-white text-sm font-semibold rounded-lg hover:shadow-lg transition" href="contact.html" style="color: black;">Get Started</a>
+        <button id="mobileMenuBtn" class="lg:hidden text-white p-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="lg:hidden hidden bg-black/95 backdrop-blur-md py-4 px-4">
+      <a class="block py-2 text-white/80 hover:text-white" href="index.html">Home</a>
+      <a class="block py-2 text-white/80 hover:text-white" href="about.html">About</a>
+      <a class="block py-2 text-white/80 hover:text-white" href="portfolio.html">Portfolio</a>
+      <a class="block py-2 text-white/80 hover:text-white" href="services.html">Services</a>
+      <a class="block py-2 text-white/80 hover:text-white" href="faq.html">FAQs</a>
+      <a class="block py-2 text-white/80 hover:text-white" href="contact.html">Contact</a>
+      <a class="block py-2 text-white/80 hover:text-white" href="blog.html">Blog</a>
+    </div>
+  </nav>
+
+  <main class="pt-28 pb-20 min-h-screen bg-white">
+    <div class="container mx-auto px-4">
+      <!-- Hero section (reveal-up) -->
+      <div class="text-center mb-16 reveal-up">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-gray-100 text-gray-700 text-sm font-medium mb-4">About Our Company</span>
+        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Crafting Digital Excellence</h1>
+        <p class="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">Frankie Digitalz is a forward-thinking digital agency dedicated to transforming businesses through innovative web solutions, cutting-edge design, and strategic digital marketing that drives measurable results.</p>
+      </div>
+
+      <!-- Stats section (reveal-left) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20 reveal-left">
+        <div class="stat-card text-center p-8 bg-gray-50 rounded-2xl hover:shadow-lg transition">
+          <div class="text-4xl lg:text-5xl font-bold stat-number mb-2">50+</div>
+          <div class="text-gray-600 text-sm">Projects Completed</div>
+        </div>
+        <div class="stat-card text-center p-8 bg-gray-50 rounded-2xl hover:shadow-lg transition">
+          <div class="text-4xl lg:text-5xl font-bold stat-number mb-2">25+</div>
+          <div class="text-gray-600 text-sm">Happy Clients</div>
+        </div>
+        <div class="stat-card text-center p-8 bg-gray-50 rounded-2xl hover:shadow-lg transition">
+          <div class="text-4xl lg:text-5xl font-bold stat-number mb-2">5+</div>
+          <div class="text-gray-600 text-sm">Years Experience</div>
+        </div>
+        <div class="stat-card text-center p-8 bg-gray-50 rounded-2xl hover:shadow-lg transition">
+          <div class="text-4xl lg:text-5xl font-bold stat-number mb-2">98%</div>
+          <div class="text-gray-600 text-sm">Client Satisfaction</div>
+        </div>
+      </div>
+
+      <!-- Core Values section (reveal-right-scale) -->
+      <div class="mb-16 reveal-right-scale">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-4">Our Core Values</h2>
+        <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">The principles that guide everything we do and define who we are as a company</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="core-value-card p-6 border border-gray-100 rounded-xl hover:shadow-lg transition group">
+            <div class="w-12 h-12 mb-4 flex items-center justify-center"><i class="fas fa-lightbulb text-3xl core-value-icon"></i></div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition">Innovation</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">We stay ahead of trends and leverage cutting-edge technologies to deliver future-proof solutions.</p>
+          </div>
+          <div class="core-value-card p-6 border border-gray-100 rounded-xl hover:shadow-lg transition group">
+            <div class="w-12 h-12 mb-4 flex items-center justify-center"><i class="fas fa-crosshairs text-3xl core-value-icon"></i></div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition">Precision</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Every detail matters in creating exceptional digital experiences that exceed expectations.</p>
+          </div>
+          <div class="core-value-card p-6 border border-gray-100 rounded-xl hover:shadow-lg transition group">
+            <div class="w-12 h-12 mb-4 flex items-center justify-center"><i class="fas fa-rocket text-3xl core-value-icon"></i></div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition">Performance</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">We build fast, scalable solutions optimized for speed, reliability, and business growth.</p>
+          </div>
+          <div class="core-value-card p-6 border border-gray-100 rounded-xl hover:shadow-lg transition group">
+            <div class="w-12 h-12 mb-4 flex items-center justify-center"><i class="fas fa-handshake text-3xl core-value-icon"></i></div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition">Partnership</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">We work collaboratively with clients as strategic partners to achieve their digital goals.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA section (reveal-fade) -->
+      <div class="text-center py-12 rounded-2xl cta-section reveal-fade">
+        <h2 class="text-2xl font-bold text-white mb-3">Learn More About Us</h2>
+        <p class="text-white/70 mb-6 max-w-md mx-auto">Ready to work with a team that cares about your success?</p>
+        <a href="contact.html" class="px-8 py-3 bg-white rounded-xl font-semibold text-black hover:shadow-lg transition inline-block hover:scale-105">Get in Touch</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer with 5 different animations & faded logo -->
+  <footer class="relative bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
+    <div class="footer-bg-logo"><svg viewBox="0 0 1000 800" fill="none"><path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#B0B0B0"/><path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#B0B0B0"/><path d="M225 130 L305 210 L225 210 Z" fill="#B0B0B0"/></svg></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-16">
+      <div class="grid lg:grid-cols-2 gap-12 mb-12">
+        <!-- 1. Fade-up (brand column) -->
+        <div class="space-y-6 animate-footer-fade-up" id="footerBrandCol">
+          <div class="flex items-center gap-3">
+            <svg width="48" height="48" viewBox="0 0 1000 800" fill="none"><path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#B0B0B0"/><path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#B0B0B0"/><path d="M225 130 L305 210 L225 210 Z" fill="#B0B0B0"/></svg>
+            <div><span class="font-bold text-xl">Frankie Digitalz</span></div>
+          </div>
+          <p class="text-gray-300 max-w-md mt-4">Transforming businesses through innovative digital solutions.</p>
+          <div class="flex space-x-4 mt-6">
+            <a href="https://www.facebook.com/profile.php?id=61589305472879" target="_blank" class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white transition group"><i class="fab fa-facebook-f text-gray-400 text-xl group-hover:text-black"></i></a>
+            <a href="https://x.com/DigitalzFrankie" target="_blank" class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white transition group"><i class="fab fa-twitter text-gray-400 text-xl group-hover:text-black"></i></a>
+            <a href="https://www.linkedin.com/in/frankie-digitalz-3a2007409" target="_blank" class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white transition group"><i class="fab fa-linkedin-in text-gray-400 text-xl group-hover:text-black"></i></a>
+            <a href="mailto:info.digitalzfrankie@gmail.com" class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white transition group"><i class="fas fa-envelope text-gray-400 text-xl group-hover:text-black"></i></a>
+          </div>
+        </div>
+        <!-- Right columns (three with different animations) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- 2. Fade-left (services) -->
+          <div class="animate-footer-fade-left" id="footerServicesCol"><h3 class="font-bold text-lg text-gray-300 mb-4">Services</h3><ul><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Web Development</a></li><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">E‑Commerce</a></li><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">UI/UX Design</a></li><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Digital Marketing</a></li><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Brand Strategy</a></li><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Technical Consulting</a></li></ul></div>
+          <!-- 3. Fade-right (company) -->
+          <div class="animate-footer-fade-right" id="footerCompanyCol"><h3 class="font-bold text-lg text-gray-300 mb-4">Company</h3><ul><li><a href="about.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">About Us</a></li><li><a href="portfolio.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Portfolio</a></li><li><a href="faq.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">FAQ</a></li><li><a href="blog.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Blog</a></li><li><a href="contact.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Contact</a></li></ul></div>
+          <!-- 4. Scale-up (legal) -->
+          <div class="animate-footer-scale-up" id="footerLegalCol"><h3 class="font-bold text-lg text-gray-300 mb-4">Legal</h3><ul><li><a href="privacy.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Privacy Policy</a></li><li><a href="terms.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Terms of Service</a></li><li><a href="cookies.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Cookie Policy</a></li></ul></div>
+        </div>
+      </div>
+      <!-- Contact details and copyright (5. fade-in) -->
+      <div class="grid md:grid-cols-3 gap-6 mb-12 pb-8 border-b border-white/10 animate-footer-fade-in" id="footerContactRow">
+        <div><a href="mailto:info.digitalzfrankie@gmail.com" class="flex items-center gap-4 text-gray-300 hover:text-white transition-all hover:translate-x-1"><div class="w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-700 rounded-lg flex items-center justify-center"><i class="fas fa-envelope text-white"></i></div><span>info.digitalzfrankie@gmail.com</span></a></div>
+        <div><a href="tel:+16395274749" class="flex items-center gap-4 text-gray-300 hover:text-white transition-all hover:translate-x-1"><div class="w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-700 rounded-lg flex items-center justify-center"><i class="fas fa-phone-alt text-white"></i></div><span>+1 (639) 527-4749</span></a></div>
+        <div class="flex items-center gap-4 text-gray-300"><div class="w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-700 rounded-lg flex items-center justify-center"><i class="fas fa-map-marker-alt text-white"></i></div><span>Plot 241 Digital Street, Tech City</span></div>
+      </div>
+      <div class="animate-footer-fade-in" id="footerCopyrightRow"><div class="flex flex-col md:flex-row justify-between items-center"><p class="text-gray-400 text-sm">© 2026 Frankie Digitalz. All rights reserved.</p><div class="flex space-x-6 text-sm"><a href="privacy.html" class="text-gray-400 hover:text-white transition-all hover:translate-x-1">Privacy Policy</a><a href="terms.html" class="text-gray-400 hover:text-white transition-all hover:translate-x-1">Terms</a><a href="cookies.html" class="text-gray-400 hover:text-white transition-all hover:translate-x-1">Cookies</a></div></div></div>
+    </div>
+  </footer>
+
+  <!-- Sticky Support & Back to Top -->
+  <div id="supportBtn" class="sticky-support"><svg class="support-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.08.62 4.03 1.73 5.66L2 22l4.34-1.73C7.97 21.38 9.92 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg><span class="support-text">24/7 Support</span></div>
+  <div class="back-to-top" id="backToTopBtn"><i class="fas fa-arrow-up text-white"></i></div>
+
+  <script>
+    (function() {
+      // Scroll reveal observers (re-animate on exit/entry)
+      const revealUp = document.querySelectorAll('.reveal-up');
+      const revealLeft = document.querySelectorAll('.reveal-left');
+      const revealRightScale = document.querySelectorAll('.reveal-right-scale');
+      const revealFade = document.querySelectorAll('.reveal-fade');
+      const observerCb = (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('revealed');
+          else entry.target.classList.remove('revealed');
+        });
+      };
+      const observer = new IntersectionObserver(observerCb, { threshold: 0.2 });
+      revealUp.forEach(el => observer.observe(el));
+      revealLeft.forEach(el => observer.observe(el));
+      revealRightScale.forEach(el => observer.observe(el));
+      revealFade.forEach(el => observer.observe(el));
+
+      // Footer separate animations – reset and re-animate on each scroll into view
+      const footerAnimatedElements = document.querySelectorAll('.animate-footer-fade-up, .animate-footer-fade-left, .animate-footer-fade-right, .animate-footer-scale-up, .animate-footer-fade-in');
+      const footerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('footer-animated');
+          } else {
+            entry.target.classList.remove('footer-animated');
+          }
+        });
+      }, { threshold: 0.2 });
+      footerAnimatedElements.forEach(el => footerObserver.observe(el));
+
+      // Mobile menu
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (mobileBtn && mobileMenu) mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+      // Back to top
+      const backBtn = document.getElementById('backToTopBtn');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) backBtn.classList.add('visible');
+        else backBtn.classList.remove('visible');
+      });
+      backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+      // WhatsApp support
+      const supportBtn = document.getElementById('supportBtn');
+      supportBtn.addEventListener('click', () => window.open('https://wa.me/16395274749', '_blank'));
+    })();
+  </script>
+</body>
+</html>
