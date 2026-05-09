@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Portfolio Debug</title>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: monospace; padding: 20px; background: #f4f4f4; }
+    pre { background: white; padding: 15px; overflow: auto; border-radius: 8px; }
+    .error { color: red; font-weight: bold; }
+    .success { color: green; }
+    .info { background: #e0f0ff; padding: 10px; margin: 10px 0; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Portfolio Contentful Debug</h1>
+  <div id="result">Loading...</div>
+  <script>
+    const SPACE_ID = 'ha7fm2wzrbnt';
+    const ACCESS_TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
+    const url = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=portfolio`;
+
+    fetch(url, {
+      headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}` }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      const items = data.items || [];
+      const resultDiv = document.getElementById('result');
+      if (items.length === 0) {
+        resultDiv.innerHTML = `<div class="error">✅ Connection successful, but NO portfolio entries found.</div>
+                               <div class="info">Make sure:<br>
+                               - Content type API ID is <strong>portfolio</strong> (lowercase).<br>
+                               - At least one entry is <strong>published</strong>.<br>
+                               - The entry has a <strong>storeName</strong>, <strong>storeUrl</strong>, and <strong>category</strong> field.<br>
+                               - The <strong>mainImage</strong> asset is also published.</div>
+                               <pre>${JSON.stringify(data, null, 2)}</pre>`;
+      } else {
+        resultDiv.innerHTML = `<div class="success">✅ Found ${items.length} portfolio entry(ies).</div>
+                               <div class="info">First entry:<br>
+                               Title: ${items[0].fields.storeName}<br>
+                               Category: ${items[0].fields.category}<br>
+                               URL: ${items[0].fields.storeUrl}</div>
+                               <pre>${JSON.stringify(data, null, 2)}</pre>`;
+      }
+    })
+    .catch(err => {
+      document.getElementById('result').innerHTML = `<div class="error">❌ Error: ${err.message}</div>`;
+    });
+  </script>
+</body>
+</html>
