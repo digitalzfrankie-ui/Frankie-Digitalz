@@ -7,7 +7,6 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%238A8A8A'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%238A8A8A'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%238A8A8A'/%3E%3C/svg%3E">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- Use the official Contentful rich-text renderer from a different CDN for reliability -->
   <script src="https://unpkg.com/@contentful/rich-text-html-renderer@16.3.4/dist/rich-text-html-renderer.min.js"></script>
   <style>
     body { font-family: 'Inter', sans-serif; background: white; padding: 2rem 1rem; }
@@ -15,11 +14,23 @@
     .rich-text-content h2 { font-size: 1.8rem; font-weight: 700; margin: 1.5em 0 0.5em; }
     .rich-text-content h3 { font-size: 1.4rem; font-weight: 600; margin: 1.2em 0 0.5em; }
     .rich-text-content p { margin-bottom: 1rem; }
-    .rich-text-content ul, .rich-text-content ol { margin: 1rem 0; padding-left: 1.5rem; }
-    .rich-text-content li { margin-bottom: 0.5rem; }
+    .rich-text-content ul, .rich-text-content ol { 
+      margin: 1rem 0; 
+      padding-left: 1.5rem; 
+    }
+    .rich-text-content ul {
+      list-style-type: disc !important;
+    }
+    .rich-text-content ol {
+      list-style-type: decimal !important;
+    }
+    .rich-text-content li {
+      display: list-item !important;
+      margin-bottom: 0.5rem;
+    }
     .rich-text-content img { max-width: 100%; border-radius: 0.5rem; margin: 1rem 0; }
     .rich-text-content a { color: #007BFF; text-decoration: underline; }
-    /* No hidden overflow anywhere */
+    /* Remove any hidden overflow */
     * { max-height: none !important; overflow: visible !important; }
     .debug-info { background: #f3f4f6; padding: 0.5rem 1rem; margin-bottom: 1rem; border-radius: 8px; font-size: 0.875rem; color: #374151; text-align: center; }
   </style>
@@ -46,11 +57,11 @@
             if (node.content) node.content.forEach(walk);
             html += '</h3>';
           } else if (node.nodeType === 'unordered-list') {
-            html += '<ul>';
+            html += '<ul class="list-disc">';
             if (node.content) node.content.forEach(walk);
             html += '</ul>';
           } else if (node.nodeType === 'ordered-list') {
-            html += '<ol>';
+            html += '<ol class="list-decimal">';
             if (node.content) node.content.forEach(walk);
             html += '</ol>';
           } else if (node.nodeType === 'list-item') {
