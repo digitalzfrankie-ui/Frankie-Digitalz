@@ -294,8 +294,8 @@
       </div>
     </div>
 
-    <!-- Portfolio grid -->
-    <div class="container mx-auto px-4 pb-16 reveal-right-scale">
+    <!-- Portfolio grid container (has reveal animation class) -->
+    <div class="container mx-auto px-4 pb-16 reveal-right-scale" id="gridContainer">
       <div id="portfolioGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </div>
 
@@ -332,7 +332,7 @@
       </div>
       <div class="grid md:grid-cols-3 gap-6 mb-12 pb-8 border-b border-white/10 animate-footer-fade-in" id="footerContactRow">
         <div><a href="mailto:info.digitalzfrankie@gmail.com" class="flex items-center gap-4 text-gray-300 hover:text-white transition-all hover:translate-x-1"><div class="w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-700 rounded-lg flex items-center justify-center"><i class="fas fa-envelope text-white"></i></div><span>info.digitalzfrankie@gmail.com</span></a></div>
-        <div><a href="tel:+16395274749" class="flex items-center gap-4 text-gray-300 hover:text-white transition-all hover:translate-x-1"><div class="w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-700 rounded-lg flex items-center justify-center"><i class="fas fa-phone-alt text-white"></i></div><span>+1 (639) 527-4749</span></a></div>
+        <div><a href="tel:+16395274759" class="flex items-center gap-4 text-gray-300 hover:text-white transition-all hover:translate-x-1"><div class="w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-700 rounded-lg flex items-center justify-center"><i class="fas fa-phone-alt text-white"></i></div><span>+1 (639) 527-4759</span></a></div>
         <div class="flex items-center gap-4 text-gray-300"><div class="w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-700 rounded-lg flex items-center justify-center"><i class="fas fa-map-marker-alt text-white"></i></div><span>Plot 241 Digital Street, Tech City</span></div>
       </div>
       <div class="animate-footer-fade-in"><div class="flex flex-col md:flex-row justify-between items-center"><p class="text-gray-400 text-sm">© 2026 Frankie Digitalz. All rights reserved.</p><div class="flex space-x-6 text-sm"><a href="privacy.html" class="text-gray-400 hover:text-white transition-all hover:translate-x-1">Privacy Policy</a><a href="terms.html" class="text-gray-400 hover:text-white transition-all hover:translate-x-1">Terms</a><a href="cookies.html" class="text-gray-400 hover:text-white transition-all hover:translate-x-1">Cookies</a></div></div></div>
@@ -345,6 +345,7 @@
 
   <script>
     (function() {
+      // Static portfolio projects (original list)
       const staticProjects = [
         { name: "Sobrii", url: "https://sobrii.ca/", label: "Non‑Alcoholic Drinks", badge: "+32% traffic", categories: ["food"], img: "sobri.png" },
         { name: "Seed To Surf", url: "https://seedtosurf.ca/", label: "Plant‑Based Seafood", badge: "+57% conversion", categories: ["food"], img: "seed.png" },
@@ -364,7 +365,8 @@
         { name: "Mynody (Skin Care)", url: "https://mynody.com", label: "Holistic Wellness – Skin Care", badge: "+25% conversion", categories: ["skincare"], img: "mynodyskincare.png" }
       ];
 
-      const SPACE_ID = 'ha7fm2wzrbtn';
+      // CORRECT Contentful credentials (as you provided)
+      const SPACE_ID = 'ha7fm2wzrbnt';
       const ACCESS_TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
 
       let allProjects = [];
@@ -406,19 +408,23 @@
       }
 
       let activeFilter = 'all';
+      const gridContainer = document.getElementById('gridContainer');
+      const grid = document.getElementById('portfolioGrid');
+      const countSpan = document.getElementById('projectCount');
+
       function renderCombinedPortfolio() {
-        const grid = document.getElementById('portfolioGrid');
-        const countSpan = document.getElementById('projectCount');
         if (!grid) return;
 
         let filtered = [];
         if (activeFilter === 'all') {
           filtered = allProjects;
         } else {
-          filtered = allProjects.filter(project => project.categories.includes(activeFilter.toLowerCase()));
+          filtered = allProjects.filter(project => 
+            project.categories.includes(activeFilter.toLowerCase())
+          );
         }
 
-        countSpan.innerText = filtered.length;
+        if (countSpan) countSpan.innerText = filtered.length;
 
         if (filtered.length === 0) {
           grid.innerHTML = `
@@ -436,7 +442,7 @@
           <div class="portfolio-card group bg-white rounded-xl overflow-hidden shadow border border-gray-100">
             <a href="${proj.url}" target="_blank" class="block">
               <div class="img-wrapper relative h-48 w-full bg-gray-100">
-                <img src="${proj.img}" alt="${proj.name}" class="portfolio-img w-full h-full object-cover">
+                <img src="${proj.img}" alt="${proj.name}" class="portfolio-img w-full h-full object-cover" onerror="this.src='https://placehold.co/400x300/e0e0e0/333?text=No+Image'">
                 <div class="portfolio-overlay"><span>View Project <i class="fas fa-arrow-right ml-1 text-xs"></i></span></div>
               </div>
               <div class="p-4">
@@ -450,6 +456,20 @@
             </a>
           </div>
         `).join('');
+
+        // Mobile specific: If 'all' filter is active AND screen width <= 768px, remove animation class and force reveal
+        if (window.innerWidth <= 768 && activeFilter === 'all') {
+          if (gridContainer) {
+            gridContainer.classList.add('revealed');
+            gridContainer.classList.remove('reveal-right-scale');
+          }
+        } else {
+          // For desktop or other filters, ensure the animation class is present (IntersectionObserver will handle reveal)
+          if (gridContainer && !gridContainer.classList.contains('reveal-right-scale')) {
+            gridContainer.classList.add('reveal-right-scale');
+            gridContainer.classList.remove('revealed');
+          }
+        }
       }
 
       async function init() {
@@ -476,13 +496,17 @@
         });
       }
 
-      // Scroll reveal observers
+      // Scroll reveal observers (unchanged – works for desktop and mobile for all filters except when overridden above)
       const revealUp = document.querySelectorAll('.reveal-up');
       const revealLeft = document.querySelectorAll('.reveal-left');
       const revealRightScale = document.querySelectorAll('.reveal-right-scale');
       const revealFade = document.querySelectorAll('.reveal-fade');
       const observerCb = (entries) => {
         entries.forEach(entry => {
+          // Skip if this is the grid container and we are on mobile with 'all' filter (already forced visible)
+          if (window.innerWidth <= 768 && activeFilter === 'all' && entry.target === gridContainer) {
+            return;
+          }
           if (entry.isIntersecting) entry.target.classList.add('revealed');
           else entry.target.classList.remove('revealed');
         });
@@ -516,9 +540,9 @@
       });
       backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-      // WhatsApp support
+      // WhatsApp support (updated number)
       const supportBtn = document.getElementById('supportBtn');
-      supportBtn.addEventListener('click', () => window.open('https://wa.me/16395274749', '_blank'));
+      supportBtn.addEventListener('click', () => window.open('https://wa.me/16395274759', '_blank'));
 
       init();
       initFilters();
