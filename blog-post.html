@@ -6,19 +6,50 @@
   <title>Frankie Digitalz – Blog Post</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%238A8A8A'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%238A8A8A'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%238A8A8A'/%3E%3C/svg%3E">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@16.3.4/dist/rich-text-html-renderer.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Inter', sans-serif; background: white; }
     .error-box { background: #fee2e2; border-left: 4px solid #dc2626; padding: 1rem; margin: 1rem; border-radius: 8px; }
     .rich-text-content { line-height: 1.7; color: #374151; }
     .rich-text-content h2 { font-size: 1.5rem; font-weight: 700; margin: 1.5em 0 0.5em; }
+    .rich-text-content h3 { font-size: 1.25rem; font-weight: 600; margin: 1.2em 0 0.5em; }
     .rich-text-content p { margin-bottom: 1rem; }
+    .rich-text-content ul, .rich-text-content ol { margin: 1rem 0; padding-left: 1.5rem; }
+    .rich-text-content li { margin-bottom: 0.5rem; }
     .rich-text-content img { max-width: 100%; border-radius: 0.5rem; margin: 1rem 0; }
+    .rich-text-content a { color: #007BFF; text-decoration: underline; }
   </style>
+  <!-- Load Contentful rich-text renderer with a fallback -->
+  <script src="https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@16.3.4/dist/rich-text-html-renderer.min.js"></script>
+  <script>
+    // Fallback in case the CDN fails
+    window.documentToHtmlString = window.documentToHtmlString || function(richText) {
+      console.warn('Using fallback rich text renderer');
+      if (!richText || !richText.content) return '<p>Content could not be rendered.</p>';
+      // Very basic fallback: just extract plain text from paragraphs
+      let html = '';
+      if (richText.content) {
+        richText.content.forEach(node => {
+          if (node.nodeType === 'paragraph') {
+            let text = '';
+            if (node.content) {
+              node.content.forEach(sub => { if (sub.value) text += sub.value; });
+            }
+            html += `<p>${escapeHtml(text)}</p>`;
+          } else if (node.nodeType === 'heading-2') {
+            let text = '';
+            if (node.content) node.content.forEach(sub => { if (sub.value) text += sub.value; });
+            html += `<h2>${escapeHtml(text)}</h2>`;
+          }
+        });
+      }
+      return html || '<p>Content could not be displayed.</p>';
+      function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
+    };
+  </script>
 </head>
 <body>
-  <!-- Navbar (same as blog.html) -->
+  <!-- Navbar (simplified, same as blog.html) -->
   <nav class="bg-black/95 text-white py-3 px-4 fixed top-0 w-full z-50">
     <div class="container mx-auto flex justify-between">
       <span class="font-bold text-xl">FRANKIE DIGITALZ</span>
@@ -26,43 +57,70 @@
     </div>
   </nav>
   <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
-    <div id="postContent"></div>
+    <div id="postContent">Loading...</div>
   </main>
+
   <script>
     const SPACE_ID = 'ha7fm2wzrbnt';
     const ACCESS_TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
     const container = document.getElementById('postContent');
+
     function showError(msg) {
       container.innerHTML = `<div class="error-box">❌ ${msg}</div><a href="blog.html" class="inline-block mt-4 text-blue-600">← Back to blog</a>`;
     }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+    }
+
     function formatDate(dateStr) {
       if (!dateStr) return '';
       const parts = dateStr.split('-');
-      if (parts.length === 3) return `${parts[1]}/${parts[2]}/${parts[0]}`;
-      return dateStr;
+      return parts.length === 3 ? `${parts[1]}/${parts[2]}/${parts[0]}` : dateStr;
     }
+
     async function loadPost() {
       const params = new URLSearchParams(window.location.search);
       const slug = params.get('slug');
-      if (!slug) { showError('No article specified.'); return; }
+      if (!slug) {
+        showError('No article specified.');
+        return;
+      }
+
       const url = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=blogPost&fields.slug=${slug}&limit=1`;
       try {
-        const res = await fetch(url, { headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}` } });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-        if (!data.items || data.items.length === 0) { showError('Article not found.'); return; }
+        const response = await fetch(url, {
+          headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}` }
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        if (!data.items || data.items.length === 0) {
+          showError('Article not found.');
+          return;
+        }
+
         const post = data.items[0];
         const fields = post.fields;
-        const imgAsset = data.includes?.Asset?.find(a => a.sys.id === fields.featuredImage?.sys?.id);
-        const imgUrl = imgAsset ? `https:${imgAsset.fields.file.url}` : null;
+        const asset = data.includes?.Asset?.find(a => a.sys.id === fields.featuredImage?.sys?.id);
+        const imageUrl = asset ? `https:${asset.fields.file.url}` : null;
+
         let bodyHtml = '';
         if (fields.body) {
-          bodyHtml = documentToHtmlString(fields.body);
+          // Use the global function (should be available from CDN or fallback)
+          if (typeof documentToHtmlString === 'function') {
+            bodyHtml = documentToHtmlString(fields.body);
+          } else {
+            console.error('documentToHtmlString not available');
+            bodyHtml = '<p>Content could not be rendered. Please check the console.</p>';
+          }
         } else {
           bodyHtml = `<p>${escapeHtml(fields.excerpt || 'No content available.')}</p>`;
         }
+
         const dateHtml = fields.publishDate ? `<div class="text-gray-500 text-sm mb-4">${formatDate(fields.publishDate)}</div>` : '';
-        const imageHtml = imgUrl ? `<div class="mb-6"><img src="${imgUrl}" alt="${fields.title}" class="rounded-xl shadow"></div>` : '';
+        const imageHtml = imageUrl ? `<div class="mb-6"><img src="${imageUrl}" alt="${escapeHtml(fields.title)}" class="rounded-xl shadow"></div>` : '';
+
         container.innerHTML = `
           <h1 class="text-3xl md:text-4xl font-bold mb-2">${escapeHtml(fields.title)}</h1>
           ${dateHtml}
@@ -74,7 +132,7 @@
         showError(err.message);
       }
     }
-    function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
+
     loadPost();
   </script>
 </body>
