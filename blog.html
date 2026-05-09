@@ -11,11 +11,15 @@
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
 
+  <!-- FAVICON – intertwined FD monogram, darker ash on black -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%238A8A8A'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%238A8A8A'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%238A8A8A'/%3E%3C/svg%3E">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
 
   <style>
+    /* (your existing CSS – unchanged) */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', 'Poppins', sans-serif;
@@ -196,7 +200,7 @@
 </head>
 <body class="font-inter">
 
-  <!-- Navbar -->
+  <!-- Navbar (unchanged) -->
   <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 shadow-lg backdrop-blur-md py-2 fd-navbar">
     <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
       <div class="flex items-center gap-3">
@@ -254,7 +258,7 @@
     </div>
   </main>
 
-  <!-- Footer (same as other pages) -->
+  <!-- Footer (unchanged) -->
   <footer class="relative bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
     <div class="footer-bg-logo"><svg viewBox="0 0 1000 800" fill="none"><path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#B0B0B0"/><path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#B0B0B0"/><path d="M225 130 L305 210 L225 210 Z" fill="#B0B0B0"/></svg></div>
     <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-16">
@@ -290,17 +294,14 @@
 
   <script>
     (function() {
-      // Contentful credentials (same as portfolio)
       const SPACE_ID = 'ha7fm2wzrbtn';
-      const ACCESS_TOKEN = 'ahD6agJicZzqquFTSOczZyIjKyYikz-7A-eEp_5OLZQ';
+      const ACCESS_TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
 
-      // Helper: get image URL from includes
       function getImageUrl(assetId, includes) {
         const asset = includes?.Asset?.find(a => a.sys.id === assetId);
         return asset?.fields?.file?.url ? `https:${asset.fields.file.url}` : null;
       }
 
-      // Format date from YYYY-MM-DD to MM/DD/YYYY
       function formatDate(dateStr) {
         if (!dateStr) return '';
         const parts = dateStr.split('-');
@@ -308,7 +309,6 @@
         return dateStr;
       }
 
-      // Fetch all blog posts from Contentful (content_type = blogPost)
       async function fetchBlogPosts() {
         const url = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=blogPost&order=-fields.publishDate`;
         try {
@@ -336,7 +336,6 @@
         }
       }
 
-      // Render blog posts into grid (using correct link to blog-post.html)
       async function renderBlog() {
         const grid = document.getElementById('blogGrid');
         if (!grid) return;
@@ -428,7 +427,6 @@
       const supportBtn = document.getElementById('supportBtn');
       supportBtn.addEventListener('click', () => window.open('https://wa.me/16395274749', '_blank'));
 
-      // Load blog posts
       renderBlog();
     })();
   </script>
