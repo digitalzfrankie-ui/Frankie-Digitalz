@@ -2,308 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Frankie Digitalz – Blog Post</title>
-  <meta name="description" content="Read the full article from Frankie Digitalz blog.">
-  <meta name="author" content="Frankie Digitalz">
-  <meta property="og:title" content="Frankie Digitalz – Blog Post">
-  <meta property="og:type" content="article">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- FAVICON -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%238A8A8A'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%238A8A8A'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%238A8A8A'/%3E%3C/svg%3E">
-
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@16.3.4/dist/rich-text-html-renderer.min.js"></script>
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', 'Poppins', sans-serif; background-color: #ffffff; color: #1f2937; overflow-x: hidden; }
-    .fd-navbar { background-color: rgba(0,0,0,0.95) !important; backdrop-filter: blur(8px); }
-    .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade { transition: opacity 1.8s ease-out, transform 1.8s ease-out; }
-    .reveal-up { opacity: 0; transform: translateY(30px); }
-    .reveal-up.revealed { opacity: 1; transform: translateY(0); }
-    .reveal-left { opacity: 0; transform: translateX(-30px); }
-    .reveal-left.revealed { opacity: 1; transform: translateX(0); }
-    .reveal-right-scale { opacity: 0; transform: translateX(30px) scale(0.95); }
-    .reveal-right-scale.revealed { opacity: 1; transform: translateX(0) scale(1); }
-    .reveal-fade { opacity: 0; }
-    .reveal-fade.revealed { opacity: 1; }
-    .sticky-support { position: fixed; bottom: 20px; left: 20px; z-index: 1000; display: flex; align-items: center; gap: 8px; background-color: #1a1a1a; padding: 10px 16px; border-radius: 40px; cursor: pointer; border: 1px solid rgba(176,176,176,0.3); transition: all 0.2s; }
-    .sticky-support:hover { transform: scale(1.05); background: #2a2a2a; }
-    .support-icon { width: 24px; height: 24px; stroke: #B0B0B0; stroke-width: 1.5; fill: none; }
-    .support-text { color: #B0B0B0; font-size: 14px; font-weight: 500; }
-    .back-to-top { position: fixed; bottom: 20px; right: 20px; width: 48px; height: 48px; background: linear-gradient(135deg, #4a4a4a, #1a1a1a); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; transition: all 0.2s; opacity: 0; visibility: hidden; }
-    .back-to-top.visible { opacity: 1; visibility: visible; }
-    .back-to-top:hover { transform: scale(1.1); }
-    .footer-bg-logo { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70%; max-width: 600px; opacity: 0.07; pointer-events: none; z-index: 0; }
-    .footer-bg-logo svg { width: 100%; height: auto; fill: #B0B0B0; }
-    footer { position: relative; overflow: hidden; }
-    footer .relative.z-10 { position: relative; z-index: 2; }
-    .animate-footer-fade-up, .animate-footer-fade-left, .animate-footer-fade-right, .animate-footer-scale-up, .animate-footer-fade-in { transition: opacity 1.8s ease-out, transform 1.8s ease-out; }
-    .animate-footer-fade-up { opacity: 0; transform: translateY(30px); }
-    .animate-footer-fade-left { opacity: 0; transform: translateX(-30px); }
-    .animate-footer-fade-right { opacity: 0; transform: translateX(30px); }
-    .animate-footer-scale-up { opacity: 0; transform: scale(0.9); }
-    .animate-footer-fade-in { opacity: 0; }
-    .footer-animated { opacity: 1 !important; transform: translateX(0) translateY(0) scale(1) !important; }
-    .rich-text-content { font-family: 'Inter', sans-serif; line-height: 1.7; color: #374151; }
-    .rich-text-content h1, .rich-text-content h2, .rich-text-content h3 { font-weight: 700; margin-top: 1.5em; margin-bottom: 0.5em; color: #111827; }
-    .rich-text-content h1 { font-size: 1.8rem; }
-    .rich-text-content h2 { font-size: 1.5rem; }
-    .rich-text-content h3 { font-size: 1.25rem; }
-    .rich-text-content p { margin-bottom: 1.25rem; }
-    .rich-text-content ul, .rich-text-content ol { margin: 1rem 0; padding-left: 1.5rem; }
-    .rich-text-content li { margin-bottom: 0.5rem; }
-    .rich-text-content img { max-width: 100%; height: auto; border-radius: 0.5rem; margin: 1.5rem 0; }
-    .rich-text-content a { color: #007BFF; text-decoration: underline; }
+    body { font-family: 'Inter', sans-serif; background: white; }
+    .error-box { background: #fee2e2; border-left: 4px solid #dc2626; padding: 1rem; margin: 1rem; border-radius: 8px; }
+    .rich-text-content { line-height: 1.7; color: #374151; }
+    .rich-text-content h2 { font-size: 1.5rem; font-weight: 700; margin: 1.5em 0 0.5em; }
+    .rich-text-content p { margin-bottom: 1rem; }
+    .rich-text-content img { max-width: 100%; border-radius: 0.5rem; margin: 1rem 0; }
   </style>
 </head>
-<body class="font-inter">
-
-  <!-- Navbar -->
-  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 shadow-lg backdrop-blur-md py-2 fd-navbar">
-    <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <svg width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><filter id="shadowLogo" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.6"/></filter></defs>
-          <g filter="url(#shadowLogo)">
-            <path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#B0B0B0"/>
-            <path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#B0B0B0"/>
-            <path d="M225 130 L305 210 L225 210 Z" fill="#B0B0B0"/>
-          </g>
-        </svg>
-        <div class="flex flex-col">
-          <span class="text-lg lg:text-xl font-bold tracking-wide leading-tight" style="color: #B0B0B0;">FRANKIE</span>
-          <span class="text-sm lg:text-base font-semibold tracking-wide leading-tight" style="color: #B0B0B0; margin-top: -2px;">DIGITALZ</span>
-        </div>
-      </div>
-      <div class="hidden lg:flex items-center gap-1">
-        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="index.html">Home</a>
-        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="about.html">About</a>
-        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="portfolio.html">Portfolio</a>
-        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="services.html">Services</a>
-        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="faq.html">FAQs</a>
-        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="contact.html">Contact</a>
-        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="blog.html">Blog</a>
-      </div>
-      <div class="flex items-center gap-3">
-        <a class="hidden lg:inline-flex px-5 py-2.5 bg-white text-sm font-semibold rounded-lg hover:shadow-lg transition" href="contact.html" style="color: black;">Get Started</a>
-        <button id="mobileMenuBtn" class="lg:hidden text-white p-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
-      </div>
-    </div>
-    <div id="mobileMenu" class="lg:hidden hidden bg-black/95 backdrop-blur-md py-4 px-4">
-      <a class="block py-2 text-white/80 hover:text-white" href="index.html">Home</a>
-      <a class="block py-2 text-white/80 hover:text-white" href="about.html">About</a>
-      <a class="block py-2 text-white/80 hover:text-white" href="portfolio.html">Portfolio</a>
-      <a class="block py-2 text-white/80 hover:text-white" href="services.html">Services</a>
-      <a class="block py-2 text-white/80 hover:text-white" href="faq.html">FAQs</a>
-      <a class="block py-2 text-white/80 hover:text-white" href="contact.html">Contact</a>
-      <a class="block py-2 text-white/80 hover:text-white" href="blog.html">Blog</a>
+<body>
+  <!-- Navbar (same as blog.html) -->
+  <nav class="bg-black/95 text-white py-3 px-4 fixed top-0 w-full z-50">
+    <div class="container mx-auto flex justify-between">
+      <span class="font-bold text-xl">FRANKIE DIGITALZ</span>
+      <div class="space-x-4"><a href="index.html" class="hover:text-gray-300">Home</a><a href="blog.html" class="hover:text-gray-300">Blog</a></div>
     </div>
   </nav>
-
-  <main class="pt-32 pb-20 bg-white">
-    <div class="container mx-auto px-4 max-w-3xl">
-      <div id="postContent" class="reveal-up revealed">
-        <div class="text-center py-12 reveal-up">
-          <h1 class="text-3xl font-bold text-gray-800 mb-4">No article specified</h1>
-          <p class="text-gray-600">Please provide a valid article link.</p>
-          <a href="blog.html" class="inline-block mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Back to Blog</a>
-        </div>
-      </div>
-    </div>
+  <main class="pt-24 pb-12 px-4 max-w-3xl mx-auto">
+    <div id="postContent"></div>
   </main>
-
-  <!-- Footer -->
-  <footer class="relative bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
-    <div class="footer-bg-logo"><svg viewBox="0 0 1000 800" fill="none"><path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#B0B0B0"/><path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#B0B0B0"/><path d="M225 130 L305 210 L225 210 Z" fill="#B0B0B0"/></svg></div>
-    <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-16">
-      <div class="grid lg:grid-cols-2 gap-12 mb-12">
-        <div class="space-y-6 animate-footer-fade-up footer-animated" id="footerBrandCol">
-          <div class="flex items-center gap-3"><svg width="48" height="48" viewBox="0 0 1000 800" fill="none"><path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#B0B0B0"/><path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#B0B0B0"/><path d="M225 130 L305 210 L225 210 Z" fill="#B0B0B0"/></svg><div><span class="font-bold text-xl">Frankie Digitalz</span></div></div>
-          <p class="text-gray-300 max-w-md mt-4">Transforming businesses through innovative digital solutions.</p>
-          <div class="flex space-x-4 mt-6">
-            <a href="https://www.facebook.com/profile.php?id=61589305472879" target="_blank" class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white transition group"><i class="fab fa-facebook-f text-gray-400 text-xl group-hover:text-black"></i></a>
-            <a href="https://x.com/DigitalzFrankie" target="_blank" class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white transition group"><i class="fab fa-twitter text-gray-400 text-xl group-hover:text-black"></i></a>
-            <a href="https://www.linkedin.com/in/frankie-digitalz-3a2007409" target="_blank" class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white transition group"><i class="fab fa-linkedin-in text-gray-400 text-xl group-hover:text-black"></i></a>
-            <a href="mailto:info.digitalzfrankie@gmail.com" class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white transition group"><i class="fas fa-envelope text-gray-400 text-xl group-hover:text-black"></i></a>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="animate-footer-fade-left"><h3 class="font-bold text-lg text-gray-300 mb-4">Services</h3><ul><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Web Development</a></li><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">E‑Commerce</a></li><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">UI/UX Design</a></li><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Digital Marketing</a></li><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Brand Strategy</a></li><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Technical Consulting</a></li></ul></div>
-          <div class="animate-footer-fade-right"><h3 class="font-bold text-lg text-gray-300 mb-4">Company</h3><ul><li><a href="about.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">About Us</a></li><li><a href="portfolio.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Portfolio</a></li><li><a href="faq.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">FAQ</a></li><li><a href="blog.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Blog</a></li><li><a href="contact.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Contact</a></li></ul></div>
-          <div class="animate-footer-scale-up"><h3 class="font-bold text-lg text-gray-300 mb-4">Legal</h3><ul><li><a href="privacy.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Privacy Policy</a></li><li><a href="terms.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Terms of Service</a></li><li><a href="cookies.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Cookie Policy</a></li></ul></div>
-        </div>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6 mb-12 pb-8 border-b border-white/10 animate-footer-fade-in" id="footerContactRow">
-        <div><a href="mailto:info.digitalzfrankie@gmail.com" class="flex items-center gap-4 text-gray-300 hover:text-white transition-all hover:translate-x-1"><div class="w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-700 rounded-lg flex items-center justify-center"><i class="fas fa-envelope text-white"></i></div><span>info.digitalzfrankie@gmail.com</span></a></div>
-        <div><a href="tel:+16395274759" class="flex items-center gap-4 text-gray-300 hover:text-white transition-all hover:translate-x-1"><div class="w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-700 rounded-lg flex items-center justify-center"><i class="fas fa-phone-alt text-white"></i></div><span>+1 (639) 527-4759</span></a></div>
-        <div class="flex items-center gap-4 text-gray-300"><div class="w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-700 rounded-lg flex items-center justify-center"><i class="fas fa-map-marker-alt text-white"></i></div><span>Plot 241 Digital Street, Tech City</span></div>
-      </div>
-      <div class="animate-footer-fade-in"><div class="flex flex-col md:flex-row justify-between items-center"><p class="text-gray-400 text-sm">© 2026 Frankie Digitalz. All rights reserved.</p><div class="flex space-x-6 text-sm"><a href="privacy.html" class="text-gray-400 hover:text-white transition-all hover:translate-x-1">Privacy Policy</a><a href="terms.html" class="text-gray-400 hover:text-white transition-all hover:translate-x-1">Terms</a><a href="cookies.html" class="text-gray-400 hover:text-white transition-all hover:translate-x-1">Cookies</a></div></div></div>
-    </div>
-  </footer>
-
-  <div id="supportBtn" class="sticky-support"><svg class="support-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.08.62 4.03 1.73 5.66L2 22l4.34-1.73C7.97 21.38 9.92 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg><span class="support-text">24/7 Support</span></div>
-  <div class="back-to-top" id="backToTopBtn"><i class="fas fa-arrow-up text-white"></i></div>
-
   <script>
-    (function() {
-      const SPACE_ID = 'ha7fm2wzrbnt';
-      const ACCESS_TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
-
-      function getImageUrl(assetId, includes) {
-        const asset = includes?.Asset?.find(a => a.sys.id === assetId);
-        return asset?.fields?.file?.url ? `https:${asset.fields.file.url}` : null;
-      }
-
-      function formatDate(dateStr) {
-        if (!dateStr) return '';
-        const parts = dateStr.split('-');
-        if (parts.length === 3) return `${parts[1]}/${parts[2]}/${parts[0]}`;
-        return dateStr;
-      }
-
-      function getSlugFromURL() {
-        const params = new URLSearchParams(window.location.search);
-        return params.get('slug');
-      }
-
-      async function fetchPostBySlug(slug) {
-        const url = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=blogPost&fields.slug=${slug}&limit=1`;
-        try {
-          const response = await fetch(url, {
-            headers: { Authorization: `Bearer ${ACCESS_TOKEN}` }
-          });
-          const data = await response.json();
-          if (!data.items || data.items.length === 0) return null;
-          const item = data.items[0];
-          const fields = item.fields;
-          const imageId = fields.featuredImage?.sys?.id;
-          const imageUrl = getImageUrl(imageId, data.includes);
-          let bodyHtml = '';
-          if (fields.body) {
-            bodyHtml = documentToHtmlString(fields.body);
-          }
-          return {
-            title: fields.title || 'Untitled',
-            publishDate: fields.publishDate || '',
-            imageUrl: imageUrl,
-            bodyHtml: bodyHtml,
-            excerpt: fields.excerpt || ''
-          };
-        } catch (error) {
-          console.error('Error fetching post:', error);
-          return null;
+    const SPACE_ID = 'ha7fm2wzrbnt';
+    const ACCESS_TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
+    const container = document.getElementById('postContent');
+    function showError(msg) {
+      container.innerHTML = `<div class="error-box">❌ ${msg}</div><a href="blog.html" class="inline-block mt-4 text-blue-600">← Back to blog</a>`;
+    }
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const parts = dateStr.split('-');
+      if (parts.length === 3) return `${parts[1]}/${parts[2]}/${parts[0]}`;
+      return dateStr;
+    }
+    async function loadPost() {
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get('slug');
+      if (!slug) { showError('No article specified.'); return; }
+      const url = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=blogPost&fields.slug=${slug}&limit=1`;
+      try {
+        const res = await fetch(url, { headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}` } });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (!data.items || data.items.length === 0) { showError('Article not found.'); return; }
+        const post = data.items[0];
+        const fields = post.fields;
+        const imgAsset = data.includes?.Asset?.find(a => a.sys.id === fields.featuredImage?.sys?.id);
+        const imgUrl = imgAsset ? `https:${imgAsset.fields.file.url}` : null;
+        let bodyHtml = '';
+        if (fields.body) {
+          bodyHtml = documentToHtmlString(fields.body);
+        } else {
+          bodyHtml = `<p>${escapeHtml(fields.excerpt || 'No content available.')}</p>`;
         }
-      }
-
-      async function loadPost() {
-        const container = document.getElementById('postContent');
-        const slug = getSlugFromURL();
-        if (!slug) {
-          container.innerHTML = `
-            <div class="text-center py-12 reveal-up">
-              <h1 class="text-3xl font-bold text-gray-800 mb-4">No article specified</h1>
-              <p class="text-gray-600">Please provide a valid article link.</p>
-              <a href="blog.html" class="inline-block mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Back to Blog</a>
-            </div>
-          `;
-          return;
-        }
-        const post = await fetchPostBySlug(slug);
-        if (!post) {
-          container.innerHTML = `
-            <div class="text-center py-12 reveal-up">
-              <h1 class="text-3xl font-bold text-gray-800 mb-4">Article Not Found</h1>
-              <p class="text-gray-600">The article you are looking for does not exist or has been moved.</p>
-              <a href="blog.html" class="inline-block mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Back to Blog</a>
-            </div>
-          `;
-          return;
-        }
-        const dateHtml = post.publishDate ? `<div class="text-gray-500 text-sm mb-4">${formatDate(post.publishDate)}</div>` : '';
-        const imageHtml = post.imageUrl ? `
-          <div class="mb-8 rounded-xl overflow-hidden shadow-md">
-            <img src="${post.imageUrl}" alt="${post.title}" class="w-full h-auto object-cover">
-          </div>
-        ` : '';
+        const dateHtml = fields.publishDate ? `<div class="text-gray-500 text-sm mb-4">${formatDate(fields.publishDate)}</div>` : '';
+        const imageHtml = imgUrl ? `<div class="mb-6"><img src="${imgUrl}" alt="${fields.title}" class="rounded-xl shadow"></div>` : '';
         container.innerHTML = `
-          <div class="reveal-up">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">${escapeHtml(post.title)}</h1>
-            ${dateHtml}
-            ${imageHtml}
-            <div class="rich-text-content">
-              ${post.bodyHtml ? post.bodyHtml : `<p class="text-gray-600">${escapeHtml(post.excerpt || 'No content available.')}</p>`}
-            </div>
-            <div class="mt-12 pt-6 border-t border-gray-200 text-center">
-              <a href="blog.html" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium">
-                <i class="fas fa-arrow-left"></i> Back to all articles
-              </a>
-            </div>
-          </div>
+          <h1 class="text-3xl md:text-4xl font-bold mb-2">${escapeHtml(fields.title)}</h1>
+          ${dateHtml}
+          ${imageHtml}
+          <div class="rich-text-content">${bodyHtml}</div>
+          <div class="mt-12 pt-6 border-t text-center"><a href="blog.html" class="text-blue-600 hover:underline">← Back to all articles</a></div>
         `;
+      } catch (err) {
+        showError(err.message);
       }
-
-      function escapeHtml(str) {
-        if (!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-          if (m === '&') return '&amp;';
-          if (m === '<') return '&lt;';
-          if (m === '>') return '&gt;';
-          return m;
-        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) { return c; });
-      }
-
-      // Scroll reveal observers
-      const revealUp = document.querySelectorAll('.reveal-up');
-      const revealLeft = document.querySelectorAll('.reveal-left');
-      const revealRightScale = document.querySelectorAll('.reveal-right-scale');
-      const revealFade = document.querySelectorAll('.reveal-fade');
-      const observerCb = (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('revealed');
-          else entry.target.classList.remove('revealed');
-        });
-      };
-      const observer = new IntersectionObserver(observerCb, { threshold: 0.2 });
-      revealUp.forEach(el => observer.observe(el));
-      revealLeft.forEach(el => observer.observe(el));
-      revealRightScale.forEach(el => observer.observe(el));
-      revealFade.forEach(el => observer.observe(el));
-
-      // Footer animations
-      const footerAnimatedElements = document.querySelectorAll('.animate-footer-fade-up, .animate-footer-fade-left, .animate-footer-fade-right, .animate-footer-scale-up, .animate-footer-fade-in');
-      const footerObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('footer-animated');
-          else entry.target.classList.remove('footer-animated');
-        });
-      }, { threshold: 0.2 });
-      footerAnimatedElements.forEach(el => footerObserver.observe(el));
-
-      // Mobile menu
-      const mobileBtn = document.getElementById('mobileMenuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      if (mobileBtn && mobileMenu) mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-
-      // Back to top
-      const backBtn = document.getElementById('backToTopBtn');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) backBtn.classList.add('visible');
-        else backBtn.classList.remove('visible');
-      });
-      backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-      // WhatsApp support
-      const supportBtn = document.getElementById('supportBtn');
-      supportBtn.addEventListener('click', () => window.open('https://wa.me/16395274759', '_blank'));
-
-      loadPost();
-    })();
+    }
+    function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
+    loadPost();
   </script>
 </body>
 </html>

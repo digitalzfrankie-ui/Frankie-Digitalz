@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contentful Blog Test</title>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: monospace; padding: 20px; background: #f0f0f0; }
+    pre { background: white; padding: 15px; overflow: auto; border-radius: 8px; }
+    .error { color: red; font-weight: bold; }
+    .success { color: green; }
+  </style>
+</head>
+<body>
+  <h1>Contentful Blog Test</h1>
+  <div id="result">Testing connection...</div>
+
+  <script>
+    const SPACE_ID = 'ha7fm2wzrbnt';
+    const ACCESS_TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
+    const url = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=blogPost`;
+
+    fetch(url, {
+      headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}` }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      const items = data.items || [];
+      const resultDiv = document.getElementById('result');
+      if (items.length === 0) {
+        resultDiv.innerHTML = `<div class="error">✅ Connection successful, but NO blog posts found.</div>
+                               <p>Make sure you have published entries of content type <code>blogPost</code>.</p>
+                               <pre>${JSON.stringify(data, null, 2)}</pre>`;
+      } else {
+        resultDiv.innerHTML = `<div class="success">✅ Success! Found ${items.length} blog post(s).</div>
+                               <p>First post: <strong>${items[0].fields.title}</strong> (slug: ${items[0].fields.slug})</p>
+                               <pre>${JSON.stringify(data, null, 2)}</pre>`;
+      }
+    })
+    .catch(err => {
+      document.getElementById('result').innerHTML = `<div class="error">❌ Error: ${err.message}</div>`;
+    });
+  </script>
+</body>
+</html>
