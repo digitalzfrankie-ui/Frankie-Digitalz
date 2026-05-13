@@ -2,394 +2,470 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Frankie Digitalz – Blog | Insights & Stories</title>
-  <meta name="description" content="Read the latest insights, stories, and updates from Frankie Digitalz on web development, e‑commerce, digital marketing, and branding.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ═══ PRIMARY SEO ═══════════════════════════════════════════════════════ -->
+  <title>Frankie Digitalz – Blog | Insights, Stories &amp; Digital Trends</title>
+  <meta name="description" content="Read the latest insights, stories, and updates from Frankie Digitalz on web development, e‑commerce, digital marketing, branding, and design trends.">
   <meta name="author" content="Frankie Digitalz">
+  <meta name="robots" content="index, follow">
+
+  <!-- ═══ OPEN GRAPH ════════════════════════════════════════════════════════ -->
   <meta property="og:title" content="Frankie Digitalz – Blog">
-  <meta property="og:description" content="Insights, stories, and updates from our team.">
+  <meta property="og:description" content="Insights, stories, and updates from our team on design, development, and digital growth.">
+  <meta property="og:site_name" content="Frankie Digitalz">
+  <meta property="og:url" content="https://frankiedigital.vercel.app/blog">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="en_NG">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://frankiedigital.vercel.app/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@DigitalzFrankie">
+  <meta name="twitter:title" content="Frankie Digitalz – Blog">
+  <meta name="twitter:description" content="Latest insights and stories from Frankie Digitalz.">
+  <meta name="twitter:image" content="https://frankiedigital.vercel.app/og-image.png">
 
-  <!-- FAVICON -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%238A8A8A'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%238A8A8A'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%238A8A8A'/%3E%3C/svg%3E">
+  <!-- ═══ CANONICAL / HREFLANG (clean URL) ══════════════════════════════════ -->
+  <link rel="canonical" href="https://frankiedigital.vercel.app/blog">
+  <link rel="alternate" hreflang="en" href="https://frankiedigital.vercel.app/blog">
 
+  <!-- ═══ FAVICON ═══════════════════════════════════════════════════════════ -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%2314b8a6'/%3E%3C/svg%3E">
+
+  <!-- ═══ GOOGLE ANALYTICS ═══════════════════════════════════════════════════ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJQPN0DSW6');</script>
+
+  <!-- ═══ Tailwind CSS CDN ═══════════════════════════════════════════════════ -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ═══ Google Fonts + Font Awesome ═══════════════════════════════════════ -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+
+  <!-- ═══ SCHEMA.ORG JSON-LD (CollectionPage) ═══════════════════════════════ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Blog – Frankie Digitalz",
+    "url": "https://frankiedigital.vercel.app/blog",
+    "description": "Insights, stories, and updates on web development, e‑commerce, digital marketing, branding, and design.",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem","position": 1,"name": "Home","item": "https://frankiedigital.vercel.app/"},
+        {"@type": "ListItem","position": 2,"name": "Blog","item": "https://frankiedigital.vercel.app/blog"}
+      ]
+    }
+  }
+  </script>
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', 'Poppins', sans-serif;
-      background-color: #f9fafb;
-      color: #1f2937;
-      overflow-x: hidden;
-    }
-    .fd-navbar { background-color: rgba(0,0,0,0.95) !important; backdrop-filter: blur(8px); }
-    .blog-card { transition: all 0.3s ease; }
-    .blog-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 25px -12px rgba(0,0,0,0.2);
-    }
-    .blog-card:hover .blog-img { transform: scale(1.05); }
-    .blog-card:hover .blog-overlay { opacity: 1; }
-    .blog-img-wrapper {
-      overflow: hidden;
-      position: relative;
-      height: 12rem;
-    }
-    .blog-img {
-      transition: transform 0.4s ease;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .blog-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2));
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      padding-bottom: 1rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .blog-overlay span {
-      color: white;
-      font-size: 0.875rem;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Inter',sans-serif;background:#d3d3d3;color:#000000;}
+
+    /* ── NAVBAR ANIMATIONS ───────────────────────────────────────── */
+    @keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-4px);}40%{transform:translateX(4px);}60%{transform:translateX(-2px);}80%{transform:translateX(2px);}}
+    .shake-animation{animation:shake 0.3s ease-in-out 0s 6;display:inline-block;}
+
+    /* ── REVEAL ANIMATIONS ───────────────────────────────────────── */
     .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
       transition: opacity 1.8s ease-out, transform 1.8s ease-out;
     }
-    .reveal-up {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    .reveal-up.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-    .reveal-left.revealed {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .reveal-right-scale {
-      opacity: 0;
-      transform: translateX(30px) scale(0.95);
-    }
-    .reveal-right-scale.revealed {
-      opacity: 1;
-      transform: translateX(0) scale(1);
-    }
-    .reveal-fade {
-      opacity: 0;
-    }
-    .reveal-fade.revealed {
-      opacity: 1;
-    }
-    .sticky-support {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background-color: #1a1a1a;
-      padding: 10px 16px;
-      border-radius: 40px;
-      cursor: pointer;
-      border: 1px solid rgba(176,176,176,0.3);
-      transition: all 0.2s;
-    }
-    .sticky-support:hover { transform: scale(1.05); background: #2a2a2a; }
-    .support-icon { width: 24px; height: 24px; stroke: #B0B0B0; stroke-width: 1.5; fill: none; }
-    .support-text { color: #B0B0B0; font-size: 14px; font-weight: 500; }
-    .back-to-top {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, #4a4a4a, #1a1a1a);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 1000;
-      transition: all 0.2s;
-      opacity: 0;
-      visibility: hidden;
-    }
-    .back-to-top.visible { opacity: 1; visibility: visible; }
-    .back-to-top:hover { transform: scale(1.1); }
-    .footer-bg-logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 70%;
-      max-width: 600px;
-      opacity: 0.07;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .footer-bg-logo svg {
-      width: 100%;
-      height: auto;
-      fill: #B0B0B0;
-    }
-    footer {
-      position: relative;
+    .reveal-up{opacity:0;transform:translateY(30px);}
+    .reveal-up.revealed{opacity:1;transform:translateY(0);}
+    .reveal-left{opacity:0;transform:translateX(-30px);}
+    .reveal-left.revealed{opacity:1;transform:translateX(0);}
+    .reveal-right-scale{opacity:0;transform:translateX(30px) scale(0.95);}
+    .reveal-right-scale.revealed{opacity:1;transform:translateX(0) scale(1);}
+    .reveal-fade{opacity:0;}
+    .reveal-fade.revealed{opacity:1;}
+
+    /* ── BLOG CARD ───────────────────────────────────────────────── */
+    .blog-card{transition:all 0.3s ease;}
+    .blog-card:hover{transform:translateY(-6px);box-shadow:0 20px 25px -12px rgba(20,184,166,0.3),0 0 0 2px #14b8a6;border-color:#14b8a6 !important;}
+    .blog-img-wrapper{overflow:hidden;position:relative;height:12rem;}
+    .blog-img{transition:transform 0.4s ease;width:100%;height:100%;object-fit:cover;}
+    .blog-card:hover .blog-img{transform:scale(1.05);}
+    .blog-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.7),rgba(0,0,0,0.2));display:flex;align-items:flex-end;justify-content:center;padding-bottom:1rem;opacity:0;transition:opacity 0.3s ease;}
+    .blog-card:hover .blog-overlay{opacity:1;}
+    .blog-overlay span{color:white;font-size:0.875rem;font-weight:500;display:flex;align-items:center;gap:0.25rem;}
+    .blog-title{transition:color 0.2s ease;}
+    .blog-card:hover .blog-title{color:#14b8a6 !important;}
+
+    /* ── SKELETON LOADING STYLES ─────────────────────────────────── */
+    .skeleton-card {
+      background: white;
+      border-radius: 0.75rem;
       overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border: 1px solid rgba(0,0,0,0.1);
     }
-    footer .relative.z-10 {
-      position: relative;
-      z-index: 2;
+    .skeleton-img {
+      height: 12rem;
+      background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
     }
-    .animate-footer-fade-up, .animate-footer-fade-left, .animate-footer-fade-right, .animate-footer-scale-up, .animate-footer-fade-in {
-      transition: opacity 1.8s ease-out, transform 1.8s ease-out;
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
     }
-    .animate-footer-fade-up {
-      opacity: 0;
-      transform: translateY(30px);
+    .skeleton-text {
+      height: 1rem;
+      background: #e0e0e0;
+      margin: 1rem;
+      border-radius: 0.25rem;
     }
-    .animate-footer-fade-left {
-      opacity: 0;
-      transform: translateX(-30px);
+    .skeleton-text-sm {
+      width: 60%;
+      height: 0.75rem;
     }
-    .animate-footer-fade-right {
-      opacity: 0;
-      transform: translateX(30px);
+    .skeleton-title {
+      width: 80%;
+      height: 1.25rem;
     }
-    .animate-footer-scale-up {
-      opacity: 0;
-      transform: scale(0.9);
+    .skeleton-line {
+      width: 100%;
+      height: 0.875rem;
+      margin: 0.5rem 1rem;
     }
-    .animate-footer-fade-in {
-      opacity: 0;
+
+    /* ── BACK TO TOP ──────────────────────────────────────────────── */
+    .back-to-top{background-color:#14b8a6;color:white;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(20,184,166,0.4);}
+    .back-to-top:hover{background-color:#d3d3d3;color:#000000;}
+
+    /* ── DARK SECTION (hero & footer) ───────────────────────────── */
+    .dark-section{background:#000000 !important;}
+    .dark-section .text-black{color:#d3d3d3 !important;}
+    .dark-section .text-black\/70{color:rgba(211,211,211,0.7) !important;}
+    .dark-section .border-black\/10{border-color:rgba(211,211,211,0.1) !important;}
+
+    /* ── FOOTER ANIMATIONS & TRACE ────────────────────────────────── */
+    .footer-reveal-left{transform:translateX(-30px);transition:all 1.5s ease-out;}
+    .footer-reveal-right{transform:translateX(30px);transition:all 1.5s ease-out;}
+    .footer-reveal-up{transform:translateY(20px);transition:all 1.5s ease-out;}
+    .is-visible .footer-reveal-left,.is-visible .footer-reveal-right,.is-visible .footer-reveal-up{opacity:1;transform:translate(0);}
+    .trace-path{stroke-dasharray:3000;stroke-dashoffset:3000;animation:traceLoop 6s linear infinite;}
+    @keyframes traceLoop{
+      0%{stroke-dashoffset:3000;filter:drop-shadow(0 0 0px #14b8a6);stroke:rgba(20,184,166,0.1);}
+      83%{stroke-dashoffset:0;filter:drop-shadow(0 0 0px #14b8a6);stroke:rgba(20,184,166,0.1);}
+      90%{stroke-dashoffset:0;filter:drop-shadow(0 0 15px #14b8a6);stroke:rgba(20,184,166,1);}
+      100%{stroke-dashoffset:0;filter:drop-shadow(0 0 0px #14b8a6);stroke:rgba(20,184,166,0.1);}
     }
-    .footer-animated {
-      opacity: 1 !important;
-      transform: translateX(0) translateY(0) scale(1) !important;
-    }
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
   </style>
 </head>
-<body class="font-inter">
+<body>
 
-  <!-- Navbar (same as original) -->
-  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 shadow-lg backdrop-blur-md py-2 fd-navbar">
-    <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <svg width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><filter id="shadowLogo" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.6"/></filter></defs>
-          <g filter="url(#shadowLogo)">
-            <path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#B0B0B0"/>
-            <path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#B0B0B0"/>
-            <path d="M225 130 L305 210 L225 210 Z" fill="#B0B0B0"/>
-          </g>
-        </svg>
-        <div class="flex flex-col">
-          <span class="text-lg lg:text-xl font-bold tracking-wide leading-tight" style="color: #B0B0B0;">FRANKIE</span>
-          <span class="text-sm lg:text-base font-semibold tracking-wide leading-tight" style="color: #B0B0B0; margin-top: -2px;">DIGITALZ</span>
+<!-- ══════════════════════════════════════════════════════════════════
+     24/7 STICKY SUPPORT BADGE (bottom-left)
+═══════════════════════════════════════════════════════════════════ -->
+<div id="supportBadge" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto;min-width:48px;">
+  <div class="relative flex items-center justify-center">
+    <span class="absolute right-0 bottom-0 flex h-2 w-2 translate-x-[1px] translate-y-[1px]"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-[#14b8a6]"></span></span>
+    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" stroke="#14b8a6" stroke-width="1.5"/><path d="M12 6V8M16 10C16 7.79086 14.2091 6 12 6C9.79086 6 8 7.79086 8 10V12C8 14.2091 9.79086 16 12 16C14.2091 16 16 14.2091 16 12V10Z" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M18 15V17C18 19.2091 16.2091 21 14 21H13" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M6 15V17C6 19.2091 7.79086 21 10 21H11" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </div>
+  <span id="supportText" class="text-[11px] font-black uppercase tracking-wider text-black whitespace-nowrap overflow-hidden transition-all duration-300" style="max-width:0px;opacity:0;">24/7 Support</span>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     BACK TO TOP (bottom-right)
+═══════════════════════════════════════════════════════════════════ -->
+<div id="backToTopBtn" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300">
+  <i class="fas fa-arrow-up text-white text-sm"></i>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     NAVBAR (clean URLs)
+═══════════════════════════════════════════════════════════════════ -->
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-black/10 py-3 transition-all duration-500" style="transform:translateY(-100%);opacity:0;">
+  <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <svg id="nav-logo" width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill:#14b8a6;transition:all 0.2s ease;">
+        <path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#14b8a6"/>
+        <path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#14b8a6"/>
+        <path d="M225 130 L305 210 L225 210 Z" fill="#14b8a6"/>
+      </svg>
+      <div class="flex flex-col">
+        <span id="nav-brand-first" class="text-lg lg:text-xl font-bold tracking-tight leading-tight text-[#d3d3d3]">FRANKIE</span>
+        <span id="nav-brand-second" class="text-sm lg:text-base font-semibold tracking-widest leading-tight text-teal-600 mt-[-2px]">DIGITALZ</span>
+      </div>
+    </div>
+    <div class="hidden lg:flex items-center gap-2">
+      <a class="px-4 py-2 text-[#d3d3d3] hover:text-[#14b8a6] hover:bg-black rounded-lg transition-all duration-300 text-sm font-semibold" href="/">Home</a>
+      <a class="px-4 py-2 text-[#d3d3d3] hover:text-[#14b8a6] hover:bg-black rounded-lg transition-all duration-300 text-sm font-semibold" href="/about">About</a>
+      <a class="px-4 py-2 text-[#d3d3d3] hover:text-[#14b8a6] hover:bg-black rounded-lg transition-all duration-300 text-sm font-semibold" href="/portfolio">Portfolio</a>
+      <a class="px-4 py-2 text-[#d3d3d3] hover:text-[#14b8a6] hover:bg-black rounded-lg transition-all duration-300 text-sm font-semibold" href="/services">Services</a>
+      <a class="px-4 py-2 text-[#d3d3d3] hover:text-[#14b8a6] hover:bg-black rounded-lg transition-all duration-300 text-sm font-semibold" href="/faq">FAQs</a>
+      <a class="px-4 py-2 text-[#d3d3d3] hover:text-[#14b8a6] hover:bg-black rounded-lg transition-all duration-300 text-sm font-semibold" href="/contact">Contact</a>
+      <a class="px-4 py-2 text-[#14b8a6] font-bold hover:bg-black/5 rounded-lg transition-all duration-300 text-sm border-b-2 border-[#14b8a6]" href="/blog">Blog</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <a class="hidden lg:inline-flex px-6 py-2.5 bg-[#14b8a6] text-black text-sm font-bold rounded-full hover:bg-[#d3d3d3] transition-all duration-300" href="/contact">Get Started</a>
+      <button id="mobileMenuBtn" class="lg:hidden text-[#14b8a6] p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="lg:hidden hidden bg-[#000000] border-t border-black/10 py-6 px-6 shadow-2xl">
+    <div class="flex flex-col gap-4">
+      <a class="text-xl font-bold text-[#d3d3d3]" href="/">Home</a>
+      <a class="text-xl font-bold text-[#d3d3d3]" href="/about">About</a>
+      <a class="text-xl font-bold text-[#d3d3d3]" href="/portfolio">Portfolio</a>
+      <a class="text-xl font-bold text-[#d3d3d3]" href="/services">Services</a>
+      <a class="text-xl font-bold text-[#d3d3d3]" href="/faq">FAQs</a>
+      <a class="text-xl font-bold text-[#d3d3d3]" href="/contact">Contact</a>
+      <a class="text-xl font-bold text-[#14b8a6]" href="/blog">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     HERO SECTION (dark background) with breadcrumb
+═══════════════════════════════════════════════════════════════════ -->
+<section class="pt-28 pb-12 md:pt-32 md:pb-16 dark-section" style="background:#0D1F1C;">
+  <div class="container mx-auto px-4 text-center">
+    <div class="font-mono text-xs tracking-[0.3em] text-teal-400 uppercase mb-4 reveal-up">LATEST_INSIGHTS</div>
+    <h1 class="font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 tracking-tighter reveal-up">
+      <span class="text-white">Our</span> <span class="text-[#14b8a6]">Blog</span>
+    </h1>
+    <div class="w-16 h-1 bg-[#14b8a6] rounded-full mx-auto my-4 reveal-up"></div>
+    <p class="text-white/80 text-sm md:text-base max-w-xl mx-auto reveal-up">Insights, stories, and updates from our team on design, development, and digital growth.</p>
+    <div class="text-white/70 text-sm mt-6 reveal-up">
+      <a href="/" class="text-white/70 hover:text-teal-400 transition">Home</a> <span class="mx-1">/</span> <span class="text-teal-400 font-medium">Blog</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     BLOG GRID (light background) with skeleton loading
+═══════════════════════════════════════════════════════════════════ -->
+<div class="py-12 md:py-16" style="background:#d3d3d3;">
+  <div class="container mx-auto px-4 reveal-left">
+    <div id="blogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════════════ -->
+<footer class="relative pt-24 pb-12 overflow-hidden dark-section" style="background:#000000;border-top:1px solid rgba(255,255,255,0.1);">
+  <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
+    <svg class="w-[800px] h-[800px] fill-none stroke-[#14b8a6]/10 stroke-2" viewBox="0 0 1000 800">
+      <path class="trace-path" d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z M225 130 L305 210 L225 210 Z"/>
+    </svg>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+    <div class="grid lg:grid-cols-2 gap-16 mb-20">
+      <div class="footer-reveal-left opacity-0 space-y-8">
+        <div class="flex items-center gap-4">
+          <svg width="40" height="40" viewBox="0 0 1000 800" class="fill-[#14b8a6]"><path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z"/></svg>
+          <span class="font-black text-2xl tracking-tighter text-white uppercase">Frankie Digitalz</span>
+        </div>
+        <p class="text-white/70 text-lg leading-relaxed max-w-sm">Transforming businesses through innovative digital solutions.</p>
+        <div class="flex gap-4">
+          <a href="https://www.facebook.com/profile.php?id=61589305472879" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fab fa-facebook-f text-white/60 group-hover:text-white"></i></a>
+          <a href="https://x.com/DigitalzFrankie" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fab fa-twitter text-white/60 group-hover:text-white"></i></a>
+          <a href="https://www.linkedin.com/in/frankie-digitalz-3a2007409" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fab fa-linkedin-in text-white/60 group-hover:text-white"></i></a>
+          <a href="mailto:info.digitalzfrankie@gmail.com" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fas fa-envelope text-white/60 group-hover:text-white"></i></a>
         </div>
       </div>
-      <div class="hidden lg:flex items-center gap-1">
-        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="index.html">Home</a>
-        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="about.html">About</a>
-        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="portfolio.html">Portfolio</a>
-        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="services.html">Services</a>
-        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="faq.html">FAQs</a>
-        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="contact.html">Contact</a>
-        <a class="px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition text-sm font-medium" href="blog.html">Blog</a>
-      </div>
-      <div class="flex items-center gap-3">
-        <a class="hidden lg:inline-flex px-5 py-2.5 bg-white text-sm font-semibold rounded-lg hover:shadow-lg transition" href="contact.html" style="color: black;">Get Started</a>
-        <button id="mobileMenuBtn" class="lg:hidden text-white p-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+      <div class="footer-reveal-right opacity-0 grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div><h3 class="font-black text-white uppercase tracking-wider text-xs mb-6">Services</h3><ul class="space-y-4"><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Web Development</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">E‑Commerce</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">UI/UX Design</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Digital Marketing</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Brand Strategy</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Technical Consulting</a></li></ul></div>
+        <div><h3 class="font-black text-white uppercase tracking-wider text-xs mb-6">Company</h3><ul class="space-y-4"><li><a href="/about" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">About Us</a></li><li><a href="/portfolio" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Portfolio</a></li><li><a href="/faq" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">FAQ</a></li><li><a href="/blog" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Blog</a></li><li><a href="/contact" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Contact</a></li></ul></div>
+        <div><h3 class="font-black text-white uppercase tracking-wider text-xs mb-6">Legal</h3><ul class="space-y-4"><li><a href="/privacy" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Privacy Policy</a></li><li><a href="/terms" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Terms of Service</a></li><li><a href="/cookies" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Cookie Policy</a></li></ul></div>
       </div>
     </div>
-    <div id="mobileMenu" class="lg:hidden hidden bg-black/95 backdrop-blur-md py-4 px-4">
-      <a class="block py-2 text-white/80 hover:text-white" href="index.html">Home</a>
-      <a class="block py-2 text-white/80 hover:text-white" href="about.html">About</a>
-      <a class="block py-2 text-white/80 hover:text-white" href="portfolio.html">Portfolio</a>
-      <a class="block py-2 text-white/80 hover:text-white" href="services.html">Services</a>
-      <a class="block py-2 text-white/80 hover:text-white" href="faq.html">FAQs</a>
-      <a class="block py-2 text-white/80 hover:text-white" href="contact.html">Contact</a>
-      <a class="block py-2 text-white/80 hover:text-white" href="blog.html">Blog</a>
+    <div class="footer-reveal-up opacity-0">
+      <p class="text-white/40 text-xs font-mono pt-8 border-t border-white/10 uppercase tracking-wider">© 2026 Frankie Digitalz. All Rights Reserved.</p>
+      <p class="sr-only">Logo design for kids clothing, jewellery packaging, tea &amp; coffee branding, and custom e-commerce solutions by Frankie Digitalz. Web development, Shopify, WooCommerce, UI/UX design, digital marketing, brand strategy, and technical consulting services in Canada and internationally.</p>
     </div>
-  </nav>
+  </div>
+</footer>
 
-  <main class="min-h-screen bg-gray-50 pt-20 lg:pt-24">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12 reveal-up">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">Our Blog</h1>
-        <div class="w-16 h-1 bg-gradient-to-r from-gray-500 to-gray-700 rounded-full mx-auto my-4"></div>
-        <p class="text-gray-600 max-w-2xl mx-auto">Insights, stories, and updates from our team</p>
-      </div>
-      <div class="reveal-left">
-        <div id="blogGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-      </div>
-    </div>
-  </main>
+<script>
+(function(){
+  // Show navbar immediately
+  const nav = document.getElementById('main-nav');
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      nav.style.transform = 'translateY(0)';
+      nav.style.opacity   = '1';
+    });
+  });
 
-  <!-- Footer (same as original) -->
-  <footer class="relative bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
-    <div class="footer-bg-logo"><svg viewBox="0 0 1000 800" fill="none"><path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#B0B0B0"/><path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#B0B0B0"/><path d="M225 130 L305 210 L225 210 Z" fill="#B0B0B0"/></svg></div>
-    <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-16">
-      <div class="grid lg:grid-cols-2 gap-12 mb-12">
-        <div class="space-y-6 animate-footer-fade-up" id="footerBrandCol">
-          <div class="flex items-center gap-3"><svg width="48" height="48" viewBox="0 0 1000 800" fill="none"><path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#B0B0B0"/><path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#B0B0B0"/><path d="M225 130 L305 210 L225 210 Z" fill="#B0B0B0"/></svg><div><span class="font-bold text-xl">Frankie Digitalz</span></div></div>
-          <p class="text-gray-300 max-w-md mt-4">Transforming businesses through innovative digital solutions.</p>
-          <div class="flex space-x-4 mt-6">
-            <a href="https://www.facebook.com/profile.php?id=61589305472879" target="_blank" class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white transition group"><i class="fab fa-facebook-f text-gray-400 text-xl group-hover:text-black"></i></a>
-            <a href="https://x.com/DigitalzFrankie" target="_blank" class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white transition group"><i class="fab fa-twitter text-gray-400 text-xl group-hover:text-black"></i></a>
-            <a href="https://www.linkedin.com/in/frankie-digitalz-3a2007409" target="_blank" class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white transition group"><i class="fab fa-linkedin-in text-gray-400 text-xl group-hover:text-black"></i></a>
-            <a href="mailto:info.digitalzfrankie@gmail.com" class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white transition group"><i class="fas fa-envelope text-gray-400 text-xl group-hover:text-black"></i></a>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="animate-footer-fade-left"><h3 class="font-bold text-lg text-gray-300 mb-4">Services</h3><ul><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Web Development</a></li><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">E‑Commerce</a></li><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">UI/UX Design</a></li><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Digital Marketing</a></li><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Brand Strategy</a></li><li><a href="services.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Technical Consulting</a></li></ul></div>
-          <div class="animate-footer-fade-right"><h3 class="font-bold text-lg text-gray-300 mb-4">Company</h3><ul><li><a href="about.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">About Us</a></li><li><a href="portfolio.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Portfolio</a></li><li><a href="faq.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">FAQ</a></li><li><a href="blog.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Blog</a></li><li><a href="contact.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Contact</a></li></ul></div>
-          <div class="animate-footer-scale-up"><h3 class="font-bold text-lg text-gray-300 mb-4">Legal</h3><ul><li><a href="privacy.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Privacy Policy</a></li><li><a href="terms.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Terms of Service</a></li><li><a href="cookies.html" class="text-gray-400 hover:text-white text-sm inline-block transition-all hover:translate-x-1">Cookie Policy</a></li></ul></div>
-        </div>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6 mb-12 pb-8 border-b border-white/10 animate-footer-fade-in" id="footerContactRow">
-        <div><a href="mailto:info.digitalzfrankie@gmail.com" class="flex items-center gap-4 text-gray-300 hover:text-white transition-all hover:translate-x-1"><div class="w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-700 rounded-lg flex items-center justify-center"><i class="fas fa-envelope text-white"></i></div><span>info.digitalzfrankie@gmail.com</span></a></div>
-        <div><a href="tel:+16395274759" class="flex items-center gap-4 text-gray-300 hover:text-white transition-all hover:translate-x-1"><div class="w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-700 rounded-lg flex items-center justify-center"><i class="fas fa-phone-alt text-white"></i></div><span>+1 (639) 527-4759</span></a></div>
-        <div class="flex items-center gap-4 text-gray-300"><div class="w-10 h-10 bg-gradient-to-br from-gray-500 to-gray-700 rounded-lg flex items-center justify-center"><i class="fas fa-map-marker-alt text-white"></i></div><span>Plot 241 Digital Street, Tech City</span></div>
-      </div>
-      <div class="animate-footer-fade-in"><div class="flex flex-col md:flex-row justify-between items-center"><p class="text-gray-400 text-sm">© 2026 Frankie Digitalz. All rights reserved.</p><div class="flex space-x-6 text-sm"><a href="privacy.html" class="text-gray-400 hover:text-white transition-all hover:translate-x-1">Privacy Policy</a><a href="terms.html" class="text-gray-400 hover:text-white transition-all hover:translate-x-1">Terms</a><a href="cookies.html" class="text-gray-400 hover:text-white transition-all hover:translate-x-1">Cookies</a></div></div></div>
-    </div>
-  </footer>
-
-  <div id="supportBtn" class="sticky-support"><svg class="support-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.08.62 4.03 1.73 5.66L2 22l4.34-1.73C7.97 21.38 9.92 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg><span class="support-text">24/7 Support</span></div>
-  <div class="back-to-top" id="backToTopBtn"><i class="fas fa-arrow-up text-white"></i></div>
-
-  <script>
-    (function() {
-      const SPACE_ID = 'ha7fm2wzrbnt';
-      const ACCESS_TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
-      const grid = document.getElementById('blogGrid');
-
-      function getImageUrl(assetId, includes) {
-        const asset = includes?.Asset?.find(a => a.sys.id === assetId);
-        return asset?.fields?.file?.url ? `https:${asset.fields.file.url}` : null;
-      }
-
-      function formatDate(dateStr) {
-        if (!dateStr) return '';
-        const parts = dateStr.split('-');
-        if (parts.length === 3) return `${parts[1]}/${parts[2]}/${parts[0]}`;
-        return dateStr;
-      }
-
-      async function renderBlog() {
-        const url = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=blogPost&order=-fields.publishDate`;
-        try {
-          const response = await fetch(url, {
-            headers: { Authorization: `Bearer ${ACCESS_TOKEN}` }
-          });
-          if (!response.ok) throw new Error(`HTTP ${response.status}`);
-          const data = await response.json();
-          const posts = data.items || [];
-          if (posts.length === 0) {
-            grid.innerHTML = '<div class="col-span-full text-center py-12 text-gray-500">No blog posts yet. Check back soon!</div>';
-            return;
-          }
-          grid.innerHTML = posts.map(post => {
-            const fields = post.fields;
-            const imageUrl = fields.featuredImage ? getImageUrl(fields.featuredImage.sys.id, data.includes) : null;
-            return `
-              <div class="blog-card group bg-white rounded-xl overflow-hidden shadow border border-gray-100 hover:shadow-xl transition-all duration-300">
-                <a href="blog-post.html?slug=${fields.slug}" class="block">
-                  <div class="blog-img-wrapper relative h-48 w-full bg-gray-100">
-                    ${imageUrl ? `
-                      <img src="${imageUrl}" alt="${escapeHtml(fields.title)}" class="blog-img w-full h-full object-cover">
-                      <div class="blog-overlay"><span>Read More <i class="fas fa-arrow-right ml-1 text-xs"></i></span></div>
-                    ` : `<div class="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">No image</div>`}
-                  </div>
-                  <div class="p-5">
-                    <div class="flex items-center gap-2 text-xs text-gray-400 mb-2">
-                      <span>${formatDate(fields.publishDate)}</span>
-                    </div>
-                    <h2 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition">${escapeHtml(fields.title)}</h2>
-                    <p class="text-gray-500 text-sm line-clamp-2">${escapeHtml(fields.excerpt || '')}</p>
-                    <div class="mt-4 flex items-center text-sm text-blue-600 font-medium gap-1">
-                      Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7l10 10M7 7v10m10-10H7"></path></svg>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            `;
-          }).join('');
-        } catch (error) {
-          console.error(error);
-          grid.innerHTML = '<div class="col-span-full text-center py-12 text-red-600">Error loading blog. Please try again later.</div>';
-        }
-      }
-
-      function escapeHtml(str) {
-        if (!str) return '';
-        return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
-      }
-
-      // Scroll reveal observers (unchanged)
-      const revealUp = document.querySelectorAll('.reveal-up');
-      const revealLeft = document.querySelectorAll('.reveal-left');
-      const revealRightScale = document.querySelectorAll('.reveal-right-scale');
-      const revealFade = document.querySelectorAll('.reveal-fade');
-      const observerCb = (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('revealed');
-          else entry.target.classList.remove('revealed');
-        });
+  // Navbar animations
+  function startNavbarAnimations(){
+    const logo = document.getElementById('nav-logo');
+    if(logo){
+      const animateLogo = () => {
+        logo.style.fill = '#d3d3d3';
+        setTimeout(()=>{
+          logo.style.transform = 'scale(1.1)';
+          logo.classList.add('shake-animation');
+          setTimeout(()=>{
+            logo.style.fill = '#14b8a6';
+            setTimeout(()=>{
+              logo.style.transform = 'scale(1)';
+              logo.classList.remove('shake-animation');
+            },2000);
+          },2000);
+        },2000);
       };
-      const observer = new IntersectionObserver(observerCb, { threshold: 0.2 });
-      revealUp.forEach(el => observer.observe(el));
-      revealLeft.forEach(el => observer.observe(el));
-      revealRightScale.forEach(el => observer.observe(el));
-      revealFade.forEach(el => observer.observe(el));
+      setTimeout(()=>{ animateLogo(); setInterval(animateLogo,10000); },5000);
+    }
+    const first = document.getElementById('nav-brand-first');
+    const second = document.getElementById('nav-brand-second');
+    if(first && second){
+      first.style.transition = 'color 0.5s ease';
+      second.style.transition = 'color 0.5s ease';
+      let swapped = false;
+      setInterval(()=>{
+        swapped = !swapped;
+        first.style.color  = swapped ? '#14b8a6' : '#d3d3d3';
+        second.style.color = swapped ? '#d3d3d3' : '#14b8a6';
+      },5000);
+    }
+  }
+  startNavbarAnimations();
 
-      // Footer animations
-      const footerAnimatedElements = document.querySelectorAll('.animate-footer-fade-up, .animate-footer-fade-left, .animate-footer-fade-right, .animate-footer-scale-up, .animate-footer-fade-in');
-      const footerObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('footer-animated');
-          else entry.target.classList.remove('footer-animated');
-        });
-      }, { threshold: 0.2 });
-      footerAnimatedElements.forEach(el => footerObserver.observe(el));
+  // Contentful fetch + skeleton loading
+  const SPACE_ID = 'ha7fm2wzrbnt';
+  const ACCESS_TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
+  const grid = document.getElementById('blogGrid');
 
-      // Mobile menu
-      const mobileBtn = document.getElementById('mobileMenuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      if (mobileBtn && mobileMenu) mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  function showSkeletons() {
+    const skeletonCards = Array(6).fill(0).map(() => `
+      <div class="skeleton-card">
+        <div class="skeleton-img"></div>
+        <div class="skeleton-text skeleton-text-sm"></div>
+        <div class="skeleton-text skeleton-title"></div>
+        <div class="skeleton-text skeleton-line"></div>
+        <div class="skeleton-text" style="width: 40%; height: 0.75rem; margin: 1rem;"></div>
+      </div>
+    `).join('');
+    grid.innerHTML = skeletonCards;
+  }
 
-      // Back to top
-      const backBtn = document.getElementById('backToTopBtn');
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) backBtn.classList.add('visible');
-        else backBtn.classList.remove('visible');
-      });
-      backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  function getImageUrl(assetId, includes) {
+    const asset = includes?.Asset?.find(a => a.sys.id === assetId);
+    return asset?.fields?.file?.url ? `https:${asset.fields.file.url}` : null;
+  }
 
-      // WhatsApp support
-      const supportBtn = document.getElementById('supportBtn');
-      supportBtn.addEventListener('click', () => window.open('https://wa.me/16395274759', '_blank'));
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    const parts = dateStr.split('-');
+    if (parts.length === 3) return `${parts[1]}/${parts[2]}/${parts[0]}`;
+    return dateStr;
+  }
 
-      renderBlog();
-    })();
-  </script>
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+  }
+
+  async function renderBlog() {
+    showSkeletons();
+    const url = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=blogPost&order=-fields.publishDate`;
+    try {
+      const response = await fetch(url, { headers: { Authorization: `Bearer ${ACCESS_TOKEN}` } });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      const posts = data.items || [];
+      if (posts.length === 0) {
+        grid.innerHTML = '<div class="col-span-full text-center py-12 text-black/60">No blog posts yet. Check back soon!</div>';
+        return;
+      }
+      grid.innerHTML = posts.map(post => {
+        const fields = post.fields;
+        const imageUrl = fields.featuredImage ? getImageUrl(fields.featuredImage.sys.id, data.includes) : null;
+        // ✅ FIX: use clean URL with slug in path
+        const postUrl = `/blog-post/${encodeURIComponent(fields.slug)}`;
+        return `
+          <div class="blog-card group bg-white rounded-xl overflow-hidden shadow border border-black/10 transition-all duration-300">
+            <a href="${postUrl}" class="block">
+              <div class="blog-img-wrapper relative h-48 w-full bg-gray-100">
+                ${imageUrl ? `
+                  <img src="${imageUrl}" alt="${escapeHtml(fields.title)}" class="blog-img w-full h-full object-cover" loading="lazy">
+                  <div class="blog-overlay"><span>Read More <i class="fas fa-arrow-right ml-1 text-xs"></i></span></div>
+                ` : `<div class="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">No image</div>`}
+              </div>
+              <div class="p-5">
+                <div class="flex items-center gap-2 text-sm text-black/60 mb-2">
+                  <span>${formatDate(fields.publishDate)}</span>
+                </div>
+                <h2 class="blog-title text-xl font-bold text-black mb-2 transition-colors">${escapeHtml(fields.title)}</h2>
+                <p class="text-black/70 text-sm line-clamp-2">${escapeHtml(fields.excerpt || '')}</p>
+                <div class="mt-4 flex items-center text-sm font-semibold text-[#14b8a6] group-hover:text-black transition-colors gap-1">
+                  Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7l10 10M7 7v10m10-10H7"></path></svg>
+                </div>
+              </div>
+            </a>
+          </div>
+        `;
+      }).join('');
+    } catch (error) {
+      console.error('Contentful fetch failed:', error);
+      grid.innerHTML = '<div class="col-span-full text-center py-12 text-red-600">Error loading blog. Please try again later.</div>';
+    }
+  }
+  renderBlog();
+
+  // Scroll reveal observers
+  const reveals = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('revealed');
+      else entry.target.classList.remove('revealed');
+    });
+  }, { threshold: 0.2 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Footer cross-reveal
+  const footer = document.querySelector('footer');
+  const footerObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); else e.target.classList.remove('is-visible'); });
+  }, { threshold: 0.1 });
+  if (footer) footerObs.observe(footer);
+
+  // Back to top
+  const backBtn = document.getElementById('backToTopBtn');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backBtn.classList.add('opacity-100', 'visible');
+      backBtn.classList.remove('opacity-0', 'invisible');
+    } else {
+      backBtn.classList.remove('opacity-100', 'visible');
+      backBtn.classList.add('opacity-0', 'invisible');
+    }
+  });
+  backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // 24/7 support badge
+  const supportText = document.getElementById('supportText');
+  const badge = document.getElementById('supportBadge');
+  let badgeCycle;
+  function startBadgeCycle(){
+    if(badgeCycle) clearInterval(badgeCycle);
+    badgeCycle = setInterval(()=>{
+      supportText.style.maxWidth = '200px';
+      supportText.style.opacity = '1';
+      setTimeout(()=>{
+        supportText.style.maxWidth = '0px';
+        supportText.style.opacity = '0';
+      }, 1800);
+    }, 11000);
+  }
+  startBadgeCycle();
+  badge.addEventListener('click', () => window.open('https://wa.me/16395274759', '_blank'));
+
+  // Mobile menu
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (mobileBtn && mobileMenu) mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+})();
+</script>
 </body>
 </html>
