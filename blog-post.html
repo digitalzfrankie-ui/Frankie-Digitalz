@@ -43,8 +43,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-  <!-- ═══ Contentful Rich Text Renderer ═════════════════════════════════ -->
-  <script src="https://unpkg.com/@contentful/rich-text-html-renderer@16.3.4/dist/rich-text-html-renderer.min.js"></script>
+  <!-- ═══ Contentful Rich Text Renderer (improved CDN) ═══════════════════ -->
+  <script src="https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@16.3.4/dist/rich-text-html-renderer.min.js"></script>
 
   <!-- ═══ Default JSON‑LD (will be updated dynamically) ═════════════════ -->
   <script type="application/ld+json" id="schemaJson">
@@ -440,18 +440,26 @@
         }
       }
       if (featuredImageContainer) featuredImageContainer.innerHTML = imageHtml;
-      // Render rich text body
+      
+      // Render rich text body with safety check
       let bodyHtml = '';
       if (fields.body) {
         try {
-          bodyHtml = documentToHtmlString(fields.body);
+          if (typeof documentToHtmlString === 'function') {
+            bodyHtml = documentToHtmlString(fields.body);
+          } else {
+            console.error('documentToHtmlString not loaded');
+            bodyHtml = '<p>Rich text renderer failed to load. Please refresh the page.</p>';
+          }
         } catch(e) {
+          console.error('Rich text error:', e);
           bodyHtml = '<p>Error rendering content. Please try again later.</p>';
         }
       } else {
         bodyHtml = `<p>${escapeHtml(fields.excerpt || 'No content available.')}</p>`;
       }
       if (contentEl) contentEl.innerHTML = bodyHtml;
+      
       // Reveal animations
       const heroReveal = document.querySelector('#heroSection .reveal-up');
       if (heroReveal) heroReveal.classList.add('revealed');
