@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Frankie Digitalz – Blog Post</title>
-  <meta name="description" content="Read the latest insights from Frankie Digitalz on web development, e-commerce, digital marketing, and branding.">
+  <meta name="description" content="Read the latest insights from Frankie Digitalz.">
   <meta name="author" content="Frankie Digitalz">
   <meta name="robots" content="noindex, follow">
 
@@ -81,6 +81,7 @@
 </head>
 <body>
 
+<!-- 24/7 SUPPORT BADGE & BACK TO TOP (same as before) -->
 <div id="supportBadge" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto;min-width:48px;">
   <div class="relative flex items-center justify-center">
     <span class="absolute right-0 bottom-0 flex h-2 w-2 translate-x-[1px] translate-y-[1px]"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-[#14b8a6]"></span></span>
@@ -93,6 +94,7 @@
   <i class="fas fa-arrow-up text-white text-sm"></i>
 </div>
 
+<!-- NAVBAR (clean URLs) -->
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-black/10 py-3 transition-all duration-500" style="transform:translateY(-100%);opacity:0;">
   <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
     <div class="flex items-center gap-3">
@@ -135,6 +137,7 @@
   </div>
 </nav>
 
+<!-- HERO SECTION -->
 <section class="pt-28 pb-12 md:pt-32 md:pb-16 dark-section" id="heroSection" style="background:#0D1F1C;">
   <div class="container mx-auto px-4 text-center reveal-up">
     <div class="font-mono text-xs tracking-[0.3em] text-teal-400 uppercase mb-4">LATEST_INSIGHTS</div>
@@ -154,6 +157,7 @@
   </div>
 </section>
 
+<!-- CONTENT AREA -->
 <div class="py-12 md:py-16" style="background:#d3d3d3;">
   <div class="container mx-auto px-4 reveal-up" id="contentWrapper">
     <div class="max-w-4xl mx-auto bg-white rounded-2xl border border-black/10 shadow-lg overflow-hidden">
@@ -163,6 +167,7 @@
   </div>
 </div>
 
+<!-- FOOTER (same as before, shortened for brevity) -->
 <footer class="relative pt-24 pb-12 overflow-hidden dark-section" style="background:#000000;border-top:1px solid rgba(255,255,255,0.1);">
   <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
     <svg class="w-[800px] h-[800px] fill-none stroke-[#14b8a6]/10 stroke-2" viewBox="0 0 1000 800">
@@ -198,10 +203,11 @@
 
 <script>
 (function(){
-  // Wait for both navbar and rich‑text renderer
+  // Show navbar
   const nav = document.getElementById('main-nav');
   requestAnimationFrame(()=>{ requestAnimationFrame(()=>{ nav.style.transform = 'translateY(0)'; nav.style.opacity = '1'; }); });
 
+  // Navbar animations
   function startNavbarAnimations(){
     const logo = document.getElementById('nav-logo');
     if(logo){
@@ -226,40 +232,68 @@
   }
   startNavbarAnimations();
 
-  // ---- LOAD RICH-TEXT RENDERER WITH FALLBACKS ----
-  let richTextReady = false;
-  let pendingRender = null;
-  function loadRichTextRenderer() {
-    return new Promise((resolve) => {
-      if (typeof documentToHtmlString !== 'undefined') {
-        richTextReady = true;
-        resolve();
-        return;
-      }
-      const script = document.createElement('script');
-      // Try primary CDN
-      script.src = 'https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@16.3.4/dist/rich-text-html-renderer.min.js';
-      script.onload = () => {
-        richTextReady = true;
-        resolve();
-      };
-      script.onerror = () => {
-        // Fallback to unpkg
-        const fallback = document.createElement('script');
-        fallback.src = 'https://unpkg.com/@contentful/rich-text-html-renderer@16.3.4/dist/rich-text-html-renderer.min.js';
-        fallback.onload = () => {
-          richTextReady = true;
-          resolve();
-        };
-        fallback.onerror = () => {
-          console.error('Both CDNs failed to load rich-text renderer');
-          richTextReady = false;
-          resolve();
-        };
-        document.head.appendChild(fallback);
-      };
-      document.head.appendChild(script);
-    });
+  // ----- SELF-CONTAINED RICH TEXT RENDERER (no external library) -----
+  function renderContentfulRichText(node) {
+    if (!node) return '';
+    switch (node.nodeType) {
+      case 'document':
+        return (node.content || []).map(renderContentfulRichText).join('');
+      case 'paragraph':
+        return `<p>${(node.content || []).map(renderContentfulRichText).join('')}</p>`;
+      case 'heading-1':
+        return `<h1>${(node.content || []).map(renderContentfulRichText).join('')}</h1>`;
+      case 'heading-2':
+        return `<h2>${(node.content || []).map(renderContentfulRichText).join('')}</h2>`;
+      case 'heading-3':
+        return `<h3>${(node.content || []).map(renderContentfulRichText).join('')}</h3>`;
+      case 'heading-4':
+        return `<h4>${(node.content || []).map(renderContentfulRichText).join('')}</h4>`;
+      case 'heading-5':
+        return `<h5>${(node.content || []).map(renderContentfulRichText).join('')}</h5>`;
+      case 'heading-6':
+        return `<h6>${(node.content || []).map(renderContentfulRichText).join('')}</h6>`;
+      case 'unordered-list':
+        return `<ul>${(node.content || []).map(renderContentfulRichText).join('')}</ul>`;
+      case 'ordered-list':
+        return `<ol>${(node.content || []).map(renderContentfulRichText).join('')}</ol>`;
+      case 'list-item':
+        return `<li>${(node.content || []).map(renderContentfulRichText).join('')}</li>`;
+      case 'blockquote':
+        return `<blockquote>${(node.content || []).map(renderContentfulRichText).join('')}</blockquote>`;
+      case 'hr':
+        return '<hr>';
+      case 'text':
+        let text = node.value || '';
+        if (node.marks) {
+          for (const mark of node.marks) {
+            if (mark.type === 'bold') text = `<strong>${text}</strong>`;
+            if (mark.type === 'italic') text = `<em>${text}</em>`;
+            if (mark.type === 'underline') text = `<u>${text}</u>`;
+            if (mark.type === 'code') text = `<code>${text}</code>`;
+          }
+        }
+        return text;
+      case 'hyperlink':
+        const uri = node.data?.uri || '#';
+        return `<a href="${uri}" target="_blank" rel="noopener noreferrer">${(node.content || []).map(renderContentfulRichText).join('')}</a>`;
+      case 'asset-hyperlink':
+        // Not implemented fully – just return content
+        return (node.content || []).map(renderContentfulRichText).join('');
+      case 'embedded-entry-block':
+        // Skip embedded entries for now
+        return '';
+      case 'embedded-asset-block':
+        if (node.data?.target?.fields?.file?.url) {
+          const url = node.data.target.fields.file.url;
+          const title = node.data.target.fields.title || '';
+          return `<img src="https:${url}" alt="${title}" loading="lazy">`;
+        }
+        return '';
+      default:
+        // For any unknown node type, just render its content recursively
+        if (node.content) return (node.content || []).map(renderContentfulRichText).join('');
+        return '';
+    }
   }
 
   // Contentful credentials
@@ -290,22 +324,6 @@
   function updateBreadcrumb(postTitle) {
     if (breadcrumbContainer) {
       breadcrumbContainer.innerHTML = `<a href="/">Home</a> <span class="mx-1">/</span> <a href="/blog">Blog</a> <span class="mx-1">/</span> <span class="current">${escapeHtml(postTitle)}</span>`;
-    }
-  }
-
-  async function renderRichText(body) {
-    if (!richTextReady) {
-      await loadRichTextRenderer();
-    }
-    if (typeof documentToHtmlString === 'function') {
-      try {
-        return documentToHtmlString(body);
-      } catch(e) {
-        console.error('Rich text conversion error:', e);
-        return '<p>Error rendering content. Please try again later.</p>';
-      }
-    } else {
-      return '<p>Rich text renderer failed to load. Please refresh the page.</p>';
     }
   }
 
@@ -377,8 +395,21 @@
         if (imgUrl && featuredImageContainer) imageHtml = `<img src="${imgUrl}" alt="${escapeHtml(fields.title)}" class="w-full object-cover max-h-96" loading="lazy">`;
       }
       if (featuredImageContainer) featuredImageContainer.innerHTML = imageHtml;
-      const bodyHtml = await renderRichText(fields.body);
+      
+      // Use our custom rich text renderer
+      let bodyHtml = '';
+      if (fields.body) {
+        try {
+          bodyHtml = renderContentfulRichText(fields.body);
+        } catch(e) {
+          console.error('Rich text rendering error:', e);
+          bodyHtml = '<p>Error rendering content. Please try again later.</p>';
+        }
+      } else {
+        bodyHtml = `<p>${escapeHtml(fields.excerpt || 'No content available.')}</p>`;
+      }
       if (contentEl) contentEl.innerHTML = bodyHtml;
+      
       const heroReveal = document.querySelector('#heroSection .reveal-up');
       if (heroReveal) heroReveal.classList.add('revealed');
       const contentReveal = document.querySelector('#contentWrapper .reveal-up');
@@ -390,13 +421,9 @@
       if (breadcrumbContainer) breadcrumbContainer.innerHTML = '<span class="current">Error</span>';
     }
   }
+  loadPost();
 
-  // Wait for renderer then load post
-  loadRichTextRenderer().then(() => {
-    loadPost();
-  });
-
-  // Scroll reveal and other UI
+  // Scroll reveal and other UI (same as before)
   const reveals = document.querySelectorAll('.reveal-up');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('revealed'); else entry.target.classList.remove('revealed'); });
