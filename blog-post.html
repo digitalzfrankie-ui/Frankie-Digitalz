@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>Frankie Digitalz – Blog Post</title>
   <meta name="description" content="Read the latest insights from Frankie Digitalz on web development, e-commerce, digital marketing, and branding.">
   <meta name="author" content="Frankie Digitalz">
@@ -34,40 +33,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-  <!-- Contentful Rich Text Renderer – loaded with a fallback wait mechanism -->
-  <script>
-    window.richTextReady = false;
-    function initRichTextRenderer() {
-      const script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@16.3.4/dist/rich-text-html-renderer.min.js';
-      script.onload = function() {
-        window.richTextReady = true;
-        if (window.resolveRichText) window.resolveRichText();
-      };
-      script.onerror = function() {
-        console.error('Failed to load rich-text renderer');
-        window.richTextReady = false;
-        if (window.resolveRichText) window.resolveRichText();
-      };
-      document.head.appendChild(script);
-    }
-    initRichTextRenderer();
-  </script>
-
-  <script type="application/ld+json" id="schemaJson">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "mainEntityOfPage": {"@type": "WebPage","@id": "https://frankiedigital.vercel.app/blog-post"},
-    "headline": "Blog Post",
-    "description": "Read the latest insights from Frankie Digitalz.",
-    "author": {"@type": "Person","name": "Frankie Digitalz Team"},
-    "publisher": {"@type": "Organization","name": "Frankie Digitalz","logo": {"@type": "ImageObject","url": "https://frankiedigital.vercel.app/favicon.ico"}},
-    "datePublished": "2026-01-01",
-    "dateModified": "2026-01-01"
-  }
-  </script>
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
@@ -219,7 +184,11 @@
           <a href="mailto:info.digitalzfrankie@gmail.com" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fas fa-envelope text-white/60 group-hover:text-white"></i></a>
         </div>
       </div>
-      <div class="footer-reveal-right opacity-0 grid grid-cols-1 md:grid-cols-3 gap-12">...</div>
+      <div class="footer-reveal-right opacity-0 grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div><h3 class="font-black text-white uppercase tracking-wider text-xs mb-6">Services</h3><ul class="space-y-4"><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Web Development</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">E‑Commerce</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">UI/UX Design</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Digital Marketing</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Brand Strategy</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Technical Consulting</a></li></ul></div>
+        <div><h3 class="font-black text-white uppercase tracking-wider text-xs mb-6">Company</h3><ul class="space-y-4"><li><a href="/about" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">About Us</a></li><li><a href="/portfolio" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Portfolio</a></li><li><a href="/faq" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">FAQ</a></li><li><a href="/blog" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Blog</a></li><li><a href="/contact" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Contact</a></li></ul></div>
+        <div><h3 class="font-black text-white uppercase tracking-wider text-xs mb-6">Legal</h3><ul class="space-y-4"><li><a href="/privacy" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Privacy Policy</a></li><li><a href="/terms" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Terms of Service</a></li><li><a href="/cookies" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Cookie Policy</a></li></ul></div>
+      </div>
     </div>
     <div class="footer-reveal-up opacity-0">
       <p class="text-white/40 text-xs font-mono pt-8 border-t border-white/10 uppercase tracking-wider">© 2026 Frankie Digitalz. All Rights Reserved.</p>
@@ -229,6 +198,7 @@
 
 <script>
 (function(){
+  // Wait for both navbar and rich‑text renderer
   const nav = document.getElementById('main-nav');
   requestAnimationFrame(()=>{ requestAnimationFrame(()=>{ nav.style.transform = 'translateY(0)'; nav.style.opacity = '1'; }); });
 
@@ -256,6 +226,43 @@
   }
   startNavbarAnimations();
 
+  // ---- LOAD RICH-TEXT RENDERER WITH FALLBACKS ----
+  let richTextReady = false;
+  let pendingRender = null;
+  function loadRichTextRenderer() {
+    return new Promise((resolve) => {
+      if (typeof documentToHtmlString !== 'undefined') {
+        richTextReady = true;
+        resolve();
+        return;
+      }
+      const script = document.createElement('script');
+      // Try primary CDN
+      script.src = 'https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@16.3.4/dist/rich-text-html-renderer.min.js';
+      script.onload = () => {
+        richTextReady = true;
+        resolve();
+      };
+      script.onerror = () => {
+        // Fallback to unpkg
+        const fallback = document.createElement('script');
+        fallback.src = 'https://unpkg.com/@contentful/rich-text-html-renderer@16.3.4/dist/rich-text-html-renderer.min.js';
+        fallback.onload = () => {
+          richTextReady = true;
+          resolve();
+        };
+        fallback.onerror = () => {
+          console.error('Both CDNs failed to load rich-text renderer');
+          richTextReady = false;
+          resolve();
+        };
+        document.head.appendChild(fallback);
+      };
+      document.head.appendChild(script);
+    });
+  }
+
+  // Contentful credentials
   const SPACE_ID = 'ha7fm2wzrbnt';
   const ACCESS_TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
   const titleEl = document.getElementById('postTitle');
@@ -286,25 +293,20 @@
     }
   }
 
-  function renderBody(fields, includes) {
-    if (!fields.body) return `<p>${escapeHtml(fields.excerpt || 'No content available.')}</p>`;
-    return new Promise((resolve) => {
-      function tryRender() {
-        if (typeof documentToHtmlString === 'function') {
-          try {
-            resolve(documentToHtmlString(fields.body));
-          } catch(e) {
-            console.error('Rich text error:', e);
-            resolve('<p>Error rendering content. Please try again later.</p>');
-          }
-        } else if (window.richTextReady === false) {
-          resolve('<p>Rich text renderer failed to load. Please refresh the page.</p>');
-        } else {
-          setTimeout(tryRender, 100);
-        }
+  async function renderRichText(body) {
+    if (!richTextReady) {
+      await loadRichTextRenderer();
+    }
+    if (typeof documentToHtmlString === 'function') {
+      try {
+        return documentToHtmlString(body);
+      } catch(e) {
+        console.error('Rich text conversion error:', e);
+        return '<p>Error rendering content. Please try again later.</p>';
       }
-      tryRender();
-    });
+    } else {
+      return '<p>Rich text renderer failed to load. Please refresh the page.</p>';
+    }
   }
 
   async function loadPost() {
@@ -375,7 +377,7 @@
         if (imgUrl && featuredImageContainer) imageHtml = `<img src="${imgUrl}" alt="${escapeHtml(fields.title)}" class="w-full object-cover max-h-96" loading="lazy">`;
       }
       if (featuredImageContainer) featuredImageContainer.innerHTML = imageHtml;
-      const bodyHtml = await renderBody(fields, data.includes);
+      const bodyHtml = await renderRichText(fields.body);
       if (contentEl) contentEl.innerHTML = bodyHtml;
       const heroReveal = document.querySelector('#heroSection .reveal-up');
       if (heroReveal) heroReveal.classList.add('revealed');
@@ -388,8 +390,13 @@
       if (breadcrumbContainer) breadcrumbContainer.innerHTML = '<span class="current">Error</span>';
     }
   }
-  loadPost();
 
+  // Wait for renderer then load post
+  loadRichTextRenderer().then(() => {
+    loadPost();
+  });
+
+  // Scroll reveal and other UI
   const reveals = document.querySelectorAll('.reveal-up');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('revealed'); else entry.target.classList.remove('revealed'); });
