@@ -4,13 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- ═══ PRIMARY SEO (will be updated dynamically) ═══════════════════════ -->
   <title>Frankie Digitalz – Blog Post</title>
   <meta name="description" content="Read the latest insights from Frankie Digitalz on web development, e-commerce, digital marketing, and branding.">
   <meta name="author" content="Frankie Digitalz">
   <meta name="robots" content="noindex, follow">
 
-  <!-- ═══ OPEN GRAPH (dynamic) with worldwide locales ════════════════════ -->
   <meta property="og:title" content="Frankie Digitalz – Blog Post">
   <meta property="og:description" content="Read the latest insights from Frankie Digitalz.">
   <meta property="og:site_name" content="Frankie Digitalz">
@@ -25,28 +23,38 @@
   <meta name="twitter:description" content="Read the latest insights from Frankie Digitalz.">
   <meta name="twitter:image" content="https://frankiedigital.vercel.app/og-image.png">
 
-  <!-- ═══ CANONICAL / HREFLANG (clean URL) ═══════════════════════════════ -->
   <link rel="canonical" href="https://frankiedigital.vercel.app/blog-post">
   <link rel="alternate" hreflang="en" href="https://frankiedigital.vercel.app/blog-post">
 
-  <!-- ═══ FAVICON ═══════════════════════════════════════════════════════ -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%2314b8a6'/%3E%3C/svg%3E">
 
-  <!-- ═══ GOOGLE ANALYTICS ═══════════════════════════════════════════════ -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJQPN0DSW6');</script>
 
-  <!-- ═══ Tailwind CSS CDN ═══════════════════════════════════════════════ -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- ═══ Google Fonts + Font Awesome ═══════════════════════════════════ -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-  <!-- ═══ Contentful Rich Text Renderer (improved CDN) ═══════════════════ -->
-  <script src="https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@16.3.4/dist/rich-text-html-renderer.min.js"></script>
+  <!-- Contentful Rich Text Renderer – loaded with a fallback wait mechanism -->
+  <script>
+    window.richTextReady = false;
+    function initRichTextRenderer() {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@16.3.4/dist/rich-text-html-renderer.min.js';
+      script.onload = function() {
+        window.richTextReady = true;
+        if (window.resolveRichText) window.resolveRichText();
+      };
+      script.onerror = function() {
+        console.error('Failed to load rich-text renderer');
+        window.richTextReady = false;
+        if (window.resolveRichText) window.resolveRichText();
+      };
+      document.head.appendChild(script);
+    }
+    initRichTextRenderer();
+  </script>
 
-  <!-- ═══ Default JSON‑LD (will be updated dynamically) ═════════════════ -->
   <script type="application/ld+json" id="schemaJson">
   {
     "@context": "https://schema.org",
@@ -64,26 +72,16 @@
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
     body{font-family:'Inter',sans-serif;background:#d3d3d3;color:#000000;}
-
-    /* ── NAVBAR ANIMATIONS ───────────────────────────────────────── */
     @keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-4px);}40%{transform:translateX(4px);}60%{transform:translateX(-2px);}80%{transform:translateX(2px);}}
     .shake-animation{animation:shake 0.3s ease-in-out 0s 6;display:inline-block;}
-
-    /* ── REVEAL ANIMATIONS ───────────────────────────────────────── */
     .reveal-up{opacity:0;transform:translateY(30px);transition:opacity 1.8s ease-out,transform 1.8s ease-out;}
     .reveal-up.revealed{opacity:1;transform:translateY(0);}
-
-    /* ── DARK SECTION (hero & footer) ───────────────────────────── */
     .dark-section{background:#000000 !important;}
     .dark-section .text-black{color:#d3d3d3 !important;}
     .dark-section .text-black\/70{color:rgba(211,211,211,0.7) !important;}
     .dark-section .border-black\/10{border-color:rgba(211,211,211,0.1) !important;}
-
-    /* ── BACK TO TOP ──────────────────────────────────────────────── */
     .back-to-top{background-color:#14b8a6;color:white;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(20,184,166,0.4);}
     .back-to-top:hover{background-color:#d3d3d3;color:#000000;}
-
-    /* ── FOOTER ANIMATIONS & TRACE ────────────────────────────────── */
     .footer-reveal-left{transform:translateX(-30px);transition:all 1.5s ease-out;}
     .footer-reveal-right{transform:translateX(30px);transition:all 1.5s ease-out;}
     .footer-reveal-up{transform:translateY(20px);transition:all 1.5s ease-out;}
@@ -96,8 +94,6 @@
       100%{stroke-dashoffset:0;filter:drop-shadow(0 0 0px #14b8a6);stroke:rgba(20,184,166,0.1);}
     }
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
-
-    /* ── RICH TEXT STYLES ───────────────────────────────────────── */
     .rich-text-content { line-height: 1.7; }
     .rich-text-content h1, .rich-text-content h2 { font-size: 1.8rem; font-weight: 700; margin: 1.5em 0 0.5em; color: #000000; }
     .rich-text-content h3 { font-size: 1.4rem; font-weight: 600; margin: 1.2em 0 0.5em; color: #000000; }
@@ -110,40 +106,16 @@
     .rich-text-content a { color: #14b8a6; text-decoration: underline; transition: color 0.2s; }
     .rich-text-content a:hover { color: #000000; }
     .rich-text-content blockquote { border-left: 4px solid #14b8a6; padding-left: 1rem; margin: 1rem 0; font-style: italic; }
-
-    /* Breadcrumb style */
-    .blog-post-breadcrumb {
-      font-size: 0.875rem;
-      margin-top: 1rem;
-      color: #9ca3af;
-    }
-    .blog-post-breadcrumb a {
-      color: #9ca3af;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .blog-post-breadcrumb a:hover {
-      color: #14b8a6;
-    }
-    .blog-post-breadcrumb span.current {
-      color: #14b8a6;
-      font-weight: 500;
-    }
-    /* Spinner animation */
-    .fa-spin {
-      animation: fa-spin 2s infinite linear;
-    }
-    @keyframes fa-spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(359deg); }
-    }
+    .blog-post-breadcrumb { font-size: 0.875rem; margin-top: 1rem; color: #9ca3af; }
+    .blog-post-breadcrumb a { color: #9ca3af; text-decoration: none; transition: color 0.2s; }
+    .blog-post-breadcrumb a:hover { color: #14b8a6; }
+    .blog-post-breadcrumb span.current { color: #14b8a6; font-weight: 500; }
+    .fa-spin { animation: fa-spin 2s infinite linear; }
+    @keyframes fa-spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(359deg); } }
   </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     24/7 STICKY SUPPORT BADGE (bottom-left)
-═══════════════════════════════════════════════════════════════════ -->
 <div id="supportBadge" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto;min-width:48px;">
   <div class="relative flex items-center justify-center">
     <span class="absolute right-0 bottom-0 flex h-2 w-2 translate-x-[1px] translate-y-[1px]"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-[#14b8a6]"></span></span>
@@ -152,16 +124,10 @@
   <span id="supportText" class="text-[11px] font-black uppercase tracking-wider text-black whitespace-nowrap overflow-hidden transition-all duration-300" style="max-width:0px;opacity:0;">24/7 Support</span>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     BACK TO TOP (bottom-right)
-═══════════════════════════════════════════════════════════════════ -->
 <div id="backToTopBtn" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300">
   <i class="fas fa-arrow-up text-white text-sm"></i>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     NAVBAR (clean URLs)
-═══════════════════════════════════════════════════════════════════ -->
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-black/10 py-3 transition-all duration-500" style="transform:translateY(-100%);opacity:0;">
   <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
     <div class="flex items-center gap-3">
@@ -204,9 +170,6 @@
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     HERO SECTION (dark) – with loading spinner and breadcrumb
-═══════════════════════════════════════════════════════════════════ -->
 <section class="pt-28 pb-12 md:pt-32 md:pb-16 dark-section" id="heroSection" style="background:#0D1F1C;">
   <div class="container mx-auto px-4 text-center reveal-up">
     <div class="font-mono text-xs tracking-[0.3em] text-teal-400 uppercase mb-4">LATEST_INSIGHTS</div>
@@ -226,9 +189,6 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     CONTENT AREA (light background, white card)
-═══════════════════════════════════════════════════════════════════ -->
 <div class="py-12 md:py-16" style="background:#d3d3d3;">
   <div class="container mx-auto px-4 reveal-up" id="contentWrapper">
     <div class="max-w-4xl mx-auto bg-white rounded-2xl border border-black/10 shadow-lg overflow-hidden">
@@ -238,9 +198,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════════════════════════════ -->
 <footer class="relative pt-24 pb-12 overflow-hidden dark-section" style="background:#000000;border-top:1px solid rgba(255,255,255,0.1);">
   <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
     <svg class="w-[800px] h-[800px] fill-none stroke-[#14b8a6]/10 stroke-2" viewBox="0 0 1000 800">
@@ -262,45 +219,27 @@
           <a href="mailto:info.digitalzfrankie@gmail.com" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fas fa-envelope text-white/60 group-hover:text-white"></i></a>
         </div>
       </div>
-      <div class="footer-reveal-right opacity-0 grid grid-cols-1 md:grid-cols-3 gap-12">
-        <div><h3 class="font-black text-white uppercase tracking-wider text-xs mb-6">Services</h3><ul class="space-y-4"><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Web Development</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">E‑Commerce</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">UI/UX Design</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Digital Marketing</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Brand Strategy</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Technical Consulting</a></li></ul></div>
-        <div><h3 class="font-black text-white uppercase tracking-wider text-xs mb-6">Company</h3><ul class="space-y-4"><li><a href="/about" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">About Us</a></li><li><a href="/portfolio" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Portfolio</a></li><li><a href="/faq" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">FAQ</a></li><li><a href="/blog" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Blog</a></li><li><a href="/contact" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Contact</a></li></ul></div>
-        <div><h3 class="font-black text-white uppercase tracking-wider text-xs mb-6">Legal</h3><ul class="space-y-4"><li><a href="/privacy" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Privacy Policy</a></li><li><a href="/terms" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Terms of Service</a></li><li><a href="/cookies" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Cookie Policy</a></li></ul></div>
-      </div>
+      <div class="footer-reveal-right opacity-0 grid grid-cols-1 md:grid-cols-3 gap-12">...</div>
     </div>
     <div class="footer-reveal-up opacity-0">
       <p class="text-white/40 text-xs font-mono pt-8 border-t border-white/10 uppercase tracking-wider">© 2026 Frankie Digitalz. All Rights Reserved.</p>
-      <p class="sr-only">Logo design for kids clothing, jewellery packaging, tea &amp; coffee branding, and custom e-commerce solutions by Frankie Digitalz. Web development, Shopify, WooCommerce, UI/UX design, digital marketing, brand strategy, and technical consulting services in Canada and internationally.</p>
     </div>
   </div>
 </footer>
 
 <script>
 (function(){
-  // ── 1. SHOW NAVBAR IMMEDIATELY ─────────────────────────────────
   const nav = document.getElementById('main-nav');
-  if (nav) {
-    requestAnimationFrame(()=>{
-      nav.style.transform = 'translateY(0)';
-      nav.style.opacity   = '1';
-    });
-  }
+  requestAnimationFrame(()=>{ requestAnimationFrame(()=>{ nav.style.transform = 'translateY(0)'; nav.style.opacity = '1'; }); });
 
-  // ── 2. NAVBAR ANIMATIONS ──────────────────────────────────────
   function startNavbarAnimations(){
     const logo = document.getElementById('nav-logo');
     if(logo){
       const animateLogo = () => {
         logo.style.fill = '#d3d3d3';
-        setTimeout(()=>{
-          logo.style.transform = 'scale(1.1)';
-          logo.classList.add('shake-animation');
-          setTimeout(()=>{
-            logo.style.fill = '#14b8a6';
-            setTimeout(()=>{
-              logo.style.transform = 'scale(1)';
-              logo.classList.remove('shake-animation');
-            },2000);
+        setTimeout(()=>{ logo.style.transform = 'scale(1.1)'; logo.classList.add('shake-animation');
+          setTimeout(()=>{ logo.style.fill = '#14b8a6';
+            setTimeout(()=>{ logo.style.transform = 'scale(1)'; logo.classList.remove('shake-animation'); },2000);
           },2000);
         },2000);
       };
@@ -312,21 +251,16 @@
       first.style.transition = 'color 0.5s ease';
       second.style.transition = 'color 0.5s ease';
       let swapped = false;
-      setInterval(()=>{
-        swapped = !swapped;
-        first.style.color  = swapped ? '#14b8a6' : '#d3d3d3';
-        second.style.color = swapped ? '#d3d3d3' : '#14b8a6';
-      },5000);
+      setInterval(()=>{ swapped = !swapped; first.style.color = swapped ? '#14b8a6' : '#d3d3d3'; second.style.color = swapped ? '#d3d3d3' : '#14b8a6'; },5000);
     }
   }
   startNavbarAnimations();
 
-  // ── 3. CONTENTFUL FETCH + DYNAMIC RENDERING (slug from path) ───
   const SPACE_ID = 'ha7fm2wzrbnt';
   const ACCESS_TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
   const titleEl = document.getElementById('postTitle');
-  const dateEl     = document.getElementById('postDate');
-  const authorEl   = document.getElementById('postAuthor');
+  const dateEl = document.getElementById('postDate');
+  const authorEl = document.getElementById('postAuthor');
   const modifiedEl = document.getElementById('postModified');
   const contentEl = document.getElementById('postContent');
   const featuredImageContainer = document.getElementById('featuredImageContainer');
@@ -337,30 +271,43 @@
     const asset = includes?.Asset?.find(a => a.sys.id === assetId);
     return asset?.fields?.file?.url ? `https:${asset.fields.file.url}` : null;
   }
-
   function formatDate(dateString) {
     if (!dateString) return '';
     const d = new Date(dateString);
     return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   }
-
   function escapeHtml(str) {
     if (!str) return '';
     return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
   }
-
   function updateBreadcrumb(postTitle) {
     if (breadcrumbContainer) {
-      breadcrumbContainer.innerHTML = `
-        <a href="/">Home</a> <span class="mx-1">/</span>
-        <a href="/blog">Blog</a> <span class="mx-1">/</span>
-        <span class="current">${escapeHtml(postTitle)}</span>
-      `;
+      breadcrumbContainer.innerHTML = `<a href="/">Home</a> <span class="mx-1">/</span> <a href="/blog">Blog</a> <span class="mx-1">/</span> <span class="current">${escapeHtml(postTitle)}</span>`;
     }
   }
 
+  function renderBody(fields, includes) {
+    if (!fields.body) return `<p>${escapeHtml(fields.excerpt || 'No content available.')}</p>`;
+    return new Promise((resolve) => {
+      function tryRender() {
+        if (typeof documentToHtmlString === 'function') {
+          try {
+            resolve(documentToHtmlString(fields.body));
+          } catch(e) {
+            console.error('Rich text error:', e);
+            resolve('<p>Error rendering content. Please try again later.</p>');
+          }
+        } else if (window.richTextReady === false) {
+          resolve('<p>Rich text renderer failed to load. Please refresh the page.</p>');
+        } else {
+          setTimeout(tryRender, 100);
+        }
+      }
+      tryRender();
+    });
+  }
+
   async function loadPost() {
-    // Get slug from URL path (e.g., /blog-post/my-article -> "my-article")
     const path = window.location.pathname;
     const slug = path.startsWith('/blog-post/') ? path.substring('/blog-post/'.length) : null;
     if (!slug) {
@@ -377,25 +324,17 @@
       if (!data.items || data.items.length === 0) throw new Error('Post not found');
       const post = data.items[0];
       const fields = post.fields;
-      // Title
       if (titleEl) titleEl.innerHTML = escapeHtml(fields.title);
       updateBreadcrumb(fields.title);
-      // Date(s)
       const publishedDate = fields.publishDate || fields.datePublished || new Date().toISOString().split('T')[0];
       const modifiedDate = fields.dateModified || publishedDate;
       if (dateEl) dateEl.innerHTML = formatDate(publishedDate);
-      
-      // Author fallback
       let authorName = "Frankie Digitalz Team";
-      if (fields.author && fields.author.fields && fields.author.fields.name) {
-        authorName = fields.author.fields.name;
-      } else if (fields.authorName) {
-        authorName = fields.authorName;
-      }
+      if (fields.author && fields.author.fields && fields.author.fields.name) authorName = fields.author.fields.name;
+      else if (fields.authorName) authorName = fields.authorName;
       if (authorEl) authorEl.innerHTML = `By ${escapeHtml(authorName)}`;
       if (modifiedEl && modifiedDate !== publishedDate) modifiedEl.innerHTML = `Updated ${formatDate(modifiedDate)}`;
 
-      // Update meta tags with clean URL
       const cleanUrl = `https://frankiedigital.vercel.app/blog-post/${encodeURIComponent(slug)}`;
       document.title = `Frankie Digitalz – ${escapeHtml(fields.title)}`;
       const canonicalEl = document.querySelector('link[rel="canonical"]');
@@ -414,7 +353,6 @@
       if (twitterTitle) twitterTitle.setAttribute('content', `Frankie Digitalz – ${escapeHtml(fields.title)}`);
       const twitterDesc = document.querySelector('meta[name="twitter:description"]');
       if (twitterDesc) twitterDesc.setAttribute('content', fields.excerpt || 'Read the latest insights from Frankie Digitalz.');
-      // Update JSON-LD
       if (schemaScript) {
         try {
           const schema = JSON.parse(schemaScript.innerText);
@@ -431,36 +369,14 @@
           schemaScript.innerText = JSON.stringify(schema);
         } catch(e) { console.warn("Schema update failed", e); }
       }
-      // Featured image
       let imageHtml = '';
       if (fields.featuredImage) {
         const imgUrl = getImageUrl(fields.featuredImage.sys.id, data.includes);
-        if (imgUrl && featuredImageContainer) {
-          imageHtml = `<img src="${imgUrl}" alt="${escapeHtml(fields.title)}" class="w-full object-cover max-h-96" loading="lazy">`;
-        }
+        if (imgUrl && featuredImageContainer) imageHtml = `<img src="${imgUrl}" alt="${escapeHtml(fields.title)}" class="w-full object-cover max-h-96" loading="lazy">`;
       }
       if (featuredImageContainer) featuredImageContainer.innerHTML = imageHtml;
-      
-      // Render rich text body with safety check
-      let bodyHtml = '';
-      if (fields.body) {
-        try {
-          if (typeof documentToHtmlString === 'function') {
-            bodyHtml = documentToHtmlString(fields.body);
-          } else {
-            console.error('documentToHtmlString not loaded');
-            bodyHtml = '<p>Rich text renderer failed to load. Please refresh the page.</p>';
-          }
-        } catch(e) {
-          console.error('Rich text error:', e);
-          bodyHtml = '<p>Error rendering content. Please try again later.</p>';
-        }
-      } else {
-        bodyHtml = `<p>${escapeHtml(fields.excerpt || 'No content available.')}</p>`;
-      }
+      const bodyHtml = await renderBody(fields, data.includes);
       if (contentEl) contentEl.innerHTML = bodyHtml;
-      
-      // Reveal animations
       const heroReveal = document.querySelector('#heroSection .reveal-up');
       if (heroReveal) heroReveal.classList.add('revealed');
       const contentReveal = document.querySelector('#contentWrapper .reveal-up');
@@ -474,61 +390,38 @@
   }
   loadPost();
 
-  // ── 4. SCROLL REVEAL OBSERVERS ────────────────────────────────
   const reveals = document.querySelectorAll('.reveal-up');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('revealed');
-      else entry.target.classList.remove('revealed');
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('revealed'); else entry.target.classList.remove('revealed'); });
   }, { threshold: 0.2 });
   reveals.forEach(el => observer.observe(el));
 
-  // ── 5. FOOTER CROSS-REVEAL ────────────────────────────────────
   const footer = document.querySelector('footer');
   if (footer) {
-    const footerObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); else e.target.classList.remove('is-visible'); });
-    }, { threshold: 0.1 });
+    const footerObs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); else e.target.classList.remove('is-visible'); }); }, { threshold: 0.1 });
     footerObs.observe(footer);
   }
-
-  // ── 6. BACK TO TOP ────────────────────────────────────────────
   const backBtn = document.getElementById('backToTopBtn');
   if (backBtn) {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        backBtn.classList.add('opacity-100', 'visible');
-        backBtn.classList.remove('opacity-0', 'invisible');
-      } else {
-        backBtn.classList.remove('opacity-100', 'visible');
-        backBtn.classList.add('opacity-0', 'invisible');
-      }
+      if (window.scrollY > 300) { backBtn.classList.add('opacity-100', 'visible'); backBtn.classList.remove('opacity-0', 'invisible'); }
+      else { backBtn.classList.remove('opacity-100', 'visible'); backBtn.classList.add('opacity-0', 'invisible'); }
     });
     backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
-
-  // ── 7. 24/7 SUPPORT BADGE ─────────────────────────────────────
   const supportText = document.getElementById('supportText');
   const badge = document.getElementById('supportBadge');
   if (badge && supportText) {
     let badgeCycle;
     function startBadgeCycle(){
       if(badgeCycle) clearInterval(badgeCycle);
-      badgeCycle = setInterval(()=>{
-        supportText.style.maxWidth = '200px';
-        supportText.style.opacity = '1';
-        setTimeout(()=>{
-          supportText.style.maxWidth = '0px';
-          supportText.style.opacity = '0';
-        }, 1800);
+      badgeCycle = setInterval(()=>{ supportText.style.maxWidth = '200px'; supportText.style.opacity = '1';
+        setTimeout(()=>{ supportText.style.maxWidth = '0px'; supportText.style.opacity = '0'; }, 1800);
       }, 11000);
     }
     startBadgeCycle();
     badge.addEventListener('click', () => window.open('https://wa.me/16395274759', '_blank'));
   }
-
-  // ── 8. MOBILE MENU ────────────────────────────────────────────
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   if (mobileBtn && mobileMenu) mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
