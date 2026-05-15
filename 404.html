@@ -25,6 +25,8 @@
   
   
   <link rel="preconnect" href="https://cdn.contentful.com">
+  <link rel="preconnect" href="https://images.ctfassets.net">
+  <link rel="dns-prefetch" href="https://images.ctfassets.net">
   
 
   <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -33,6 +35,21 @@
   <noscript><link rel="stylesheet" href="/css/all.min.css"></noscript>
 
   <style>
+    /* Font Awesome font-display:swap – prevents invisible-text flash */
+    @font-face {
+      font-family: 'Font Awesome 6 Free';
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap;
+      src: url('/webfonts/fa-solid-900.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Font Awesome 6 Brands';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/webfonts/fa-brands-400.woff2') format('woff2');
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: #d3d3d3; color: #000; }
     .navbar { background: rgba(0,0,0,0.9); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.1); }

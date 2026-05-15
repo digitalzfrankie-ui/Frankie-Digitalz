@@ -36,6 +36,8 @@
   
   
   <link rel="preconnect" href="https://cdn.contentful.com">
+  <link rel="preconnect" href="https://images.ctfassets.net">
+  <link rel="dns-prefetch" href="https://images.ctfassets.net">
   
 
   <!-- ═══ Tailwind CSS CDN (kept) ═══════════════════════════════════════════ -->
@@ -65,6 +67,21 @@
   </script>
 
   <style>
+    /* Font Awesome font-display:swap – prevents invisible-text flash */
+    @font-face {
+      font-family: 'Font Awesome 6 Free';
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap;
+      src: url('/webfonts/fa-solid-900.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Font Awesome 6 Brands';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/webfonts/fa-brands-400.woff2') format('woff2');
+    }
     *{margin:0;padding:0;box-sizing:border-box;}
     body{font-family:'Inter',sans-serif;background:#d3d3d3;color:#000000;}
 
@@ -181,6 +198,11 @@
       height: auto;
     }
   </style>
+
+  <!-- Start Contentful fetch immediately to reduce blog-list load delay -->
+  <script>
+  window._cfFetch = fetch('https://cdn.contentful.com/spaces/ha7fm2wzrbnt/environments/master/entries?content_type=blogPost&order=-fields.publishDate', {headers:{Authorization:'Bearer aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ'}}).then(function(r){return r.json();}).catch(function(){return null;});
+  </script>
 </head>
 <body>
 

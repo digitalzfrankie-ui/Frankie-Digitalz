@@ -27,7 +27,13 @@
   
   
   <link rel="preconnect" href="https://cdn.contentful.com">
-  
+  <link rel="preconnect" href="https://images.ctfassets.net">
+  <link rel="dns-prefetch" href="https://images.ctfassets.net">
+
+  <!-- Start Contentful fetch immediately so hero images aren't gated on bottom-of-body JS -->
+  <script>
+  window._cfFetch = fetch('https://cdn.contentful.com/spaces/ha7fm2wzrbnt/entries?content_type=homePage&access_token=aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ&limit=1&include=1').then(function(r){return r.json();}).catch(function(){return null;});
+  </script>
 
   <link rel="stylesheet" href="/css/style.css">
 
@@ -37,8 +43,20 @@
 
   <style>
     /* font-display: swap override for Font Awesome – prevents FOIT */
-    @font-face { font-family: 'Font Awesome 6 Free'; font-display: swap; }
-    @font-face { font-family: 'Font Awesome 6 Brands'; font-display: swap; }
+    @font-face {
+      font-family: 'Font Awesome 6 Free';
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap;
+      src: url('/webfonts/fa-solid-900.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Font Awesome 6 Brands';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/webfonts/fa-brands-400.woff2') format('woff2');
+    }
     body.boot-loading { overflow: hidden; }
     .letter-animation {
       display: inline-block;
@@ -207,6 +225,7 @@
 
     .glow-tick {
       animation: glowTick 1.5s infinite;
+      will-change: filter, opacity;
     }
     @keyframes glowTick {
       0%,100% { filter: drop-shadow(0 0 2px #14b8a6); opacity: 0.9; }
@@ -409,7 +428,7 @@
         </div>
         <div class="hidden lg:block relative reveal-slow" id="heroDesktopWrapper">
           <div class="rounded-3xl overflow-hidden shadow-2xl border-[8px] border-white/20 transition-transform duration-1000 hover:scale-105 relative">
-            <img id="cf-hero-image-decorative" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Frankie Digitalz hero decorative" class="w-full h-auto" style="aspect-ratio:auto">
+            <img id="cf-hero-image-decorative" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Frankie Digitalz hero decorative" class="w-full h-auto" width="1379" height="752" fetchpriority="high">
             <svg class="absolute top-0 left-0 w-full h-full pointer-events-none" viewBox="0 0 1200 800" preserveAspectRatio="none"><path id="wavyPathDesktop" d="M0,40 C60,20 140,60 200,40 C260,20 340,60 400,40 C460,20 540,60 600,40 C660,20 740,60 800,40 C860,20 940,60 1000,40 C1060,20 1140,60 1200,40 L1200,800 L0,800 Z" fill="none" stroke="#14b8a6" stroke-width="4" stroke-dasharray="3000" stroke-dashoffset="3000" /></svg>
           </div>
         </div>
@@ -768,17 +787,22 @@
     const mobilePath=document.getElementById('wavyPathMobile');
     const animateTrace=(path,duration=3000)=>{
       if(!path)return;
-      const length=path.getTotalLength();
+      // Hardcoded path lengths (from Lighthouse): avoids getTotalLength() forced layout
+      const length=path.id==='wavyPathDesktop'?3931:1765;
       path.style.transition='none';
       path.style.strokeDasharray=length;
       path.style.strokeDashoffset=length;
-      path.getBoundingClientRect();
-      path.style.transition=`stroke-dashoffset ${duration}ms linear`;
-      path.style.strokeDashoffset='0';
       const parentContainer=path.closest('.relative');
-      if(parentContainer){
-        setTimeout(()=>{parentContainer.classList.add('glow-active');setTimeout(()=>parentContainer.classList.remove('glow-active'),3000);},duration);
-      }
+      // Double rAF flushes the style without forcing a synchronous reflow
+      requestAnimationFrame(()=>{
+        requestAnimationFrame(()=>{
+          path.style.transition=`stroke-dashoffset ${duration}ms linear`;
+          path.style.strokeDashoffset='0';
+          if(parentContainer){
+            setTimeout(()=>{parentContainer.classList.add('glow-active');setTimeout(()=>parentContainer.classList.remove('glow-active'),3000);},duration);
+          }
+        });
+      });
     };
     if(desktopPath)animateTrace(desktopPath,3000);
     if(mobilePath)animateTrace(mobilePath,3000);
@@ -1485,46 +1509,41 @@
 <!-- Contentful fallback for hero image -->
 <script>
 (async function () {
-  const SPACE = 'ha7fm2wzrbnt';
-  const TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
-  const BASE  = 'https://cdn.contentful.com/spaces/' + SPACE;
   try {
-    const res  = await fetch(BASE + '/entries?content_type=homePage&access_token=' + TOKEN + '&limit=1&include=1');
-    const data = await res.json();
-    if (data.items && data.items.length > 0) {
-      const f = data.items[0].fields;
-      const assets = (data.includes && data.includes.Asset) || [];
-      if (f.heroImage) {
-        const asset = assets.find(a => a.sys.id === f.heroImage.sys.id);
-        if (asset && asset.fields.file && asset.fields.file.url) {
-          const el = document.getElementById('cf-hero-image');
-          if (el) el.src = 'https:' + asset.fields.file.url + '?w=1920&q=65&fm=webp';
-        }
+    // Reuse the fetch started in <head> — avoids a second round-trip and resolves much earlier
+    const data = await window._cfFetch;
+    if (!data || !data.items || !data.items.length) return;
+    const f = data.items[0].fields;
+    const assets = (data.includes && data.includes.Asset) || [];
+    if (f.heroImage) {
+      const asset = assets.find(a => a.sys.id === f.heroImage.sys.id);
+      if (asset && asset.fields.file && asset.fields.file.url) {
+        const el = document.getElementById('cf-hero-image');
+        if (el) el.src = 'https:' + asset.fields.file.url + '?w=1920&q=65&fm=webp';
       }
-      if (f.heroImageMobile) {
-        const asset = assets.find(a => a.sys.id === f.heroImageMobile.sys.id);
-        if (asset && asset.fields.file && asset.fields.file.url) {
-          const el = document.getElementById('cf-hero-image-mobile');
-          if (el) el.src = 'https:' + asset.fields.file.url + '?w=910&q=65&fm=webp';
-        }
+    }
+    if (f.heroImageMobile) {
+      const asset = assets.find(a => a.sys.id === f.heroImageMobile.sys.id);
+      if (asset && asset.fields.file && asset.fields.file.url) {
+        const el = document.getElementById('cf-hero-image-mobile');
+        if (el) el.src = 'https:' + asset.fields.file.url + '?w=910&q=65&fm=webp';
       }
-      if (f.heroImageDecorative) {
-        const asset = assets.find(a => a.sys.id === f.heroImageDecorative.sys.id);
-        if (asset && asset.fields.file && asset.fields.file.url) {
-          const decorativeEl = document.getElementById('cf-hero-image-decorative');
+    }
+    if (f.heroImageDecorative) {
+      const asset = assets.find(a => a.sys.id === f.heroImageDecorative.sys.id);
+      if (asset && asset.fields.file && asset.fields.file.url) {
+        const decorativeEl = document.getElementById('cf-hero-image-decorative');
         if (decorativeEl) {
           const url = 'https:' + asset.fields.file.url + '?w=1200&q=65&fm=webp';
           decorativeEl.src = url;
-          // Set natural dimensions from Contentful metadata to fix aspect ratio
           const d = asset.fields.file.details && asset.fields.file.details.image;
           if (d) { decorativeEl.width = d.width; decorativeEl.height = d.height; }
         }
-        }
       }
-      if (f.portfolioTitle) {
-        const el = document.getElementById('cf-portfolio-title');
-        if (el) el.textContent = f.portfolioTitle;
-      }
+    }
+    if (f.portfolioTitle) {
+      const el = document.getElementById('cf-portfolio-title');
+      if (el) el.textContent = f.portfolioTitle;
     }
   } catch (e) { console.warn('Contentful hero fetch failed — static fallback works.', e); }
 })();
