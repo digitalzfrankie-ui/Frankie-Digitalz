@@ -74,10 +74,10 @@
     .is-visible .footer-reveal-left,.is-visible .footer-reveal-right,.is-visible .footer-reveal-up{opacity:1;transform:translate(0);}
     .trace-path{stroke-dasharray:3000;stroke-dashoffset:3000;animation:traceLoop 6s linear infinite;}
     @keyframes traceLoop{
-      0%{stroke-dashoffset:3000;filter:drop-shadow(0 0 0px #14b8a6);stroke:rgba(20,184,166,0.1);}
-      83%{stroke-dashoffset:0;filter:drop-shadow(0 0 0px #14b8a6);stroke:rgba(20,184,166,0.1);}
-      90%{stroke-dashoffset:0;filter:drop-shadow(0 0 15px #14b8a6);stroke:rgba(20,184,166,1);}
-      100%{stroke-dashoffset:0;filter:drop-shadow(0 0 0px #14b8a6);stroke:rgba(20,184,166,0.1);}
+      0%{stroke-dashoffset:3000;stroke:rgba(20,184,166,0.1);}
+      83%{stroke-dashoffset:0;stroke:rgba(20,184,166,0.1);}
+      90%{stroke-dashoffset:0;stroke:rgba(20,184,166,1);}
+      100%{stroke-dashoffset:0;stroke:rgba(20,184,166,0.1);}
     }
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
     .rich-text-content { line-height: 1.7; }
@@ -154,7 +154,7 @@
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-black/10 py-3 transition-all duration-500" style="transform:translateY(-100%);opacity:0;">
   <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
     <div class="flex items-center gap-3">
-      <svg id="nav-logo" width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill:#14b8a6;transition:all 0.2s ease;" aria-hidden="true">
+      <svg id="nav-logo" width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill:#14b8a6;transition:transform 0.2s ease;" aria-hidden="true">
         <path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#14b8a6"/>
         <path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#14b8a6"/>
         <path d="M225 130 L305 210 L225 210 Z" fill="#14b8a6"/>
