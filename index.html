@@ -400,14 +400,14 @@
   <!-- HERO SECTION -->
   <section class="min-h-screen flex items-center relative overflow-hidden pt-28 pb-16 bg-[#d3d3d3]">
     <div class="absolute inset-0 z-0">
-      <img id="cf-hero-image" src="hero.WEBP" alt="Frankie Digitalz hero background" class="w-full h-full object-cover" width="1920" height="1080" fetchpriority="high">
+      <img id="cf-hero-image" src="hero.webp" alt="Frankie Digitalz hero background" class="w-full h-full object-cover" width="1920" height="1080" fetchpriority="high">
       <div class="absolute inset-0 bg-black/40 z-10"></div>
     </div>
     <div class="container mx-auto px-4 lg:px-8 relative z-20">
       <div class="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
         <div class="lg:hidden w-full max-w-sm mx-auto relative" id="heroMobileWrapper">
           <div class="rounded-2xl overflow-hidden border border-black/10 shadow-xl relative">
-            <img id="cf-hero-image-mobile" src="heromobile.WEBP" alt="Frankie Digitalz mobile hero" class="w-full h-auto object-cover aspect-[4/3]" width="500" height="400" fetchpriority="high">
+            <img id="cf-hero-image-mobile" src="heromobile.webp" alt="Frankie Digitalz mobile hero" class="w-full h-auto object-cover aspect-[4/3]" width="500" height="400" fetchpriority="high">
             <svg class="absolute top-0 left-0 w-full h-full pointer-events-none" viewBox="0 0 500 400" preserveAspectRatio="none"><path id="wavyPathMobile" d="M0,20 C30,10 70,30 100,20 C130,10 170,30 200,20 C230,10 270,30 300,20 C330,10 370,30 400,20 C430,10 470,30 500,20 L500,400 L0,400 Z" fill="none" stroke="#14b8a6" stroke-width="3" stroke-dasharray="2000" stroke-dashoffset="2000" /></svg>
           </div>
         </div>
@@ -436,7 +436,7 @@
         </div>
         <div class="hidden lg:block relative reveal-slow" id="heroDesktopWrapper">
           <div class="rounded-3xl overflow-hidden shadow-2xl border-[8px] border-white/20 transition-transform duration-1000 hover:scale-105 relative">
-            <img id="cf-hero-image-decorative" src="heromobile.WEBP" alt="Frankie Digitalz hero decorative" class="w-full h-auto" style="aspect-ratio:auto">
+            <img id="cf-hero-image-decorative" src="heromobile.webp" alt="Frankie Digitalz hero decorative" class="w-full h-auto" style="aspect-ratio:auto">
             <svg class="absolute top-0 left-0 w-full h-full pointer-events-none" viewBox="0 0 1200 800" preserveAspectRatio="none"><path id="wavyPathDesktop" d="M0,40 C60,20 140,60 200,40 C260,20 340,60 400,40 C460,20 540,60 600,40 C660,20 740,60 800,40 C860,20 940,60 1000,40 C1060,20 1140,60 1200,40 L1200,800 L0,800 Z" fill="none" stroke="#14b8a6" stroke-width="4" stroke-dasharray="3000" stroke-dashoffset="3000" /></svg>
           </div>
         </div>
@@ -1211,10 +1211,10 @@
 
     // Mapping: status -> local image, display role, description
     const statusMap = {
-      founder: { image: '/ceo.WEBP', role: 'CEO', description: 'Strategic leader aligning technology with business goals to drive sustainable growth.' },
-      ceo: { image: '/manager.WEBP', role: 'Manager', description: 'Keeps projects on track, teams aligned, and ensures on‑time, high‑quality delivery.' },
-      manager: { image: '/developer.WEBP', role: 'Developer', description: 'Full‑stack engineer building fast, scalable, and secure web applications.' },
-      designer: { image: '/designer.WEBP', role: 'Designer', description: 'Creates intuitive interfaces and beautiful brand experiences users love.' }
+      founder: { image: '/ceo.webp', role: 'CEO', description: 'Strategic leader aligning technology with business goals to drive sustainable growth.' },
+      ceo: { image: '/manager.webp', role: 'Manager', description: 'Keeps projects on track, teams aligned, and ensures on‑time, high‑quality delivery.' },
+      manager: { image: '/developer.webp', role: 'Developer', description: 'Full‑stack engineer building fast, scalable, and secure web applications.' },
+      designer: { image: '/designer.webp', role: 'Designer', description: 'Creates intuitive interfaces and beautiful brand experiences users love.' }
     };
 
     async function fetchTeamMembers() {
@@ -1232,7 +1232,7 @@
           const role = mapping.role;
           // Description from mapping
           const description = mapping.description;
-          // Image from mapping (local WEBP)
+          // Image from mapping (local webp)
           const imageUrl = mapping.image;
           return { name: fields.name || "Team Member", role: role, image: imageUrl, description: description, status: status };
         });
