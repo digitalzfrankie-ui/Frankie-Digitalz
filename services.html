@@ -35,7 +35,8 @@
   <!-- ═══ GOOGLE ANALYTICS ═══════════════════════════════════════════════════ -->
 
   <!-- ═══ Tailwind CSS CDN ═══════════════════════════════════════════════════ -->
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
 
   <!-- ═══ Google Fonts + Font Awesome ═══════════════════════════════════════ -->
   <link rel="stylesheet" href="/css/fonts.css">
@@ -992,6 +993,12 @@
   const mobileMenu = document.getElementById('mobileMenu');
   if(mobileBtn && mobileMenu){
     mobileBtn.addEventListener('click',()=> mobileMenu.classList.toggle('hidden'));
+    window.addEventListener('scroll', () => {
+      if (!mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
     document.addEventListener('click', function(event) {
       if (!mobileMenu.classList.contains('hidden') && !mobileBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
         mobileMenu.classList.add('hidden');

@@ -34,7 +34,8 @@
   <!-- Preload hero image -->
   <link rel="preload" as="image" href="https://frankiedigital.vercel.app/portfolio-hero.png" fetchpriority="high">
 
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
@@ -45,7 +46,7 @@
 
     /* Reveal animations – 1.5s */
     .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
-      transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+      transition: opacity 1s ease-out, transform 1s ease-out;
     }
     .reveal-up{opacity:0;transform:translateY(30px);}
     .reveal-up.revealed{opacity:1;transform:translateY(0);}
@@ -522,6 +523,12 @@
     mobileBtn.addEventListener('click', () => {
       const isHidden = mobileMenu.classList.toggle('hidden');
       mobileBtn.setAttribute('aria-expanded', String(!isHidden));
+    });
+    window.addEventListener('scroll', () => {
+      if (!mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+      }
     });
     document.addEventListener('click', function(event) {
       if (!mobileMenu.classList.contains('hidden') && !mobileBtn.contains(event.target) && !mobileMenu.contains(event.target)) {

@@ -35,7 +35,8 @@
   
 
   <!-- Tailwind CSS CDN (kept as is) -->
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
 
   <!-- Font Awesome (kept) -->
   <link rel="preload" href="/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -67,7 +68,7 @@
     .shake-animation { animation: shake 0.3s ease-in-out 0s 6; display: inline-block; }
 
     /* Reveal animations – reduced to 1.5s */
-    .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade { transition: opacity 1.5s ease-out, transform 1.5s ease-out; }
+    .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade { transition: opacity 1s ease-out, transform 1s ease-out; }
     .reveal-up { opacity: 0; transform: translateY(30px); }
     .reveal-up.revealed { opacity: 1; transform: translateY(0); }
     .reveal-left { opacity: 0; transform: translateX(-30px); }
@@ -80,9 +81,9 @@
     .back-to-top { background-color: #14b8a6; color: white; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(20,184,166,0.4); }
     .back-to-top:hover { background-color: #000000; color: white; }
 
-    .footer-reveal-left { transform: translateX(-30px); transition: all 1.5s ease-out; }
-    .footer-reveal-right { transform: translateX(30px); transition: all 1.5s ease-out; }
-    .footer-reveal-up { transform: translateY(20px); transition: all 1.5s ease-out; }
+    .footer-reveal-left { transform: translateX(-30px); transition: all 1s ease-out; }
+    .footer-reveal-right { transform: translateX(30px); transition: all 1s ease-out; }
+    .footer-reveal-up { transform: translateY(20px); transition: all 1s ease-out; }
     .is-visible .footer-reveal-left, .is-visible .footer-reveal-right, .is-visible .footer-reveal-up { opacity: 1; transform: translate(0); }
     .trace-path { stroke-dasharray: 3000; stroke-dashoffset: 3000; animation: traceLoop 6s linear infinite; }
     @keyframes traceLoop {
@@ -439,6 +440,12 @@
   const mobileMenu = document.getElementById('mobileMenu');
   if (mobileBtn && mobileMenu) {
     mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    window.addEventListener('scroll', () => {
+      if (!mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
     document.addEventListener('click', function(event) {
       if (!mobileMenu.classList.contains('hidden') && !mobileBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
         mobileMenu.classList.add('hidden');

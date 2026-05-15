@@ -27,7 +27,8 @@
   <link rel="preconnect" href="https://cdn.contentful.com">
   
 
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
   <link rel="preload" href="/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/css/all.min.css"></noscript>
 
@@ -159,6 +160,12 @@
   const mobileMenu = document.getElementById('mobileMenu');
   if (mobileBtn && mobileMenu) {
     mobileBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); mobileBtn.setAttribute('aria-expanded', String(!mobileMenu.classList.contains('hidden'))); });
+    window.addEventListener('scroll', () => {
+      if (!mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
     document.addEventListener('click', function(event) {
       if (!mobileMenu.classList.contains('hidden') && !mobileBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
         mobileMenu.classList.add('hidden');
