@@ -444,7 +444,7 @@
     </div>
   </section>
 
-  <!-- STATS SECTION -->
+  <!-- STATS SECTION (modified: animation runs only once) -->
   <section class="py-24 fade-section bg-[#0D1F1C]" id="statsSection">
     <div class="container mx-auto px-4 fade-inner">
       <div class="text-center mb-20 h-32 flex flex-col justify-center">
@@ -810,8 +810,27 @@
   const heroObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){resetAndPlayHeroIntro();resetAndPlayEdgeTrace();}});},{threshold:0.3});
   if(heroSection)heroObserver.observe(heroSection);
 
-  // FADE SECTIONS OBSERVER - now only adds class, never removes
-  const fadeSections = document.querySelectorAll('.fade-section');
+  // FADE SECTIONS OBSERVER - only adds class, never removes (except stats section handled separately)
+  // For stats section: we use a separate observer that never removes the class and runs animation only once
+  let statsAnimationPlayed = false;
+  const statsSection = document.getElementById('statsSection');
+  if (statsSection) {
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !statsAnimationPlayed) {
+          statsAnimationPlayed = true;
+          statsSection.classList.add('is-visible');
+          // Trigger stats animation only once
+          if (typeof initStats === 'function') initStats();
+          else if (!window._statsTriggered) { window._statsTriggered = true; initStats(); }
+        }
+      });
+    }, { threshold: 0.2 });
+    statsObserver.observe(statsSection);
+  }
+
+  // For all other fade-sections (excluding stats), we still add the class but never remove it.
+  const fadeSections = document.querySelectorAll('.fade-section:not(#statsSection)');
   fadeSections.forEach(section => {
     const inner = section.querySelector('.fade-inner');
     if (!inner) return;
@@ -822,10 +841,6 @@
           section.classList.add('is-visible');
           if (fadeTimeout) clearTimeout(fadeTimeout);
           fadeTimeout = setTimeout(() => {
-            if (section.id === 'statsSection') {
-              if (typeof initStats === 'function') initStats();
-              else if (!window._statsTriggered) { window._statsTriggered = true; initStats(); }
-            }
             if (section.querySelector('#infiniteScrollWrapper') && !window._portfolioStarted) {
               window._portfolioStarted = true;
               initHomePortfolio();
@@ -861,7 +876,7 @@
     if (rightMarquee) rightMarquee.classList.add('marquee-running');
   }
 
-  // STATS
+  // STATS (runs only once thanks to statsAnimationPlayed guard)
   function initStats(){
     const statsGrid = document.getElementById('statsGrid');
     if(!statsGrid) return;
@@ -1228,11 +1243,8 @@
           const fields = item.fields;
           const status = fields.status || '';
           const mapping = statusMap[status] || statusMap.manager;
-          // Role display from mapping (status-based)
           const role = mapping.role;
-          // Description from mapping
           const description = mapping.description;
-          // Image from mapping (local webp)
           const imageUrl = mapping.image;
           return { name: fields.name || "Team Member", role: role, image: imageUrl, description: description, status: status };
         });
