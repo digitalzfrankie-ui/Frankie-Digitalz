@@ -703,7 +703,7 @@
 (function(){
   // BOOT LOADER REMOVAL
   const bootDiv = document.getElementById('boot-loader');
-  setTimeout(() => {
+  function dismissBoot() {
     if (bootDiv) bootDiv.remove();
     document.body.classList.remove('boot-loading');
     const nav = document.getElementById('main-nav');
@@ -714,7 +714,19 @@
     startNavbarAnimations();
     resetAndPlayHeroIntro();
     resetAndPlayEdgeTrace();
-  }, 1000);
+  }
+
+  // Skip the boot loader for repeat visitors within the same session, and for
+  // users who prefer reduced motion — no reason to make them wait for an animation.
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const alreadyVisited = sessionStorage.getItem('fd_visited');
+
+  if (prefersReduced || alreadyVisited) {
+    dismissBoot(); // instant — page was already seen or motion is unwanted
+  } else {
+    sessionStorage.setItem('fd_visited', '1');
+    setTimeout(dismissBoot, 400); // 400ms instead of 1000ms on first visit
+  }
 
   function startNavbarAnimations(){
     setTimeout(()=>{
