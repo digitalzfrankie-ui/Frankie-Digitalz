@@ -27,10 +27,8 @@
   
   
   <link rel="preconnect" href="https://cdn.contentful.com">
-  <link rel="preconnect" href="https://images.ctfassets.net" crossorigin>
   
 
-  <link rel="stylesheet" href="/css/fonts.css">
   <link rel="stylesheet" href="/css/style.css">
 
   <!-- Font Awesome: async to avoid render-blocking -->
@@ -41,6 +39,7 @@
     /* font-display: swap override for Font Awesome – prevents FOIT */
     @font-face { font-family: 'Font Awesome 6 Free'; font-display: swap; }
     @font-face { font-family: 'Font Awesome 6 Brands'; font-display: swap; }
+    body.boot-loading { overflow: hidden; }
     .letter-animation {
       display: inline-block;
       opacity: 0;
@@ -195,6 +194,11 @@
       transform: translateY(0);
     }
 
+    @keyframes logoPulse {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.08); opacity: 0.9; }
+    }
+    .logo-pulse { animation: logoPulse 2s ease-in-out infinite; }
 
     .animate-marquee-left { animation: marqueeLeft 25s linear infinite; }
     .animate-marquee-right { animation: marqueeRight 30s linear infinite; }
@@ -295,15 +299,22 @@
     .contact-btn-hover:hover {
       background-color: #000000 !important;
     }
-    /* Hero placeholder while Contentful loads */
-    #cf-hero-image { background: #111; }
-    #cf-hero-image-mobile { background: #111; }
-    #cf-hero-image-decorative { background: #1a1a1a; }
   </style>
 </head>
-<body>
+<body class="boot-loading">
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- BOOT LOADER -->
+<div id="boot-loader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-black">
+  <div class="logo-pulse w-20 h-20 mb-4">
+    <svg class="w-full h-full fill-[#14b8a6]" viewBox="0 0 1000 800">
+      <path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z"/>
+      <path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z"/>
+      <path d="M225 130 L305 210 L225 210 Z"/>
+    </svg>
+  </div>
+</div>
 
 <!-- 24/7 SUPPORT BADGE -->
 <div id="supportBadge" role="button" tabindex="0" aria-label="Contact us via WhatsApp for 24/7 support" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto; min-width:48px;">
@@ -316,7 +327,7 @@
 
 <div id="backToTopBtn" role="button" tabindex="0" aria-label="Back to top" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300 bg-[#14b8a6] hover:bg-black shadow-md hover:shadow-xl"><i class="fas fa-arrow-up text-white text-sm" aria-hidden="true"></i></div>
 
-<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-black/10 py-3">
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-black/10 py-3 transition-all duration-700 transform -translate-y-full opacity-0">
   <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
     <div class="flex items-center gap-3">
       <svg id="nav-logo" aria-hidden="true" width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill:#14b8a6; transition: all 0.2s ease;">
@@ -405,55 +416,6 @@
       </div>
     </div>
   </section>
-
-
-<!-- Contentful hero — fires immediately after hero parses -->
-<script>
-(async function () {
-  const SPACE = 'ha7fm2wzrbnt';
-  const TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
-  const BASE  = 'https://cdn.contentful.com/spaces/' + SPACE;
-  try {
-    const res  = await fetch(BASE + '/entries?content_type=homePage&access_token=' + TOKEN + '&limit=1&include=1');
-    const data = await res.json();
-    if (data.items && data.items.length > 0) {
-      const f = data.items[0].fields;
-      const assets = (data.includes && data.includes.Asset) || [];
-      if (f.heroImage) {
-        const asset = assets.find(a => a.sys.id === f.heroImage.sys.id);
-        if (asset && asset.fields.file && asset.fields.file.url) {
-          const el = document.getElementById('cf-hero-image');
-          if (el) el.src = 'https:' + asset.fields.file.url + '?w=1920&q=65&fm=webp';
-        }
-      }
-      if (f.heroImageMobile) {
-        const asset = assets.find(a => a.sys.id === f.heroImageMobile.sys.id);
-        if (asset && asset.fields.file && asset.fields.file.url) {
-          const el = document.getElementById('cf-hero-image-mobile');
-          if (el) el.src = 'https:' + asset.fields.file.url + '?w=910&q=65&fm=webp';
-        }
-      }
-      if (f.heroImageDecorative) {
-        const asset = assets.find(a => a.sys.id === f.heroImageDecorative.sys.id);
-        if (asset && asset.fields.file && asset.fields.file.url) {
-          const decorativeEl = document.getElementById('cf-hero-image-decorative');
-        if (decorativeEl) {
-          const url = 'https:' + asset.fields.file.url + '?w=1200&q=65&fm=webp';
-          decorativeEl.src = url;
-          // Set natural dimensions from Contentful metadata to fix aspect ratio
-          const d = asset.fields.file.details && asset.fields.file.details.image;
-          if (d) { decorativeEl.width = d.width; decorativeEl.height = d.height; }
-        }
-        }
-      }
-      if (f.portfolioTitle) {
-        const el = document.getElementById('cf-portfolio-title');
-        if (el) el.textContent = f.portfolioTitle;
-      }
-    }
-  } catch (e) { console.warn('Contentful hero fetch failed — static fallback works.', e); }
-})();
-</script>
 
   <!-- STATS SECTION -->
   <section class="py-24 fade-section bg-[#0D1F1C]" id="statsSection">
@@ -721,9 +683,19 @@
 <script>
 (function(){
   // BOOT LOADER REMOVAL
-  startNavbarAnimations();
-  resetAndPlayHeroIntro();
-  resetAndPlayEdgeTrace();
+  const bootDiv = document.getElementById('boot-loader');
+  setTimeout(() => {
+    if (bootDiv) bootDiv.remove();
+    document.body.classList.remove('boot-loading');
+    const nav = document.getElementById('main-nav');
+    if (nav) {
+      nav.style.transform = 'translateY(0)';
+      nav.style.opacity = '1';
+    }
+    startNavbarAnimations();
+    resetAndPlayHeroIntro();
+    resetAndPlayEdgeTrace();
+  }, 1000);
 
   function startNavbarAnimations(){
     setTimeout(()=>{
@@ -1510,7 +1482,69 @@
 })();
 </script>
 
+<!-- Contentful hero — cached for instant load on repeat visits -->
+<script>
+(async function () {
+  const SPACE = 'ha7fm2wzrbnt';
+  const TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
+  const BASE  = 'https://cdn.contentful.com/spaces/' + SPACE;
+  const CACHE_KEY = 'fd_hero_imgs';
 
+  // Load from cache instantly (no API wait)
+  try {
+    const cached = localStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const imgs = JSON.parse(cached);
+      if (imgs.bg) document.getElementById('cf-hero-image').src = imgs.bg;
+      if (imgs.mobile) document.getElementById('cf-hero-image-mobile').src = imgs.mobile;
+      if (imgs.deco) {
+        const d = document.getElementById('cf-hero-image-decorative');
+        if (d) { d.src = imgs.deco; if (imgs.decoW) { d.width = imgs.decoW; d.height = imgs.decoH; } }
+      }
+    }
+  } catch(e) {}
+
+  // Fetch from Contentful in background to refresh cache
+  try {
+    const res  = await fetch(BASE + '/entries?content_type=homePage&access_token=' + TOKEN + '&limit=1&include=1');
+    const data = await res.json();
+    if (data.items && data.items.length > 0) {
+      const f = data.items[0].fields;
+      const assets = (data.includes && data.includes.Asset) || [];
+      const newCache = {};
+      if (f.heroImage) {
+        const a = assets.find(a => a.sys.id === f.heroImage.sys.id);
+        if (a?.fields?.file?.url) {
+          newCache.bg = 'https:' + a.fields.file.url + '?w=1920&q=65&fm=webp';
+          document.getElementById('cf-hero-image').src = newCache.bg;
+        }
+      }
+      if (f.heroImageMobile) {
+        const a = assets.find(a => a.sys.id === f.heroImageMobile.sys.id);
+        if (a?.fields?.file?.url) {
+          newCache.mobile = 'https:' + a.fields.file.url + '?w=910&q=65&fm=webp';
+          document.getElementById('cf-hero-image-mobile').src = newCache.mobile;
+        }
+      }
+      if (f.heroImageDecorative) {
+        const a = assets.find(a => a.sys.id === f.heroImageDecorative.sys.id);
+        if (a?.fields?.file?.url) {
+          const el = document.getElementById('cf-hero-image-decorative');
+          newCache.deco = 'https:' + a.fields.file.url + '?w=1200&q=65&fm=webp';
+          const dim = a.fields.file.details?.image;
+          if (dim) { newCache.decoW = dim.width; newCache.decoH = dim.height; }
+          if (el) { el.src = newCache.deco; if (dim) { el.width = dim.width; el.height = dim.height; } }
+        }
+      }
+      if (f.portfolioTitle) {
+        const el = document.getElementById('cf-portfolio-title');
+        if (el) el.textContent = f.portfolioTitle;
+      }
+      localStorage.setItem(CACHE_KEY, JSON.stringify(newCache));
+    }
+  } catch (e) { console.warn('Contentful fetch failed.', e); }
+})();
+</script>
 
 <!-- Deferred Google Tag Manager -->
 <script defer src="https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6"></script>
