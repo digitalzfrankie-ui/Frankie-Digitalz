@@ -4,13 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- ═══ PRIMARY SEO ═══════════════════════════════════════════════════════ -->
   <title>Frankie Digitalz – Portfolio | Real Stores, Real Results</title>
   <meta name="description" content="Explore our portfolio of e-commerce stores we've grown, redesigned, and optimized for conversion. Frankie Digitalz delivers real results.">
   <meta name="author" content="Frankie Digitalz">
   <meta name="robots" content="index, follow">
 
-  <!-- ═══ OPEN GRAPH ════════════════════════════════════════════════════════ -->
   <meta property="og:title" content="Frankie Digitalz – Portfolio">
   <meta property="og:description" content="Real stores we've helped scale. Browse our work.">
   <meta property="og:site_name" content="Frankie Digitalz">
@@ -21,57 +19,33 @@
   <meta property="og:image" content="https://frankiedigital.vercel.app/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@DigitalzFrankie">
-  <meta name="twitter:title" content="Frankie Digitalz – Portfolio">
-  <meta name="twitter:description" content="Real stores we've grown and optimized. See our work.">
-  <meta name="twitter:image" content="https://frankiedigital.vercel.app/og-image.png">
 
-  <!-- ═══ CANONICAL / HREFLANG (clean URL) ══════════════════════════════════ -->
   <link rel="canonical" href="https://frankiedigital.vercel.app/portfolio">
   <link rel="alternate" hreflang="en" href="https://frankiedigital.vercel.app/portfolio">
 
-  <!-- ═══ FAVICON ═══════════════════════════════════════════════════════════ -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%2314b8a6'/%3E%3C/svg%3E">
 
-  <!-- ═══ GOOGLE ANALYTICS ═══════════════════════════════════════════════════ -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJQPN0DSW6');</script>
+  <!-- Preconnect & font optimisation -->
+  
+  
+  <link rel="preconnect" href="https://cdn.contentful.com">
+  
 
-  <!-- ═══ Tailwind CSS CDN ═══════════════════════════════════════════════════ -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Preload hero image -->
+  <link rel="preload" as="image" href="https://frankiedigital.vercel.app/portfolio-hero.png" fetchpriority="high">
 
-  <!-- ═══ Google Fonts + Font Awesome ═══════════════════════════════════════ -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-  <!-- ═══ SCHEMA.ORG JSON-LD (no fake ProfessionalService) ══════════════════ -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Portfolio – Frankie Digitalz",
-    "url": "https://frankiedigital.vercel.app/portfolio",
-    "description": "Real e-commerce stores we've grown, redesigned, and optimised for conversion.",
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {"@type": "ListItem","position": 1,"name": "Home","item": "https://frankiedigital.vercel.app/"},
-        {"@type": "ListItem","position": 2,"name": "Portfolio","item": "https://frankiedigital.vercel.app/portfolio"}
-      ]
-    }
-  }
-  </script>
+  <link rel="stylesheet" href="/css/style.css">
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
     body{font-family:'Inter',sans-serif;background:#d3d3d3;color:#000000;}
 
-    /* ── NAVBAR ANIMATIONS ───────────────────────────────────────── */
     @keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-4px);}40%{transform:translateX(4px);}60%{transform:translateX(-2px);}80%{transform:translateX(2px);}}
     .shake-animation{animation:shake 0.3s ease-in-out 0s 6;display:inline-block;}
 
-    /* ── REVEAL ANIMATIONS ───────────────────────────────────────── */
+    /* Reveal animations – 1.5s */
     .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
-      transition: opacity 1.8s ease-out, transform 1.8s ease-out;
+      transition: opacity 1.5s ease-out, transform 1.5s ease-out;
     }
     .reveal-up{opacity:0;transform:translateY(30px);}
     .reveal-up.revealed{opacity:1;transform:translateY(0);}
@@ -82,7 +56,7 @@
     .reveal-fade{opacity:0;}
     .reveal-fade.revealed{opacity:1;}
 
-    /* ── FILTER BUTTONS (breathing icons) ─────────────────────────── */
+    /* Filter buttons */
     .filter-btn {
       transition: all 0.3s ease;
       background-color: rgba(255,255,255,0.1);
@@ -98,85 +72,28 @@
       0%,100%{filter:drop-shadow(0 0 2px #14b8a6);transform:scale(1);}
       50%{filter:drop-shadow(0 0 10px #14b8a6);transform:scale(1.02);}
     }
-    .filter-btn:hover i,
-    .filter-btn.active i {
-      color: #e5e7eb;
-      animation: none;
-    }
-    .filter-btn.active {
-      background-color: white;
-      border-color: white;
-      color: #14b8a6;
-    }
-    .filter-btn.active i {
-      color: #14b8a6;
-    }
-    .filter-btn:hover {
-      background-color: rgba(255,255,255,0.2);
-    }
+    .filter-btn:hover i, .filter-btn.active i { color: #e5e7eb; animation: none; }
+    .filter-btn.active { background-color: white; border-color: white; color: #0f766e; } /* WCAG fix: #0f766e = 4.98:1 on white */
+    .filter-btn.active i { color: #0f766e; }
+    .filter-btn:hover { background-color: rgba(255,255,255,0.2); }
 
-    /* ── PORTFOLIO CARD ───────────────────────────────────────────── */
-    .portfolio-card {
-      transition: all 0.3s ease;
-    }
-    .portfolio-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 25px -12px rgba(20,184,166,0.3), 0 0 0 2px #14b8a6;
-      border-color: #14b8a6 !important;
-    }
-    .img-wrapper {
-      overflow: hidden;
-      position: relative;
-    }
-    .portfolio-img {
-      transition: transform 0.4s ease;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .portfolio-card:hover .portfolio-img {
-      transform: scale(1.05);
-    }
-    .portfolio-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      padding-bottom: 1rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .portfolio-card:hover .portfolio-overlay {
-      opacity: 1;
-    }
-    .category-label {
-      background-color: #14b8a6;
-      color: white !important;
-    }
-    .badge-percent {
-      color: #14b8a6 !important;
-      font-weight: 600;
-    }
+    /* Portfolio card */
+    .portfolio-card { transition: all 0.3s ease; }
+    .portfolio-card:hover { transform: translateY(-6px); box-shadow: 0 20px 25px -12px rgba(20,184,166,0.3), 0 0 0 2px #14b8a6; border-color: #14b8a6 !important; }
+    .img-wrapper { overflow: hidden; position: relative; }
+    .portfolio-img { transition: transform 0.4s ease; width: 100%; height: 100%; object-fit: cover; }
+    .portfolio-card:hover .portfolio-img { transform: scale(1.05); }
+    .portfolio-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2)); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 1rem; opacity: 0; transition: opacity 0.3s ease; }
+    .portfolio-card:hover .portfolio-overlay { opacity: 1; }
+    .category-label { background-color: #14b8a6; color: white !important; }
+    .badge-percent { color: #0f766e !important; font-weight: 600; } /* WCAG fix: was #14b8a6 (2.46:1 on white), now #0f766e (4.98:1) */
 
-    /* ── BACK TO TOP ──────────────────────────────────────────────── */
-    .back-to-top {
-      background-color: #14b8a6;
-      color: white;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(20,184,166,0.4);
-    }
-    .back-to-top:hover {
-      background-color: #d3d3d3;
-      color: #000000;
-    }
+    /* Back to top */
+    .back-to-top { background-color: #14b8a6; color: white; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(20,184,166,0.4); }
+    .back-to-top:hover { background-color: #d3d3d3; color: #000000; }
 
-    /* ── FOOTER ANIMATIONS & DARK SECTION ─────────────────────────── */
+    /* Footer */
     .dark-section { background: #000000 !important; }
-    .dark-section .text-black { color: #d3d3d3 !important; }
-    .dark-section .text-black\/70 { color: rgba(211,211,211,0.7) !important; }
-    .dark-section .border-black\/10 { border-color: rgba(211,211,211,0.1) !important; }
     .footer-reveal-left{transform:translateX(-30px);transition:all 1.5s ease-out;}
     .footer-reveal-right{transform:translateX(30px);transition:all 1.5s ease-out;}
     .footer-reveal-up{transform:translateY(20px);transition:all 1.5s ease-out;}
@@ -190,33 +107,60 @@
     }
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
 
-    /* Breadcrumb style */
-    .portfolio-breadcrumb {
-      font-size: 0.875rem;
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
-      color: #9ca3af;
+    /* WCAG – respect user motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      background: #14b8a6;
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      z-index: 9999;
+    }
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
+      width: auto;
+      height: auto;
+    }
+
+    /* Breadcrumb hover - ensures Home link turns teal */
     .portfolio-breadcrumb a {
-      color: #9ca3af;
+      color: #000000;
       text-decoration: none;
       transition: color 0.2s;
     }
     .portfolio-breadcrumb a:hover {
-      color: #14b8a6;
+      color: #14b8a6 !important;
     }
     .portfolio-breadcrumb span.current {
       color: #14b8a6;
       font-weight: 500;
     }
   </style>
+<link rel="stylesheet" href="/css/fonts.css">
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     24/7 STICKY SUPPORT BADGE (bottom-left)
-═══════════════════════════════════════════════════════════════════ -->
-<div id="supportBadge" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto;min-width:48px;">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- 24/7 SUPPORT BADGE -->
+<div id="supportBadge" role="button" tabindex="0" aria-label="Contact us via WhatsApp for 24/7 support" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto;min-width:48px;">
   <div class="relative flex items-center justify-center">
     <span class="absolute right-0 bottom-0 flex h-2 w-2 translate-x-[1px] translate-y-[1px]"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-[#14b8a6]"></span></span>
     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" stroke="#14b8a6" stroke-width="1.5"/><path d="M12 6V8M16 10C16 7.79086 14.2091 6 12 6C9.79086 6 8 7.79086 8 10V12C8 14.2091 9.79086 16 12 16C14.2091 16 16 14.2091 16 12V10Z" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M18 15V17C18 19.2091 16.2091 21 14 21H13" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M6 15V17C6 19.2091 7.79086 21 10 21H11" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -224,20 +168,16 @@
   <span id="supportText" class="text-[11px] font-black uppercase tracking-wider text-black whitespace-nowrap overflow-hidden transition-all duration-300" style="max-width:0px;opacity:0;">24/7 Support</span>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     BACK TO TOP (bottom-right, Deep Teal)
-═══════════════════════════════════════════════════════════════════ -->
-<div id="backToTopBtn" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300">
-  <i class="fas fa-arrow-up text-white text-sm"></i>
+<!-- BACK TO TOP -->
+<div id="backToTopBtn" role="button" tabindex="0" aria-label="Back to top" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300">
+  <i class="fas fa-arrow-up text-white text-sm" aria-hidden="true"></i>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     NAVBAR (clean URLs)
-═══════════════════════════════════════════════════════════════════ -->
+<!-- NAVBAR -->
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-black/10 py-3 transition-all duration-500" style="transform:translateY(-100%);opacity:0;">
   <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
     <div class="flex items-center gap-3">
-      <svg id="nav-logo" width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill:#14b8a6;transition:all 0.2s ease;">
+      <svg id="nav-logo" aria-hidden="true" width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill:#14b8a6;transition:all 0.2s ease;">
         <path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#14b8a6"/>
         <path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#14b8a6"/>
         <path d="M225 130 L305 210 L225 210 Z" fill="#14b8a6"/>
@@ -258,7 +198,7 @@
     </div>
     <div class="flex items-center gap-4">
       <a class="hidden lg:inline-flex px-6 py-2.5 bg-[#14b8a6] text-black text-sm font-bold rounded-full hover:bg-[#d3d3d3] transition-all duration-300" href="/contact">Get Started</a>
-      <button id="mobileMenuBtn" class="lg:hidden text-[#14b8a6] p-2">
+      <button id="mobileMenuBtn" class="lg:hidden text-[#14b8a6] p-2" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>
@@ -276,72 +216,66 @@
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     HERO SECTION (dark background)
-═══════════════════════════════════════════════════════════════════ -->
-<section class="pt-28 pb-12 md:pt-32 md:pb-16" style="background:#d3d3d3;">
-  <div class="container mx-auto px-4 text-center">
-    <div class="text-xs tracking-widest uppercase text-teal-400 font-mono font-semibold mb-3 reveal-up">Our Work</div>
-    <h1 class="font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 tracking-tighter reveal-up">
-      <span class="text-black">Real Stores.</span><br>
-      <span class="text-[#14b8a6]">Real Results.</span>
-    </h1>
-    <div class="w-16 h-1 bg-[#14b8a6] rounded-full mx-auto my-4 reveal-up"></div>
-    <p class="text-black text-sm md:text-base max-w-xl mx-auto reveal-up">Browse our portfolio of e‑commerce stores we've grown, redesigned, and optimized.</p>
-    <div class="portfolio-breadcrumb reveal-up mt-4"style="color: #000000;">
-      <a href="/" style="color: #000000;">Home</a> <span class="mx-1">/</span> <span class="current">Portfolio</span>
+<main id="main-content">
+  <!-- HERO SECTION -->
+  <section class="pt-28 pb-12 md:pt-32 md:pb-16" style="background:#d3d3d3;">
+    <div class="container mx-auto px-4 text-center">
+      <!-- "Our Work" text – now black (removed text-teal-400) -->
+      <div class="text-xs tracking-widest uppercase text-black font-mono font-semibold mb-3 reveal-up">Our Work</div>
+      <h1 class="font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 tracking-tighter reveal-up">
+        <span class="text-black">Real Stores.</span><br>
+        <span class="text-[#14b8a6]">Real Results.</span>
+      </h1>
+      <div class="w-16 h-1 bg-[#14b8a6] rounded-full mx-auto my-4 reveal-up"></div>
+      <p class="text-black text-sm md:text-base max-w-xl mx-auto reveal-up">Browse our portfolio of e‑commerce stores we've grown, redesigned, and optimized.</p>
+      <div class="portfolio-breadcrumb reveal-up mt-4">
+        <a href="/">Home</a> <span class="mx-1">/</span> <span class="current">Portfolio</span>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     FILTER BAR (background moved up, icons stay)
-═══════════════════════════════════════════════════════════════════ -->
-<div class="dark-section pb-8 -mt-4 md:-mt-6" style="background:#0D1F1C;">
-  <div class="container mx-auto px-4 reveal-left pt-4 md:pt-6">
-    <div class="flex flex-wrap justify-center gap-3" id="filterButtons">
-      <button data-filter="all" class="filter-btn active flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl transition-all"><i class="fas fa-border-all text-lg"></i><span class="text-[10px] font-medium">All</span></button>
-      <button data-filter="logos" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-tag text-lg"></i><span class="text-[10px] font-medium">Logos</span></button>
-      <button data-filter="clothing" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-tshirt text-lg"></i><span class="text-[10px] font-medium">Clothing / Fashion</span></button>
-      <button data-filter="kids" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-child text-lg"></i><span class="text-[10px] font-medium">Kids Clothing</span></button>
-      <button data-filter="jewellery" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-gem text-lg"></i><span class="text-[10px] font-medium">Jewellery</span></button>
-      <button data-filter="food" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-utensils text-lg"></i><span class="text-[10px] font-medium">Food</span></button>
-      <button data-filter="teacoffee" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-mug-hot text-lg"></i><span class="text-[10px] font-medium">Tea / Coffee</span></button>
-      <button data-filter="skincare" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-spa text-lg"></i><span class="text-[10px] font-medium">Skin Care</span></button>
-      <button data-filter="health" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-heartbeat text-lg"></i><span class="text-[10px] font-medium">Health Care</span></button>
-      <button data-filter="sports" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-dumbbell text-lg"></i><span class="text-[10px] font-medium">Sports / Fitness</span></button>
-      <button data-filter="pets" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-paw text-lg"></i><span class="text-[10px] font-medium">Pets</span></button>
-    </div>
-    <div class="text-center mt-6">
-      <p class="text-xs text-white">Showing <span id="projectCount" class="font-semibold text-teal-400">0</span> projects</p>
+  <!-- FILTER BAR -->
+  <div class="dark-section pb-8 -mt-4 md:-mt-6" style="background:#0D1F1C;">
+    <div class="container mx-auto px-4 reveal-left pt-4 md:pt-6">
+      <div class="flex flex-wrap justify-center gap-3" id="filterButtons">
+        <button data-filter="all" class="filter-btn active flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl transition-all"><i class="fas fa-border-all text-lg"></i><span class="text-[10px] font-medium">All</span></button>
+        <button data-filter="logos" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-tag text-lg"></i><span class="text-[10px] font-medium">Logos</span></button>
+        <button data-filter="clothing" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-tshirt text-lg"></i><span class="text-[10px] font-medium">Clothing / Fashion</span></button>
+        <button data-filter="kids" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-child text-lg"></i><span class="text-[10px] font-medium">Kids Clothing</span></button>
+        <button data-filter="jewellery" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-gem text-lg"></i><span class="text-[10px] font-medium">Jewellery</span></button>
+        <button data-filter="food" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-utensils text-lg"></i><span class="text-[10px] font-medium">Food</span></button>
+        <button data-filter="teacoffee" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-mug-hot text-lg"></i><span class="text-[10px] font-medium">Tea / Coffee</span></button>
+        <button data-filter="skincare" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-spa text-lg"></i><span class="text-[10px] font-medium">Skin Care</span></button>
+        <button data-filter="health" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-heartbeat text-lg"></i><span class="text-[10px] font-medium">Health Care</span></button>
+        <button data-filter="sports" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-dumbbell text-lg"></i><span class="text-[10px] font-medium">Sports / Fitness</span></button>
+        <button data-filter="pets" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-paw text-lg"></i><span class="text-[10px] font-medium">Pets</span></button>
+      </div>
+      <div class="text-center mt-6">
+        <p class="text-xs text-white">Showing <span id="projectCount" class="font-semibold text-teal-400">0</span> projects</p>
+      </div>
     </div>
   </div>
-</div>
-<!-- ══════════════════════════════════════════════════════════════════
-     PORTFOLIO GRID (light background)
-═══════════════════════════════════════════════════════════════════ -->
-<div class="py-12 md:py-16" style="background:#d3d3d3;">
-  <div class="container mx-auto px-4 reveal-right-scale" id="gridContainer">
-    <div id="portfolioGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-  </div>
-</div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     CTA SECTION
-═══════════════════════════════════════════════════════════════════ -->
-<div class="py-12 pb-20" style="background:#d3d3d3;">
-  <div class="container mx-auto px-4 reveal-fade">
-    <div class="bg-white rounded-2xl border border-black/10 p-8 text-center max-w-4xl mx-auto shadow-lg">
-      <h2 class="text-2xl font-bold text-black mb-2">Want results like these?</h2>
-      <p class="text-black/70 text-sm mb-6 max-w-md mx-auto">Every store in this portfolio started with a conversation. Let's talk about your project.</p>
-      <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-[#14b8a6] text-white rounded-full font-semibold text-sm hover:bg-black transition-all duration-300 shadow-md">Start Your Project <i class="fas fa-arrow-right text-xs"></i></a>
+  <!-- PORTFOLIO GRID -->
+  <div class="py-12 md:py-16" style="background:#d3d3d3;">
+    <div class="container mx-auto px-4 reveal-right-scale" id="gridContainer">
+      <div id="portfolioGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </div>
   </div>
-</div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════════════════════════════ -->
+  <!-- CTA SECTION -->
+  <div class="py-12 pb-20" style="background:#d3d3d3;">
+    <div class="container mx-auto px-4 reveal-fade">
+      <div class="bg-white rounded-2xl border border-black/10 p-8 text-center max-w-4xl mx-auto shadow-lg">
+        <h2 class="text-2xl font-bold text-black mb-2">Want results like these?</h2>
+        <p class="text-black/70 text-sm mb-6 max-w-md mx-auto">Every store in this portfolio started with a conversation. Let's talk about your project.</p>
+        <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-[#14b8a6] text-white rounded-full font-semibold text-sm hover:bg-black transition-all duration-300 shadow-md">Start Your Project <i class="fas fa-arrow-right text-xs"></i></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
 <footer class="relative pt-24 pb-12 overflow-hidden dark-section fade-section" style="background:#000000;border-top:1px solid rgba(255,255,255,0.1);">
   <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
     <svg class="w-[800px] h-[800px] fill-none stroke-[#14b8a6]/10 stroke-2" viewBox="0 0 1000 800">
@@ -357,10 +291,10 @@
         </div>
         <p class="text-white/70 text-lg leading-relaxed max-w-sm">Transforming businesses through innovative digital solutions.</p>
         <div class="flex gap-4">
-          <a href="https://www.facebook.com/profile.php?id=61589305472879" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fab fa-facebook-f text-white/60 group-hover:text-white"></i></a>
-          <a href="https://x.com/DigitalzFrankie" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fab fa-twitter text-white/60 group-hover:text-white"></i></a>
-          <a href="https://www.linkedin.com/in/frankie-digitalz-3a2007409" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fab fa-linkedin-in text-white/60 group-hover:text-white"></i></a>
-          <a href="mailto:info.digitalzfrankie@gmail.com" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fas fa-envelope text-white/60 group-hover:text-white"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61589305472879" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="Facebook"><i class="fab fa-facebook-f text-white/60 group-hover:text-white"></i></a>
+          <a href="https://x.com/DigitalzFrankie" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="X (Twitter)"><i class="fab fa-twitter text-white/60 group-hover:text-white"></i></a>
+          <a href="https://www.linkedin.com/in/frankie-digitalz-3a2007409" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-white/60 group-hover:text-white"></i></a>
+          <a href="mailto:info.digitalzfrankie@gmail.com" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="Email"><i class="fas fa-envelope text-white/60 group-hover:text-white"></i></a>
         </div>
       </div>
       <div class="footer-reveal-right opacity-0 grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -370,11 +304,13 @@
       </div>
     </div>
     <div class="footer-reveal-up opacity-0">
-      <p class="text-white/40 text-xs font-mono pt-8 border-t border-white/10 uppercase tracking-wider">© 2026 Frankie Digitalz. All Rights Reserved.</p>
+      <p class="text-white/60 text-xs font-mono pt-8 border-t border-white/10 uppercase tracking-wider">© 2026 Frankie Digitalz. All Rights Reserved.</p>
       <p class="sr-only">Logo design for kids clothing, jewellery packaging, tea &amp; coffee branding, and custom e-commerce solutions by Frankie Digitalz. Web development, Shopify, WooCommerce, UI/UX design, digital marketing, brand strategy, and technical consulting services in Canada and internationally.</p>
     </div>
   </div>
 </footer>
+
+<link rel="stylesheet" href="/css/all.min.css">
 
 <script>
 (function(){
@@ -387,7 +323,7 @@
     });
   });
 
-  // ── 2. NAVBAR ANIMATIONS (logo shake + brand colour swap) ─────────
+  // ── 2. NAVBAR ANIMATIONS ─────────────────────────────────────────
   function startNavbarAnimations(){
     const logo = document.getElementById('nav-logo');
     if(logo){
@@ -422,29 +358,14 @@
   }
   startNavbarAnimations();
 
-  // ── 3. PORTFOLIO DATA (static + Contentful) ──────────────────────
-  const staticProjects = [
-    { name: "Sobrii", url: "https://sobrii.ca/", label: "Non‑Alcoholic Drinks", badge: "+32% traffic", categories: ["food"], img: "sobri.png" },
-    { name: "Seed To Surf", url: "https://seedtosurf.ca/", label: "Plant‑Based Seafood", badge: "+57% conversion", categories: ["food"], img: "seed.png" },
-    { name: "Hello Fresh", url: "https://www.hellofresh.co.uk/", label: "Meal Kit Delivery", badge: "+98% conversion", categories: ["food"], img: "hello.png" },
-    { name: "Style Cases", url: "https://stylecases.eu", label: "Phone Cases", badge: "+27% revenue", categories: ["all"], img: "cases.png" },
-    { name: "Best Life Rescue", url: "https://bestliferescue.dog", label: "Pet Health", badge: "+41% engagement", categories: ["pets"], img: "rescue.png" },
-    { name: "His&Her Design", url: "https://hishersuniquedesign.store", label: "Couple Fashion", badge: "+35% sales", categories: ["clothing","jewellery"], img: "his.png" },
-    { name: "HOD Babies", url: "https://hodbabiesworld.store", label: "Baby Essentials", badge: "+29% conversions", categories: ["clothing","kids"], img: "hod.png" },
-    { name: "Braisee", url: "https://braisee.com", label: "Gourmet Sauces", badge: "+44% growth", categories: ["food"], img: "braisee.png" },
-    { name: "Dubai Perfumery", url: "https://dubaiperfumery.co.uk", label: "Luxury Fragrances", badge: "+38% AOV", categories: ["skincare"], img: "dubaiperfume.png" },
-    { name: "Axis Movement", url: "https://axismovement.com.au", label: "Performance Training", badge: "+22% retention", categories: ["sports"], img: "axis.png" },
-    { name: "Secrete Whisper", url: "https://secretewhispersandlies.de", label: "Intimate Apparel", badge: "+31% reach", categories: ["clothing"], img: "secretewhisper.png" },
-    { name: "Zafi Plus", url: "https://zafipus.com", label: "Wellness Supplement", badge: "+26% ROI", categories: ["health"], img: "zafi.png" },
-    { name: "Mynody (Kids)", url: "https://mynody.com", label: "Holistic Wellness – Kids", badge: "+33% awareness", categories: ["kids"], img: "mynodybabies.png" },
-    { name: "Mynody (Fitness)", url: "https://mynody.com", label: "Holistic Wellness – Fitness", badge: "+28% engagement", categories: ["sports"], img: "mynodyfitness.png" },
-    { name: "Mynody (Pets)", url: "https://mynody.com", label: "Holistic Wellness – Pets", badge: "+37% loyalty", categories: ["pets"], img: "mynodypet.png" },
-    { name: "Mynody (Skin Care)", url: "https://mynody.com", label: "Holistic Wellness – Skin Care", badge: "+25% conversion", categories: ["skincare"], img: "mynodyskincare.png" }
-  ];
-
-  let allProjects = [...staticProjects];
+  // ── 3. PORTFOLIO DATA – ONLY CONTENTFUL (NO STATIC FALLBACK) ──────
+  let allProjects = [];
   const SPACE_ID = 'ha7fm2wzrbnt';
   const ACCESS_TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
+  let activeFilter = 'all';
+  const gridContainer = document.getElementById('gridContainer');
+  const grid = document.getElementById('portfolioGrid');
+  const countSpan = document.getElementById('projectCount');
 
   function getImageUrl(assetId, includes) {
     const asset = includes?.Asset?.find(a => a.sys.id === assetId);
@@ -480,11 +401,6 @@
     }
   }
 
-  let activeFilter = 'all';
-  const gridContainer = document.getElementById('gridContainer');
-  const grid = document.getElementById('portfolioGrid');
-  const countSpan = document.getElementById('projectCount');
-
   function renderCombinedPortfolio() {
     if (!grid) return;
     let filtered = (activeFilter === 'all') ? allProjects : allProjects.filter(p => p.categories.includes(activeFilter));
@@ -499,7 +415,7 @@
       <div class="portfolio-card bg-white rounded-xl overflow-hidden shadow border border-black/10 group">
         <a href="${proj.url}" target="_blank" rel="noopener noreferrer" class="block">
           <div class="img-wrapper relative h-48 w-full bg-gray-100">
-            <img src="${proj.img}" alt="${proj.name}" class="portfolio-img w-full h-full object-cover" loading="lazy" onerror="this.src='https://placehold.co/400x300/e0e0e0/333?text=No+Image'">
+            <img src="${proj.img}" alt="${proj.name}" class="portfolio-img w-full h-full object-cover" loading="lazy" onerror="this.src='https://placehold.co/400x300/e0e0e0/333?text=No+Image'" width="400" height="300">
             <div class="portfolio-overlay"><span>View Project <i class="fas fa-arrow-right ml-1 text-xs"></i></span></div>
           </div>
           <div class="p-4">
@@ -529,13 +445,9 @@
   }
 
   async function init() {
-    allProjects = [...staticProjects];
-    renderCombinedPortfolio();
     const dynamic = await fetchContentfulItems();
-    if (dynamic.length > 0) {
-      allProjects.push(...dynamic);
-      renderCombinedPortfolio();
-    }
+    allProjects = dynamic;
+    renderCombinedPortfolio();
   }
   init();
 
@@ -603,11 +515,42 @@
   startBadgeCycle();
   badge.addEventListener('click', () => window.open('https://wa.me/16395274759', '_blank'));
 
-  // ── 9. MOBILE MENU ──────────────────────────────────────────────
+  // ── 9. MOBILE MENU – CLOSE ON OUTSIDE TAP ───────────────────────
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
-  if (mobileBtn && mobileMenu) mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  if (mobileBtn && mobileMenu) {
+    mobileBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      mobileBtn.setAttribute('aria-expanded', String(!isHidden));
+    });
+    document.addEventListener('click', function(event) {
+      if (!mobileMenu.classList.contains('hidden') && !mobileBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+        mobileMenu.classList.add('hidden');
+        mobileBtn.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  // KEYBOARD ACCESS for back-to-top and support badge
+  const backBtnEl = document.getElementById('backToTopBtn');
+  if(backBtnEl){
+    backBtnEl.addEventListener('keydown',(e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); } });
+  }
+  const badgeEl = document.getElementById('supportBadge');
+  if(badgeEl){
+    badgeEl.addEventListener('keydown',(e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); window.open('https://wa.me/16395274759','_blank'); } });
+  }
 })();
 </script>
+
+<!-- Deferred Google Tag Manager -->
+<script defer src="https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6"></script>
+<script defer>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HJQPN0DSW6');
+</script>
+
 </body>
 </html>

@@ -32,16 +32,15 @@
   <!-- ═══ FAVICON ═══════════════════════════════════════════════════════════ -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%2314b8a6'/%3E%3C/svg%3E">
 
-  <!-- ═══ GOOGLE ANALYTICS ═══════════════════════════════════════════════════ -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJQPN0DSW6');</script>
+  <!-- ═══ Preconnect & font optimisation ════════════════════════════════════ -->
+  
+  
+  <link rel="preconnect" href="https://cdn.contentful.com">
+  
 
-  <!-- ═══ Tailwind CSS CDN ═══════════════════════════════════════════════════ -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- ═══ Google Fonts + Font Awesome ═══════════════════════════════════════ -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- ═══ Tailwind CSS CDN & Font Awesome ═══════════════════════════════════ -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/all.min.css">
 
   <!-- ═══ SCHEMA.ORG JSON-LD (WebPage) ══════════════════════════════════════ -->
   <script type="application/ld+json">
@@ -69,11 +68,18 @@
     @keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-4px);}40%{transform:translateX(4px);}60%{transform:translateX(-2px);}80%{transform:translateX(2px);}}
     .shake-animation{animation:shake 0.3s ease-in-out 0s 6;display:inline-block;}
 
-    /* ── REVEAL ANIMATIONS ───────────────────────────────────────── */
-    .reveal-up{opacity:0;transform:translateY(30px);transition:opacity 1.8s ease-out,transform 1.8s ease-out;}
+    /* ── REVEAL ANIMATIONS (1.5s) ────────────────────────────────── */
+    .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
+      transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+    }
+    .reveal-up{opacity:0;transform:translateY(30px);}
     .reveal-up.revealed{opacity:1;transform:translateY(0);}
-    .reveal-left{opacity:0;transform:translateX(-30px);transition:opacity 1.8s ease-out,transform 1.8s ease-out;}
+    .reveal-left{opacity:0;transform:translateX(-30px);}
     .reveal-left.revealed{opacity:1;transform:translateX(0);}
+    .reveal-right-scale{opacity:0;transform:translateX(30px) scale(0.95);}
+    .reveal-right-scale.revealed{opacity:1;transform:translateX(0) scale(1);}
+    .reveal-fade{opacity:0;}
+    .reveal-fade.revealed{opacity:1;}
 
     /* ── BACK TO TOP ──────────────────────────────────────────────── */
     .back-to-top{background-color:#14b8a6;color:white;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(20,184,166,0.4);}
@@ -93,15 +99,15 @@
     }
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
 
-    /* Breadcrumb style for legal pages */
+    /* Breadcrumb style for legal pages – fixed contrast */
     .legal-breadcrumb {
       font-size: 0.875rem;
       margin-top: 0.5rem;
       margin-bottom: 1rem;
-      color: #6b7280;
+      color: #1f2937;
     }
     .legal-breadcrumb a {
-      color: #6b7280;
+      color: #1f2937;
       text-decoration: none;
       transition: color 0.2s;
     }
@@ -112,17 +118,47 @@
       color: #14b8a6;
       font-weight: 500;
     }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      background: #14b8a6;
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      z-index: 9999;
+    }
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
+      width: auto;
+      height: auto;
+    }
+
+    /* WCAG 2.1 AA – Focus visible */
+    *:focus-visible{outline:3px solid #14b8a6;outline-offset:3px;border-radius:2px;}
+    /* WCAG 2.1 – Respect reduced motion */
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;}}
   </style>
+<link rel="stylesheet" href="/css/fonts.css">
 </head>
 <body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- ══════════════════════════════════════════════════════════════════
      24/7 STICKY SUPPORT BADGE (bottom-left)
 ═══════════════════════════════════════════════════════════════════ -->
-<div id="supportBadge" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto;min-width:48px;">
+<div id="supportBadge" role="button" tabindex="0" aria-label="Contact 24/7 support via WhatsApp" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto;min-width:48px;">
   <div class="relative flex items-center justify-center">
     <span class="absolute right-0 bottom-0 flex h-2 w-2 translate-x-[1px] translate-y-[1px]"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-[#14b8a6]"></span></span>
-    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" stroke="#14b8a6" stroke-width="1.5"/><path d="M12 6V8M16 10C16 7.79086 14.2091 6 12 6C9.79086 6 8 7.79086 8 10V12C8 14.2091 9.79086 16 12 16C14.2091 16 16 14.2091 16 12V10Z" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M18 15V17C18 19.2091 16.2091 21 14 21H13" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M6 15V17C6 19.2091 7.79086 21 10 21H11" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" stroke="#14b8a6" stroke-width="1.5"/><path d="M12 6V8M16 10C16 7.79086 14.2091 6 12 6C9.79086 6 8 7.79086 8 10V12C8 14.2091 9.79086 16 12 16C14.2091 16 16 14.2091 16 12V10Z" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M18 15V17C18 19.2091 16.2091 21 14 21H13" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M6 15V17C6 19.2091 7.79086 21 10 21H11" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/></svg>
   </div>
   <span id="supportText" class="text-[11px] font-black uppercase tracking-wider text-black whitespace-nowrap overflow-hidden transition-all duration-300" style="max-width:0px;opacity:0;">24/7 Support</span>
 </div>
@@ -130,8 +166,8 @@
 <!-- ══════════════════════════════════════════════════════════════════
      BACK TO TOP (bottom-right)
 ═══════════════════════════════════════════════════════════════════ -->
-<div id="backToTopBtn" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300">
-  <i class="fas fa-arrow-up text-white text-sm"></i>
+<div id="backToTopBtn" role="button" tabindex="0" aria-label="Back to top" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300">
+  <i class="fas fa-arrow-up text-white text-sm" aria-hidden="true"></i>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════════
@@ -140,7 +176,7 @@
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-black/10 py-3 transition-all duration-500" style="transform:translateY(-100%);opacity:0;">
   <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
     <div class="flex items-center gap-3">
-      <svg id="nav-logo" width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill:#14b8a6;transition:all 0.2s ease;">
+      <svg id="nav-logo" width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill:#14b8a6;transition:all 0.2s ease;" aria-hidden="true" focusable="false">
         <path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#14b8a6"/>
         <path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#14b8a6"/>
         <path d="M225 130 L305 210 L225 210 Z" fill="#14b8a6"/>
@@ -161,8 +197,8 @@
     </div>
     <div class="flex items-center gap-4">
       <a class="hidden lg:inline-flex px-6 py-2.5 bg-[#14b8a6] text-black text-sm font-bold rounded-full hover:bg-[#d3d3d3] transition-all duration-300" href="/contact">Get Started</a>
-      <button id="mobileMenuBtn" class="lg:hidden text-[#14b8a6] p-2">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      <button id="mobileMenuBtn" class="lg:hidden text-[#14b8a6] p-2" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>
   </div>
@@ -179,37 +215,39 @@
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     CONTENT AREA (light background, white card) with breadcrumb
-═══════════════════════════════════════════════════════════════════ -->
-<div class="pt-32 pb-20" style="background:#d3d3d3;">
-  <div class="container mx-auto px-4 max-w-4xl">
-    <div class="reveal-up">
-      <h1 class="text-3xl md:text-4xl font-bold mb-6 text-black">Privacy Policy</h1>
-      <p class="text-black/60 mb-8">Last updated: May 8, 2026</p>
-      <div class="legal-breadcrumb">
-        <a href="/">Home</a> <span class="mx-1">/</span>
-        <a href="#">Legal</a> <span class="mx-1">/</span>
-        <span class="current">Privacy Policy</span>
+<main id="main-content">
+  <!-- ══════════════════════════════════════════════════════════════════
+       CONTENT AREA (light background, white card) with breadcrumb
+  ═══════════════════════════════════════════════════════════════════ -->
+  <div class="pt-32 pb-20" style="background:#d3d3d3;">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="reveal-up">
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 text-black">Privacy Policy</h1>
+        <p class="text-black/80 mb-8">Last updated: May 8, 2026</p>
+        <div class="legal-breadcrumb">
+          <a href="/">Home</a> <span class="mx-1">/</span>
+          <a href="#">Legal</a> <span class="mx-1">/</span>
+          <span class="current">Privacy Policy</span>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl border border-black/10 shadow-lg p-8 space-y-6 reveal-left">
+        <section><h2 class="text-xl font-semibold mb-3 text-black">1. Information We Collect</h2><p class="text-black/70">We collect information you provide directly to us, such as when you contact us, subscribe to our newsletter, or request services. This may include your name, email address, phone number, and project details.</p></section>
+        <section><h2 class="text-xl font-semibold mb-3 text-black">2. How We Use Your Information</h2><p class="text-black/70">We use your information to respond to inquiries, provide services, send newsletters, improve our website, and comply with legal obligations.</p></section>
+        <section><h2 class="text-xl font-semibold mb-3 text-black">3. Information Sharing</h2><p class="text-black/70">We do not sell or rent your personal information. We may share information with service providers who assist in our operations, or when required by law.</p></section>
+        <section><h2 class="text-xl font-semibold mb-3 text-black">4. Data Security</h2><p class="text-black/70">We implement appropriate technical and organizational measures to protect your personal information against unauthorized access or disclosure.</p></section>
+        <section><h2 class="text-xl font-semibold mb-3 text-black">5. Your Rights</h2><p class="text-black/70">You have the right to access, correct, or delete your personal information. Contact us to exercise these rights.</p></section>
+        <section><h2 class="text-xl font-semibold mb-3 text-black">6. Contact Us</h2><p class="text-black/70">If you have questions about this Privacy Policy, please contact us at <a href="mailto:info.digitalzfrankie@gmail.com" class="text-[#14b8a6] hover:underline">info.digitalzfrankie@gmail.com</a>.</p></section>
       </div>
     </div>
-    <div class="bg-white rounded-2xl border border-black/10 shadow-lg p-8 space-y-6 reveal-left">
-      <section><h2 class="text-xl font-semibold mb-3 text-black">1. Information We Collect</h2><p class="text-black/70">We collect information you provide directly to us, such as when you contact us, subscribe to our newsletter, or request services. This may include your name, email address, phone number, and project details.</p></section>
-      <section><h2 class="text-xl font-semibold mb-3 text-black">2. How We Use Your Information</h2><p class="text-black/70">We use your information to respond to inquiries, provide services, send newsletters, improve our website, and comply with legal obligations.</p></section>
-      <section><h2 class="text-xl font-semibold mb-3 text-black">3. Information Sharing</h2><p class="text-black/70">We do not sell or rent your personal information. We may share information with service providers who assist in our operations, or when required by law.</p></section>
-      <section><h2 class="text-xl font-semibold mb-3 text-black">4. Data Security</h2><p class="text-black/70">We implement appropriate technical and organizational measures to protect your personal information against unauthorized access or disclosure.</p></section>
-      <section><h2 class="text-xl font-semibold mb-3 text-black">5. Your Rights</h2><p class="text-black/70">You have the right to access, correct, or delete your personal information. Contact us to exercise these rights.</p></section>
-      <section><h2 class="text-xl font-semibold mb-3 text-black">6. Contact Us</h2><p class="text-black/70">If you have questions about this Privacy Policy, please contact us at <a href="mailto:info.digitalzfrankie@gmail.com" class="text-[#14b8a6] hover:underline">info.digitalzfrankie@gmail.com</a>.</p></section>
-    </div>
   </div>
-</div>
+</main>
 
 <!-- ══════════════════════════════════════════════════════════════════
      FOOTER
 ═══════════════════════════════════════════════════════════════════ -->
 <footer class="relative pt-24 pb-12 overflow-hidden dark-section" style="background:#000000;border-top:1px solid rgba(255,255,255,0.1);">
   <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
-    <svg class="w-[800px] h-[800px] fill-none stroke-[#14b8a6]/10 stroke-2" viewBox="0 0 1000 800">
+    <svg class="w-[800px] h-[800px] fill-none stroke-[#14b8a6]/10 stroke-2" viewBox="0 0 1000 800" aria-hidden="true" focusable="false">
       <path class="trace-path" d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z M225 130 L305 210 L225 210 Z"/>
     </svg>
   </div>
@@ -217,15 +255,15 @@
     <div class="grid lg:grid-cols-2 gap-16 mb-20">
       <div class="footer-reveal-left opacity-0 space-y-8">
         <div class="flex items-center gap-4">
-          <svg width="40" height="40" viewBox="0 0 1000 800" class="fill-[#14b8a6]"><path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z"/></svg>
+          <svg width="40" height="40" viewBox="0 0 1000 800" class="fill-[#14b8a6]" aria-hidden="true" focusable="false"><path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z"/></svg>
           <span class="font-black text-2xl tracking-tighter text-white uppercase">Frankie Digitalz</span>
         </div>
         <p class="text-white/70 text-lg leading-relaxed max-w-sm">Transforming businesses through innovative digital solutions.</p>
         <div class="flex gap-4">
-          <a href="https://www.facebook.com/profile.php?id=61589305472879" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fab fa-facebook-f text-white/60 group-hover:text-white"></i></a>
-          <a href="https://x.com/DigitalzFrankie" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fab fa-twitter text-white/60 group-hover:text-white"></i></a>
-          <a href="https://www.linkedin.com/in/frankie-digitalz-3a2007409" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fab fa-linkedin-in text-white/60 group-hover:text-white"></i></a>
-          <a href="mailto:info.digitalzfrankie@gmail.com" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fas fa-envelope text-white/60 group-hover:text-white"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61589305472879" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="Facebook"><i class="fab fa-facebook-f text-white/60 group-hover:text-white"></i></a>
+          <a href="https://x.com/DigitalzFrankie" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="X (Twitter)"><i class="fab fa-twitter text-white/60 group-hover:text-white"></i></a>
+          <a href="https://www.linkedin.com/in/frankie-digitalz-3a2007409" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-white/60 group-hover:text-white"></i></a>
+          <a href="mailto:info.digitalzfrankie@gmail.com" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="Email"><i class="fas fa-envelope text-white/60 group-hover:text-white"></i></a>
         </div>
       </div>
       <div class="footer-reveal-right opacity-0 grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -235,7 +273,7 @@
       </div>
     </div>
     <div class="footer-reveal-up opacity-0">
-      <p class="text-white/40 text-xs font-mono pt-8 border-t border-white/10 uppercase tracking-wider">© 2026 Frankie Digitalz. All Rights Reserved.</p>
+      <p class="text-white/60 text-xs font-mono pt-8 border-t border-white/10 uppercase tracking-wider">© 2026 Frankie Digitalz. All Rights Reserved.</p>
       <p class="sr-only">Logo design for kids clothing, jewellery packaging, tea &amp; coffee branding, and custom e-commerce solutions by Frankie Digitalz. Web development, Shopify, WooCommerce, UI/UX design, digital marketing, brand strategy, and technical consulting services in Canada and internationally.</p>
     </div>
   </div>
@@ -319,6 +357,7 @@
       }
     });
     backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    backBtn.addEventListener('keydown', (e) => { if(e.key==='Enter'||e.key===' '){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});}});
   }
 
   // 24/7 Support Badge
@@ -339,13 +378,35 @@
     }
     startBadgeCycle();
     badge.addEventListener('click', () => window.open('https://wa.me/16395274759', '_blank'));
+    badge.addEventListener('keydown', (e) => { if(e.key==='Enter'||e.key===' '){e.preventDefault();window.open('https://wa.me/16395274759','_blank');}});
   }
 
-  // Mobile menu
+  // Mobile menu – close on outside tap
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
-  if (mobileBtn && mobileMenu) mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  if (mobileBtn && mobileMenu) {
+    mobileBtn.addEventListener('click', () => {
+      const nowHidden = mobileMenu.classList.toggle('hidden');
+      mobileBtn.setAttribute('aria-expanded', String(!nowHidden));
+    });
+    document.addEventListener('click', function(event) {
+      if (!mobileMenu.classList.contains('hidden') && !mobileBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+        mobileMenu.classList.add('hidden');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
 })();
 </script>
+
+<!-- Deferred Google Tag Manager -->
+<script defer src="https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6"></script>
+<script defer>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HJQPN0DSW6');
+</script>
+
 </body>
 </html>

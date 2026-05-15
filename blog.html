@@ -32,16 +32,17 @@
   <!-- ═══ FAVICON ═══════════════════════════════════════════════════════════ -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%2314b8a6'/%3E%3C/svg%3E">
 
-  <!-- ═══ GOOGLE ANALYTICS ═══════════════════════════════════════════════════ -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJQPN0DSW6');</script>
+  <!-- ═══ Preconnect & font optimisation ═══════════════════════════════════ -->
+  
+  
+  <link rel="preconnect" href="https://cdn.contentful.com">
+  
 
-  <!-- ═══ Tailwind CSS CDN ═══════════════════════════════════════════════════ -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- ═══ Tailwind CSS CDN (kept) ═══════════════════════════════════════════ -->
+  <link rel="stylesheet" href="/css/style.css">
 
-  <!-- ═══ Google Fonts + Font Awesome ═══════════════════════════════════════ -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- ═══ Font Awesome (kept) ═══════════════════════════════════════════════ -->
+  <link rel="stylesheet" href="/css/all.min.css">
 
   <!-- ═══ SCHEMA.ORG JSON-LD (CollectionPage) ═══════════════════════════════ -->
   <script type="application/ld+json">
@@ -69,9 +70,9 @@
     @keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-4px);}40%{transform:translateX(4px);}60%{transform:translateX(-2px);}80%{transform:translateX(2px);}}
     .shake-animation{animation:shake 0.3s ease-in-out 0s 6;display:inline-block;}
 
-    /* ── REVEAL ANIMATIONS ───────────────────────────────────────── */
+    /* ── REVEAL ANIMATIONS (1.5s) ────────────────────────────────── */
     .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
-      transition: opacity 1.8s ease-out, transform 1.8s ease-out;
+      transition: opacity 1.5s ease-out, transform 1.5s ease-out;
     }
     .reveal-up{opacity:0;transform:translateY(30px);}
     .reveal-up.revealed{opacity:1;transform:translateY(0);}
@@ -155,17 +156,42 @@
       100%{stroke-dashoffset:0;filter:drop-shadow(0 0 0px #14b8a6);stroke:rgba(20,184,166,0.1);}
     }
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
+
+    /* Skip link */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      background: #14b8a6;
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      z-index: 9999;
+    }
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
+      width: auto;
+      height: auto;
+    }
   </style>
+<link rel="stylesheet" href="/css/fonts.css">
 </head>
 <body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- ══════════════════════════════════════════════════════════════════
      24/7 STICKY SUPPORT BADGE (bottom-left)
 ═══════════════════════════════════════════════════════════════════ -->
-<div id="supportBadge" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto;min-width:48px;">
+<div id="supportBadge" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto;min-width:48px;" role="button" tabindex="0" aria-label="Contact 24/7 support on WhatsApp">
   <div class="relative flex items-center justify-center">
     <span class="absolute right-0 bottom-0 flex h-2 w-2 translate-x-[1px] translate-y-[1px]"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-[#14b8a6]"></span></span>
-    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" stroke="#14b8a6" stroke-width="1.5"/><path d="M12 6V8M16 10C16 7.79086 14.2091 6 12 6C9.79086 6 8 7.79086 8 10V12C8 14.2091 9.79086 16 12 16C14.2091 16 16 14.2091 16 12V10Z" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M18 15V17C18 19.2091 16.2091 21 14 21H13" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M6 15V17C6 19.2091 7.79086 21 10 21H11" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" stroke="#14b8a6" stroke-width="1.5"/><path d="M12 6V8M16 10C16 7.79086 14.2091 6 12 6C9.79086 6 8 7.79086 8 10V12C8 14.2091 9.79086 16 12 16C14.2091 16 16 14.2091 16 12V10Z" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M18 15V17C18 19.2091 16.2091 21 14 21H13" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M6 15V17C6 19.2091 7.79086 21 10 21H11" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/></svg>
   </div>
   <span id="supportText" class="text-[11px] font-black uppercase tracking-wider text-black whitespace-nowrap overflow-hidden transition-all duration-300" style="max-width:0px;opacity:0;">24/7 Support</span>
 </div>
@@ -173,8 +199,8 @@
 <!-- ══════════════════════════════════════════════════════════════════
      BACK TO TOP (bottom-right)
 ═══════════════════════════════════════════════════════════════════ -->
-<div id="backToTopBtn" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300">
-  <i class="fas fa-arrow-up text-white text-sm"></i>
+<div id="backToTopBtn" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300" role="button" tabindex="0" aria-label="Back to top">
+  <i class="fas fa-arrow-up text-white text-sm" aria-hidden="true"></i>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════════
@@ -183,7 +209,7 @@
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-black/10 py-3 transition-all duration-500" style="transform:translateY(-100%);opacity:0;">
   <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
     <div class="flex items-center gap-3">
-      <svg id="nav-logo" width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill:#14b8a6;transition:all 0.2s ease;">
+      <svg id="nav-logo" width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill:#14b8a6;transition:all 0.2s ease;" aria-hidden="true">
         <path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#14b8a6"/>
         <path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#14b8a6"/>
         <path d="M225 130 L305 210 L225 210 Z" fill="#14b8a6"/>
@@ -200,11 +226,11 @@
       <a class="px-4 py-2 text-[#d3d3d3] hover:text-[#14b8a6] hover:bg-black rounded-lg transition-all duration-300 text-sm font-semibold" href="/services">Services</a>
       <a class="px-4 py-2 text-[#d3d3d3] hover:text-[#14b8a6] hover:bg-black rounded-lg transition-all duration-300 text-sm font-semibold" href="/faq">FAQs</a>
       <a class="px-4 py-2 text-[#d3d3d3] hover:text-[#14b8a6] hover:bg-black rounded-lg transition-all duration-300 text-sm font-semibold" href="/contact">Contact</a>
-      <a class="px-4 py-2 text-[#14b8a6] font-bold hover:bg-black/5 rounded-lg transition-all duration-300 text-sm border-b-2 border-[#14b8a6]" href="/blog">Blog</a>
+      <a class="px-4 py-2 text-[#14b8a6] font-bold hover:bg-black/5 rounded-lg transition-all duration-300 text-sm border-b-2 border-[#14b8a6]" href="/blog" aria-current="page">Blog</a>
     </div>
     <div class="flex items-center gap-4">
       <a class="hidden lg:inline-flex px-6 py-2.5 bg-[#14b8a6] text-black text-sm font-bold rounded-full hover:bg-[#d3d3d3] transition-all duration-300" href="/contact">Get Started</a>
-      <button id="mobileMenuBtn" class="lg:hidden text-[#14b8a6] p-2">
+      <button id="mobileMenuBtn" class="lg:hidden text-[#14b8a6] p-2" aria-label="Menu" aria-expanded="false">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>
@@ -217,43 +243,45 @@
       <a class="text-xl font-bold text-[#d3d3d3]" href="/services">Services</a>
       <a class="text-xl font-bold text-[#d3d3d3]" href="/faq">FAQs</a>
       <a class="text-xl font-bold text-[#d3d3d3]" href="/contact">Contact</a>
-      <a class="text-xl font-bold text-[#14b8a6]" href="/blog">Blog</a>
+      <a class="text-xl font-bold text-[#14b8a6]" href="/blog" aria-current="page">Blog</a>
     </div>
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     HERO SECTION (dark background) with breadcrumb
-═══════════════════════════════════════════════════════════════════ -->
-<section class="pt-28 pb-12 md:pt-32 md:pb-16 dark-section" style="background:#0D1F1C;">
-  <div class="container mx-auto px-4 text-center">
-    <div class="font-mono text-xs tracking-[0.3em] text-teal-400 uppercase mb-4 reveal-up">LATEST_INSIGHTS</div>
-    <h1 class="font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 tracking-tighter reveal-up">
-      <span class="text-white">Our</span> <span class="text-[#14b8a6]">Blog</span>
-    </h1>
-    <div class="w-16 h-1 bg-[#14b8a6] rounded-full mx-auto my-4 reveal-up"></div>
-    <p class="text-white/80 text-sm md:text-base max-w-xl mx-auto reveal-up">Insights, stories, and updates from our team on design, development, and digital growth.</p>
-    <div class="text-white/70 text-sm mt-6 reveal-up">
-      <a href="/" class="text-white/70 hover:text-teal-400 transition">Home</a> <span class="mx-1">/</span> <span class="text-teal-400 font-medium">Blog</span>
+<main id="main-content">
+  <!-- ══════════════════════════════════════════════════════════════════
+       HERO SECTION (dark background) with breadcrumb
+  ═══════════════════════════════════════════════════════════════════ -->
+  <section class="pt-28 pb-12 md:pt-32 md:pb-16 dark-section" style="background:#0D1F1C;">
+    <div class="container mx-auto px-4 text-center">
+      <div class="font-mono text-xs tracking-[0.3em] text-teal-400 uppercase mb-4 reveal-up">LATEST_INSIGHTS</div>
+      <h1 class="font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 tracking-tighter reveal-up">
+        <span class="text-white">Our</span> <span class="text-[#14b8a6]">Blog</span>
+      </h1>
+      <div class="w-16 h-1 bg-[#14b8a6] rounded-full mx-auto my-4 reveal-up"></div>
+      <p class="text-white/80 text-sm md:text-base max-w-xl mx-auto reveal-up">Insights, stories, and updates from our team on design, development, and digital growth.</p>
+      <div class="text-white/70 text-sm mt-6 reveal-up">
+        <a href="/" class="text-white/70 hover:text-teal-400 transition">Home</a> <span class="mx-1">/</span> <span class="text-teal-400 font-medium">Blog</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       BLOG GRID (light background) with skeleton loading
+  ═══════════════════════════════════════════════════════════════════ -->
+  <div class="py-12 md:py-16" style="background:#d3d3d3;">
+    <div class="container mx-auto px-4 reveal-left">
+      <div id="blogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </div>
   </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════════════════════
-     BLOG GRID (light background) with skeleton loading
-═══════════════════════════════════════════════════════════════════ -->
-<div class="py-12 md:py-16" style="background:#d3d3d3;">
-  <div class="container mx-auto px-4 reveal-left">
-    <div id="blogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-  </div>
-</div>
+</main>
 
 <!-- ══════════════════════════════════════════════════════════════════
      FOOTER
 ═══════════════════════════════════════════════════════════════════ -->
 <footer class="relative pt-24 pb-12 overflow-hidden dark-section" style="background:#000000;border-top:1px solid rgba(255,255,255,0.1);">
   <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
-    <svg class="w-[800px] h-[800px] fill-none stroke-[#14b8a6]/10 stroke-2" viewBox="0 0 1000 800">
+    <svg class="w-[800px] h-[800px] fill-none stroke-[#14b8a6]/10 stroke-2" viewBox="0 0 1000 800" aria-hidden="true">
       <path class="trace-path" d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z M225 130 L305 210 L225 210 Z"/>
     </svg>
   </div>
@@ -261,15 +289,15 @@
     <div class="grid lg:grid-cols-2 gap-16 mb-20">
       <div class="footer-reveal-left opacity-0 space-y-8">
         <div class="flex items-center gap-4">
-          <svg width="40" height="40" viewBox="0 0 1000 800" class="fill-[#14b8a6]"><path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z"/></svg>
+          <svg width="40" height="40" viewBox="0 0 1000 800" class="fill-[#14b8a6]" aria-hidden="true"><path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z"/></svg>
           <span class="font-black text-2xl tracking-tighter text-white uppercase">Frankie Digitalz</span>
         </div>
         <p class="text-white/70 text-lg leading-relaxed max-w-sm">Transforming businesses through innovative digital solutions.</p>
         <div class="flex gap-4">
-          <a href="https://www.facebook.com/profile.php?id=61589305472879" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fab fa-facebook-f text-white/60 group-hover:text-white"></i></a>
-          <a href="https://x.com/DigitalzFrankie" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fab fa-twitter text-white/60 group-hover:text-white"></i></a>
-          <a href="https://www.linkedin.com/in/frankie-digitalz-3a2007409" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fab fa-linkedin-in text-white/60 group-hover:text-white"></i></a>
-          <a href="mailto:info.digitalzfrankie@gmail.com" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fas fa-envelope text-white/60 group-hover:text-white"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61589305472879" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="Facebook"><i class="fab fa-facebook-f text-white/60 group-hover:text-white" aria-hidden="true"></i></a>
+          <a href="https://x.com/DigitalzFrankie" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="X (Twitter)"><i class="fab fa-twitter text-white/60 group-hover:text-white" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/frankie-digitalz-3a2007409" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-white/60 group-hover:text-white" aria-hidden="true"></i></a>
+          <a href="mailto:info.digitalzfrankie@gmail.com" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="Email"><i class="fas fa-envelope text-white/60 group-hover:text-white" aria-hidden="true"></i></a>
         </div>
       </div>
       <div class="footer-reveal-right opacity-0 grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -279,7 +307,7 @@
       </div>
     </div>
     <div class="footer-reveal-up opacity-0">
-      <p class="text-white/40 text-xs font-mono pt-8 border-t border-white/10 uppercase tracking-wider">© 2026 Frankie Digitalz. All Rights Reserved.</p>
+      <p class="text-white/60 text-xs font-mono pt-8 border-t border-white/10 uppercase tracking-wider">© 2026 Frankie Digitalz. All Rights Reserved.</p>
       <p class="sr-only">Logo design for kids clothing, jewellery packaging, tea &amp; coffee branding, and custom e-commerce solutions by Frankie Digitalz. Web development, Shopify, WooCommerce, UI/UX design, digital marketing, brand strategy, and technical consulting services in Canada and internationally.</p>
     </div>
   </div>
@@ -381,15 +409,14 @@
       grid.innerHTML = posts.map(post => {
         const fields = post.fields;
         const imageUrl = fields.featuredImage ? getImageUrl(fields.featuredImage.sys.id, data.includes) : null;
-        // ✅ FIX: use clean URL with slug in path
         const postUrl = `/blog-post/${encodeURIComponent(fields.slug)}`;
         return `
           <div class="blog-card group bg-white rounded-xl overflow-hidden shadow border border-black/10 transition-all duration-300">
             <a href="${postUrl}" class="block">
               <div class="blog-img-wrapper relative h-48 w-full bg-gray-100">
                 ${imageUrl ? `
-                  <img src="${imageUrl}" alt="${escapeHtml(fields.title)}" class="blog-img w-full h-full object-cover" loading="lazy">
-                  <div class="blog-overlay"><span>Read More <i class="fas fa-arrow-right ml-1 text-xs"></i></span></div>
+                  <img src="${imageUrl}" alt="${escapeHtml(fields.title)}" class="blog-img w-full h-full object-cover" loading="lazy" width="400" height="300">
+                  <div class="blog-overlay"><span>Read More <i class="fas fa-arrow-right ml-1 text-xs" aria-hidden="true"></i></span></div>
                 ` : `<div class="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">No image</div>`}
               </div>
               <div class="p-5">
@@ -399,7 +426,7 @@
                 <h2 class="blog-title text-xl font-bold text-black mb-2 transition-colors">${escapeHtml(fields.title)}</h2>
                 <p class="text-black/70 text-sm line-clamp-2">${escapeHtml(fields.excerpt || '')}</p>
                 <div class="mt-4 flex items-center text-sm font-semibold text-[#14b8a6] group-hover:text-black transition-colors gap-1">
-                  Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7l10 10M7 7v10m10-10H7"></path></svg>
+                  Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7l10 10M7 7v10m10-10H7"></path></svg>
                 </div>
               </div>
             </a>
@@ -413,7 +440,7 @@
   }
   renderBlog();
 
-  // Scroll reveal observers
+  // Scroll reveal observers (1.5s already applied in CSS)
   const reveals = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -442,6 +469,7 @@
     }
   });
   backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  backBtn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); } });
 
   // 24/7 support badge
   const supportText = document.getElementById('supportText');
@@ -460,12 +488,31 @@
   }
   startBadgeCycle();
   badge.addEventListener('click', () => window.open('https://wa.me/16395274759', '_blank'));
+  badge.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.open('https://wa.me/16395274759', '_blank'); } });
 
-  // Mobile menu
+  // Mobile menu – close on outside tap
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
-  if (mobileBtn && mobileMenu) mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  if (mobileBtn && mobileMenu) {
+    mobileBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); mobileBtn.setAttribute('aria-expanded', String(!mobileMenu.classList.contains('hidden'))); });
+    document.addEventListener('click', function(event) {
+      if (!mobileMenu.classList.contains('hidden') && !mobileBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+        mobileMenu.classList.add('hidden');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
 })();
 </script>
+
+<!-- Deferred Google Tag Manager -->
+<script defer src="https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6"></script>
+<script defer>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HJQPN0DSW6');
+</script>
+
 </body>
 </html>

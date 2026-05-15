@@ -4,13 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- ═══ PRIMARY SEO ═══════════════════════════════════════════════════════ -->
   <title>Frankie Digitalz – Contact | Start Your Project</title>
   <meta name="description" content="Contact Frankie Digitalz for web development, e-commerce, digital marketing, branding, and more. Get a free consultation for your project.">
   <meta name="author" content="Frankie Digitalz">
   <meta name="robots" content="index, follow">
 
-  <!-- ═══ OPEN GRAPH ════════════════════════════════════════════════════════ -->
   <meta property="og:title" content="Frankie Digitalz – Contact">
   <meta property="og:description" content="Ready to transform your digital presence? Reach out to us today for a free consultation.">
   <meta property="og:site_name" content="Frankie Digitalz">
@@ -21,29 +19,21 @@
   <meta property="og:image" content="https://frankiedigital.vercel.app/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@DigitalzFrankie">
-  <meta name="twitter:title" content="Frankie Digitalz – Contact">
-  <meta name="twitter:description" content="Get in touch with Frankie Digitalz for your next project.">
-  <meta name="twitter:image" content="https://frankiedigital.vercel.app/og-image.png">
 
-  <!-- ═══ CANONICAL / HREFLANG (clean URL) ══════════════════════════════════ -->
   <link rel="canonical" href="https://frankiedigital.vercel.app/contact">
   <link rel="alternate" hreflang="en" href="https://frankiedigital.vercel.app/contact">
 
-  <!-- ═══ FAVICON ═══════════════════════════════════════════════════════════ -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%2314b8a6'/%3E%3C/svg%3E">
 
-  <!-- ═══ GOOGLE ANALYTICS ═══════════════════════════════════════════════════ -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJQPN0DSW6');</script>
+  <!-- Preconnect & font optimisation -->
+  
+  
+  <link rel="preconnect" href="https://cdn.contentful.com">
+  
 
-  <!-- ═══ Tailwind CSS CDN ═══════════════════════════════════════════════════ -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/all.min.css">
 
-  <!-- ═══ Google Fonts + Font Awesome ═══════════════════════════════════════ -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-  <!-- ═══ SCHEMA.ORG JSON-LD (ContactPage) ══════════════════════════════════ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -69,11 +59,18 @@
     @keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-4px);}40%{transform:translateX(4px);}60%{transform:translateX(-2px);}80%{transform:translateX(2px);}}
     .shake-animation{animation:shake 0.3s ease-in-out 0s 6;display:inline-block;}
 
-    /* ── REVEAL ANIMATIONS ───────────────────────────────────────── */
-    .reveal-up{opacity:0;transform:translateY(30px);transition:opacity 1.8s ease-out,transform 1.8s ease-out;}
+    /* ── REVEAL ANIMATIONS (1.5s) ────────────────────────────────── */
+    .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
+      transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+    }
+    .reveal-up{opacity:0;transform:translateY(30px);}
     .reveal-up.revealed{opacity:1;transform:translateY(0);}
-    .reveal-left{opacity:0;transform:translateX(-30px);transition:opacity 1.8s ease-out,transform 1.8s ease-out;}
+    .reveal-left{opacity:0;transform:translateX(-30px);}
     .reveal-left.revealed{opacity:1;transform:translateX(0);}
+    .reveal-right-scale{opacity:0;transform:translateX(30px) scale(0.95);}
+    .reveal-right-scale.revealed{opacity:1;transform:translateX(0) scale(1);}
+    .reveal-fade{opacity:0;}
+    .reveal-fade.revealed{opacity:1;}
 
     /* ── DARK SECTION (hero & footer) ───────────────────────────── */
     .dark-section{background:#000000 !important;}
@@ -82,9 +79,10 @@
     .dark-section .border-black\/10{border-color:rgba(211,211,211,0.1) !important;}
 
     /* ── FORM STYLES ─────────────────────────────────────────────── */
-    input:focus, select:focus, textarea:focus{outline:none;border-color:#14b8a6;box-shadow:0 0 0 2px rgba(20,184,166,0.2);}
-    .btn-submit{background-color:#14b8a6;color:white;transition:all 0.3s ease;}
-    .btn-submit:hover{background-color:#000000;}
+    input:focus, select:focus, textarea:focus{outline: 2px solid #14b8a6; outline-offset: 2px; border-color:#14b8a6;box-shadow:0 0 0 3px rgba(20,184,166,0.25);}
+    /* Submit button: black text on teal (WCAG passes) */
+    .btn-submit{background-color:#14b8a6;color:#000000;transition:all 0.3s ease;}
+    .btn-submit:hover{background-color:#000000;color:#ffffff;}
 
     /* ── BACK TO TOP ──────────────────────────────────────────────── */
     .back-to-top{background-color:#14b8a6;color:white;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(20,184,166,0.4);}
@@ -104,15 +102,25 @@
     }
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
 
-    /* Breadcrumb style */
+    /* WCAG – respect user motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Breadcrumb style – fixed for dark hero background */
     .contact-breadcrumb {
       font-size: 0.875rem;
       margin-top: 1rem;
       margin-bottom: 0.5rem;
-      color: #9ca3af;
+      color: #d3d3d3; /* WCAG fix: was #1f2937 (near-invisible on #0D1F1C) */
     }
     .contact-breadcrumb a {
-      color: #9ca3af;
+      color: #d3d3d3; /* WCAG fix: was #1f2937 (1:1 contrast on dark bg) */
       text-decoration: none;
       transition: color 0.2s;
     }
@@ -123,6 +131,7 @@
       color: #14b8a6;
       font-weight: 500;
     }
+
     /* Popup modal styles */
     .popup-modal {
       position: fixed;
@@ -191,14 +200,37 @@
     .input-error {
       border-color: #dc2626 !important;
     }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      background: #14b8a6;
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      z-index: 9999;
+    }
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
+      width: auto;
+      height: auto;
+    }
   </style>
+<link rel="stylesheet" href="/css/fonts.css">
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     24/7 STICKY SUPPORT BADGE (bottom-left)
-═══════════════════════════════════════════════════════════════════ -->
-<div id="supportBadge" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto;min-width:48px;">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- 24/7 STICKY SUPPORT BADGE -->
+<div id="supportBadge" role="button" tabindex="0" aria-label="Contact us via WhatsApp for 24/7 support" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto;min-width:48px;">
   <div class="relative flex items-center justify-center">
     <span class="absolute right-0 bottom-0 flex h-2 w-2 translate-x-[1px] translate-y-[1px]"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-[#14b8a6]"></span></span>
     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" stroke="#14b8a6" stroke-width="1.5"/><path d="M12 6V8M16 10C16 7.79086 14.2091 6 12 6C9.79086 6 8 7.79086 8 10V12C8 14.2091 9.79086 16 12 16C14.2091 16 16 14.2091 16 12V10Z" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M18 15V17C18 19.2091 16.2091 21 14 21H13" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/><path d="M6 15V17C6 19.2091 7.79086 21 10 21H11" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -206,20 +238,16 @@
   <span id="supportText" class="text-[11px] font-black uppercase tracking-wider text-black whitespace-nowrap overflow-hidden transition-all duration-300" style="max-width:0px;opacity:0;">24/7 Support</span>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     BACK TO TOP (bottom-right)
-═══════════════════════════════════════════════════════════════════ -->
-<div id="backToTopBtn" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300">
-  <i class="fas fa-arrow-up text-white text-sm"></i>
+<!-- BACK TO TOP -->
+<div id="backToTopBtn" role="button" tabindex="0" aria-label="Back to top" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300">
+  <i class="fas fa-arrow-up text-white text-sm" aria-hidden="true"></i>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     NAVBAR (clean URLs)
-═══════════════════════════════════════════════════════════════════ -->
+<!-- NAVBAR -->
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-black/10 py-3 transition-all duration-500" style="transform:translateY(-100%);opacity:0;">
   <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
     <div class="flex items-center gap-3">
-      <svg id="nav-logo" width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill:#14b8a6;transition:all 0.2s ease;">
+      <svg id="nav-logo" aria-hidden="true" width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill:#14b8a6;transition:all 0.2s ease;">
         <path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#14b8a6"/>
         <path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#14b8a6"/>
         <path d="M225 130 L305 210 L225 210 Z" fill="#14b8a6"/>
@@ -240,7 +268,7 @@
     </div>
     <div class="flex items-center gap-4">
       <a class="hidden lg:inline-flex px-6 py-2.5 bg-[#14b8a6] text-black text-sm font-bold rounded-full hover:bg-[#d3d3d3] transition-all duration-300" href="/contact">Get Started</a>
-      <button id="mobileMenuBtn" class="lg:hidden text-[#14b8a6] p-2">
+      <button id="mobileMenuBtn" class="lg:hidden text-[#14b8a6] p-2" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>
@@ -258,92 +286,88 @@
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     HERO SECTION (dark background) with breadcrumb
-═══════════════════════════════════════════════════════════════════ -->
-<section class="pt-28 pb-12 md:pt-32 md:pb-16 dark-section" style="background:#0D1F1C;">
-  <div class="container mx-auto px-4 text-center reveal-up">
-    <div class="font-mono text-xs tracking-[0.3em] text-teal-400 uppercase mb-4">CONTACT_US</div>
-    <h1 class="font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 tracking-tighter text-white">Start Your Project</h1>
-    <div class="w-16 h-1 bg-[#14b8a6] rounded-full mx-auto my-4"></div>
-    <p class="text-white/80 text-sm md:text-base max-w-xl mx-auto">Tell us about your project and we'll get back to you within 24 hours.</p>
-    <div class="contact-breadcrumb reveal-up mt-4">
-      <a href="/">Home</a> <span class="mx-1">/</span> <span class="current">Contact</span>
+<main id="main-content">
+  <!-- HERO SECTION (dark background) with breadcrumb -->
+  <section class="pt-28 pb-12 md:pt-32 md:pb-16 dark-section" style="background:#0D1F1C;">
+    <div class="container mx-auto px-4 text-center reveal-up">
+      <div class="font-mono text-xs tracking-[0.3em] text-teal-400 uppercase mb-4">CONTACT_US</div>
+      <h1 class="font-extrabold text-4xl md:text-5xl lg:text-6xl mb-4 tracking-tighter text-white">Start Your Project</h1>
+      <div class="w-16 h-1 bg-[#14b8a6] rounded-full mx-auto my-4"></div>
+      <p class="text-white/80 text-sm md:text-base max-w-xl mx-auto">Tell us about your project and we'll get back to you within 24 hours.</p>
+      <div class="contact-breadcrumb reveal-up mt-4">
+        <a href="/">Home</a> <span class="mx-1">/</span> <span class="current">Contact</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <div class="py-12 md:py-16" style="background:#d3d3d3;">
+    <div class="container mx-auto px-4 reveal-left">
+      <div class="max-w-2xl mx-auto">
+        <form id="contactForm" class="bg-white rounded-2xl border border-black/10 shadow-2xl shadow-teal-900/5 p-6 md:p-8">
+          <input type="hidden" id="formSubject" name="_subject" value="Contact Form - Frankie Digitalz">
+          <div class="grid md:grid-cols-2 gap-5">
+            <div>
+              <label for="name" class="block text-sm font-medium mb-1 text-black">Full Name *</label>
+              <input required class="w-full p-3 border border-black/20 rounded-xl focus:border-[#14b8a6] transition bg-white text-black" placeholder="John Doe" type="text" id="name" name="name">
+              <span class="error-message" id="nameError"></span>
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium mb-1 text-black">Email Address *</label>
+              <input required class="w-full p-3 border border-black/20 rounded-xl focus:border-[#14b8a6] transition bg-white text-black" placeholder="john@example.com" type="email" id="email" name="email">
+              <span class="error-message" id="emailError"></span>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-5 mt-4">
+            <div>
+              <label for="phone" class="block text-sm font-medium mb-1 text-black">Phone Number</label>
+              <input class="w-full p-3 border border-black/20 rounded-xl focus:border-[#14b8a6] transition bg-white text-black" placeholder="+1 (639) 527-4759" type="tel" id="phone" name="phone">
+              <span class="error-message" id="phoneError"></span>
+            </div>
+            <div>
+              <label for="budget" class="block text-sm font-medium mb-1 text-black">Project Budget *</label>
+              <select required id="budget" name="budget" class="w-full p-3 border border-black/20 rounded-xl focus:border-[#14b8a6] transition bg-white text-black">
+                <option value="">Select budget range</option>
+                <option value="under-5k">Under $5,000</option>
+                <option value="5k-10k">$5,000 – $10,000</option>
+                <option value="10k-25k">$10,000 – $25,000</option>
+                <option value="25k-50k">$25,000 – $50,000</option>
+                <option value="50k-plus">$50,000+</option>
+                <option value="not-sure">Not sure / TBD</option>
+              </select>
+              <span class="error-message" id="budgetError"></span>
+            </div>
+          </div>
+          <div class="mt-4">
+            <label for="description" class="block text-sm font-medium mb-1 text-black">Project Description *</label>
+            <textarea required id="description" name="description" rows="3" class="w-full p-3 border border-black/20 rounded-xl focus:border-[#14b8a6] transition bg-white text-black" placeholder="Briefly describe your project..."></textarea>
+            <span class="error-message" id="descriptionError"></span>
+          </div>
+          <div class="mt-4">
+            <label for="additional" class="block text-sm font-medium mb-1 text-black">Additional Details (optional)</label>
+            <textarea id="additional" name="additional" rows="3" class="w-full p-3 border border-black/20 rounded-xl focus:border-[#14b8a6] transition bg-white text-black" placeholder="Timeline, specific requirements, design preferences..."></textarea>
+          </div>
+          <div class="mt-6">
+            <button type="submit" id="submitBtn" class="btn-submit w-full py-3 px-6 rounded-xl font-semibold text-base flex items-center justify-center gap-2 transition-all duration-300">Send Inquiry<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7l10 10M7 7v10m10-10H7"></path></svg></button>
+          </div>
+          <p class="text-xs text-black/50 text-center mt-4">We'll never share your information. By submitting, you agree to our <a class="text-[#14b8a6] hover:underline" href="/privacy">Privacy Policy</a>.</p>
+        </form>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     CONTACT FORM (light background, white card)
-═══════════════════════════════════════════════════════════════════ -->
-<div class="py-12 md:py-16" style="background:#d3d3d3;">
-  <div class="container mx-auto px-4 reveal-left">
-    <div class="max-w-2xl mx-auto">
-      <form id="contactForm" class="bg-white rounded-2xl border border-black/10 shadow-2xl shadow-teal-900/5 p-6 md:p-8">
-        <input type="hidden" id="formSubject" name="_subject" value="Contact Form - Frankie Digitalz">
-        <div class="grid md:grid-cols-2 gap-5">
-          <div>
-            <label class="block text-sm font-medium mb-1 text-black">Full Name *</label>
-            <input required class="w-full p-3 border border-black/20 rounded-xl focus:border-[#14b8a6] transition bg-white text-black" placeholder="John Doe" type="text" id="name" name="name">
-            <span class="error-message" id="nameError"></span>
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-1 text-black">Email Address *</label>
-            <input required class="w-full p-3 border border-black/20 rounded-xl focus:border-[#14b8a6] transition bg-white text-black" placeholder="john@example.com" type="email" id="email" name="email">
-            <span class="error-message" id="emailError"></span>
-          </div>
-        </div>
-        <div class="grid md:grid-cols-2 gap-5 mt-4">
-          <div>
-            <label class="block text-sm font-medium mb-1 text-black">Phone Number</label>
-            <input class="w-full p-3 border border-black/20 rounded-xl focus:border-[#14b8a6] transition bg-white text-black" placeholder="+1 (639) 527-4759" type="tel" id="phone" name="phone">
-            <span class="error-message" id="phoneError"></span>
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-1 text-black">Project Budget *</label>
-            <select required id="budget" name="budget" class="w-full p-3 border border-black/20 rounded-xl focus:border-[#14b8a6] transition bg-white text-black">
-              <option value="">Select budget range</option>
-              <option value="under-5k">Under $5,000</option>
-              <option value="5k-10k">$5,000 – $10,000</option>
-              <option value="10k-25k">$10,000 – $25,000</option>
-              <option value="25k-50k">$25,000 – $50,000</option>
-              <option value="50k-plus">$50,000+</option>
-              <option value="not-sure">Not sure / TBD</option>
-            </select>
-            <span class="error-message" id="budgetError"></span>
-          </div>
-        </div>
-        <div class="mt-4">
-          <label class="block text-sm font-medium mb-1 text-black">Project Description *</label>
-          <textarea required id="description" name="description" rows="3" class="w-full p-3 border border-black/20 rounded-xl focus:border-[#14b8a6] transition bg-white text-black" placeholder="Briefly describe your project..."></textarea>
-          <span class="error-message" id="descriptionError"></span>
-        </div>
-        <div class="mt-4">
-          <label class="block text-sm font-medium mb-1 text-black">Additional Details (optional)</label>
-          <textarea id="additional" name="additional" rows="3" class="w-full p-3 border border-black/20 rounded-xl focus:border-[#14b8a6] transition bg-white text-black" placeholder="Timeline, specific requirements, design preferences..."></textarea>
-        </div>
-        <div class="mt-6">
-          <button type="submit" id="submitBtn" class="btn-submit w-full py-3 px-6 rounded-xl font-semibold text-base flex items-center justify-center gap-2 transition-all duration-300">Send Inquiry<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7l10 10M7 7v10m10-10H7"></path></svg></button>
-        </div>
-        <p class="text-xs text-black/50 text-center mt-4">We'll never share your information. By submitting, you agree to our <a class="text-[#14b8a6] hover:underline" href="/privacy">Privacy Policy</a>.</p>
-      </form>
+  <!-- Thank you popup modal -->
+  <div id="thankYouPopup" class="popup-modal">
+    <div class="popup-content">
+      <i class="fas fa-check-circle"></i>
+      <h3>Thank You!</h3>
+      <p>Your message has been sent successfully. We'll get back to you within 24 hours.</p>
+      <button onclick="closePopup()" aria-label="Close thank you message">Close</button>
     </div>
   </div>
-</div>
+</main>
 
-<!-- Thank you popup modal -->
-<div id="thankYouPopup" class="popup-modal">
-  <div class="popup-content">
-    <i class="fas fa-check-circle"></i>
-    <h3>Thank You!</h3>
-    <p>Your message has been sent successfully. We'll get back to you within 24 hours.</p>
-    <button onclick="closePopup()">Close</button>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer class="relative pt-24 pb-12 overflow-hidden dark-section" style="background:#000000;border-top:1px solid rgba(255,255,255,0.1);">
   <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
     <svg class="w-[800px] h-[800px] fill-none stroke-[#14b8a6]/10 stroke-2" viewBox="0 0 1000 800">
@@ -359,10 +383,10 @@
         </div>
         <p class="text-white/70 text-lg leading-relaxed max-w-sm">Transforming businesses through innovative digital solutions.</p>
         <div class="flex gap-4">
-          <a href="https://www.facebook.com/profile.php?id=61589305472879" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fab fa-facebook-f text-white/60 group-hover:text-white"></i></a>
-          <a href="https://x.com/DigitalzFrankie" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fab fa-twitter text-white/60 group-hover:text-white"></i></a>
-          <a href="https://www.linkedin.com/in/frankie-digitalz-3a2007409" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fab fa-linkedin-in text-white/60 group-hover:text-white"></i></a>
-          <a href="mailto:info.digitalzfrankie@gmail.com" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300"><i class="fas fa-envelope text-white/60 group-hover:text-white"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61589305472879" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="Facebook"><i class="fab fa-facebook-f text-white/60 group-hover:text-white"></i></a>
+          <a href="https://x.com/DigitalzFrankie" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="X (Twitter)"><i class="fab fa-twitter text-white/60 group-hover:text-white"></i></a>
+          <a href="https://www.linkedin.com/in/frankie-digitalz-3a2007409" target="_blank" rel="noopener noreferrer" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-white/60 group-hover:text-white"></i></a>
+          <a href="mailto:info.digitalzfrankie@gmail.com" class="w-12 h-12 border border-white/20 rounded-xl flex items-center justify-center hover:bg-[#14b8a6] group transition-all duration-300" aria-label="Email"><i class="fas fa-envelope text-white/60 group-hover:text-white"></i></a>
         </div>
       </div>
       <div class="footer-reveal-right opacity-0 grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -372,7 +396,7 @@
       </div>
     </div>
     <div class="footer-reveal-up opacity-0">
-      <p class="text-white/40 text-xs font-mono pt-8 border-t border-white/10 uppercase tracking-wider">© 2026 Frankie Digitalz. All Rights Reserved.</p>
+      <p class="text-white/60 text-xs font-mono pt-8 border-t border-white/10 uppercase tracking-wider">© 2026 Frankie Digitalz. All Rights Reserved.</p>
       <p class="sr-only">Logo design for kids clothing, jewellery packaging, tea &amp; coffee branding, and custom e-commerce solutions by Frankie Digitalz. Web development, Shopify, WooCommerce, UI/UX design, digital marketing, brand strategy, and technical consulting services in Canada and internationally.</p>
     </div>
   </div>
@@ -424,7 +448,7 @@
   }
   startNavbarAnimations();
 
-  // ── 3. SCROLL REVEAL ──────────────────────────────────────────
+  // ── 3. SCROLL REVEAL (1.5s) ───────────────────────────────────
   const reveals = document.querySelectorAll('.reveal-up, .reveal-left');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -478,10 +502,31 @@
     badge.addEventListener('click', () => window.open('https://wa.me/16395274759', '_blank'));
   }
 
-  // ── 7. MOBILE MENU ────────────────────────────────────────────
+  // ── 7. MOBILE MENU – CLOSE ON OUTSIDE TAP ─────────────────────
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
-  if (mobileBtn && mobileMenu) mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  if (mobileBtn && mobileMenu) {
+    mobileBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      mobileBtn.setAttribute('aria-expanded', String(!isHidden));
+    });
+    document.addEventListener('click', function(event) {
+      if (!mobileMenu.classList.contains('hidden') && !mobileBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+        mobileMenu.classList.add('hidden');
+        mobileBtn.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  // KEYBOARD ACCESS for back-to-top and support badge
+  const backBtnEl = document.getElementById('backToTopBtn');
+  if(backBtnEl){
+    backBtnEl.addEventListener('keydown',(e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); } });
+  }
+  const badgeEl = document.getElementById('supportBadge');
+  if(badgeEl){
+    badgeEl.addEventListener('keydown',(e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); window.open('https://wa.me/16395274759','_blank'); } });
+  }
 
   // ── 8. CONTACT FORM AJAX + INLINE VALIDATION ──────────────────
   const form = document.getElementById('contactForm');
@@ -568,5 +613,15 @@
   }
 })();
 </script>
+
+<!-- Deferred Google Tag Manager -->
+<script defer src="https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6"></script>
+<script defer>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HJQPN0DSW6');
+</script>
+
 </body>
 </html>
