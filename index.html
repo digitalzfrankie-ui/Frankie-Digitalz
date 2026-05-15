@@ -27,14 +27,10 @@
   
   
   <link rel="preconnect" href="https://cdn.contentful.com">
-  <link rel="preconnect" href="https://images.ctfassets.net">
-  <link rel="dns-prefetch" href="https://images.ctfassets.net">
+  <link rel="preconnect" href="https://images.ctfassets.net" crossorigin>
+  
 
-  <!-- Start Contentful fetch immediately so hero images aren't gated on bottom-of-body JS -->
-  <script>
-  window._cfFetch = fetch('https://cdn.contentful.com/spaces/ha7fm2wzrbnt/entries?content_type=homePage&access_token=aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ&limit=1&include=1').then(function(r){return r.json();}).catch(function(){return null;});
-  </script>
-
+  <link rel="stylesheet" href="/css/fonts.css">
   <link rel="stylesheet" href="/css/style.css">
 
   <!-- Font Awesome: async to avoid render-blocking -->
@@ -43,20 +39,8 @@
 
   <style>
     /* font-display: swap override for Font Awesome – prevents FOIT */
-    @font-face {
-      font-family: 'Font Awesome 6 Free';
-      font-style: normal;
-      font-weight: 900;
-      font-display: swap;
-      src: url('/webfonts/fa-solid-900.woff2') format('woff2');
-    }
-    @font-face {
-      font-family: 'Font Awesome 6 Brands';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url('/webfonts/fa-brands-400.woff2') format('woff2');
-    }
+    @font-face { font-family: 'Font Awesome 6 Free'; font-display: swap; }
+    @font-face { font-family: 'Font Awesome 6 Brands'; font-display: swap; }
     .letter-animation {
       display: inline-block;
       opacity: 0;
@@ -211,6 +195,7 @@
       transform: translateY(0);
     }
 
+
     .animate-marquee-left { animation: marqueeLeft 25s linear infinite; }
     .animate-marquee-right { animation: marqueeRight 30s linear infinite; }
     @keyframes marqueeLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
@@ -218,11 +203,10 @@
 
     .glow-tick {
       animation: glowTick 1.5s infinite;
-      will-change: opacity;
     }
     @keyframes glowTick {
-      0%,100% { opacity: 0.9; }
-      50% { opacity: 1; }
+      0%,100% { filter: drop-shadow(0 0 2px #14b8a6); opacity: 0.9; }
+      50% { filter: drop-shadow(0 0 8px #14b8a6); opacity: 1; }
     }
 
     .trace-path {
@@ -231,10 +215,10 @@
       animation: traceLoop 6s linear infinite;
     }
     @keyframes traceLoop {
-      0% { stroke-dashoffset: 3000; stroke: rgba(20,184,166,0.1); }
-      83% { stroke-dashoffset: 0; stroke: rgba(20,184,166,0.1); }
-      90% { stroke-dashoffset: 0; stroke: #14b8a6; }
-      100% { stroke-dashoffset: 0; stroke: rgba(20,184,166,0.1); }
+      0% { stroke-dashoffset: 3000; filter: drop-shadow(0 0 0px #14b8a6); stroke: rgba(20,184,166,0.1); }
+      83% { stroke-dashoffset: 0; filter: drop-shadow(0 0 0px #14b8a6); stroke: rgba(20,184,166,0.1); }
+      90% { stroke-dashoffset: 0; filter: drop-shadow(0 0 15px #14b8a6); stroke: #14b8a6; }
+      100% { stroke-dashoffset: 0; filter: drop-shadow(0 0 0px #14b8a6); stroke: rgba(20,184,166,0.1); }
     }
 
     .footer-reveal-left { transform: translateX(-30px); transition: all 1.5s ease-out; }
@@ -311,13 +295,15 @@
     .contact-btn-hover:hover {
       background-color: #000000 !important;
     }
+    /* Hero placeholder while Contentful loads */
+    #cf-hero-image { background: #111; }
+    #cf-hero-image-mobile { background: #111; }
+    #cf-hero-image-decorative { background: #1a1a1a; }
   </style>
 </head>
 <body>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
-
-<!-- boot loader removed for performance -->
 
 <!-- 24/7 SUPPORT BADGE -->
 <div id="supportBadge" role="button" tabindex="0" aria-label="Contact us via WhatsApp for 24/7 support" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto; min-width:48px;">
@@ -330,10 +316,10 @@
 
 <div id="backToTopBtn" role="button" tabindex="0" aria-label="Back to top" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300 bg-[#14b8a6] hover:bg-black shadow-md hover:shadow-xl"><i class="fas fa-arrow-up text-white text-sm" aria-hidden="true"></i></div>
 
-<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-black/10 py-3 transition-all duration-300">
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-black/10 py-3">
   <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
     <div class="flex items-center gap-3">
-      <svg id="nav-logo" aria-hidden="true" width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill:#14b8a6; transition: transform 0.2s ease;">
+      <svg id="nav-logo" aria-hidden="true" width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill:#14b8a6; transition: all 0.2s ease;">
         <path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z" fill="#14b8a6"/>
         <path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z" fill="#14b8a6"/>
         <path d="M225 130 L305 210 L225 210 Z" fill="#14b8a6"/>
@@ -412,13 +398,62 @@
         </div>
         <div class="hidden lg:block relative reveal-slow" id="heroDesktopWrapper">
           <div class="rounded-3xl overflow-hidden shadow-2xl border-[8px] border-white/20 transition-transform duration-1000 hover:scale-105 relative">
-            <img id="cf-hero-image-decorative" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Frankie Digitalz hero decorative" class="w-full h-auto" width="1379" height="752" fetchpriority="high">
+            <img id="cf-hero-image-decorative" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Frankie Digitalz hero decorative" class="w-full h-auto" style="aspect-ratio:auto">
             <svg class="absolute top-0 left-0 w-full h-full pointer-events-none" viewBox="0 0 1200 800" preserveAspectRatio="none"><path id="wavyPathDesktop" d="M0,40 C60,20 140,60 200,40 C260,20 340,60 400,40 C460,20 540,60 600,40 C660,20 740,60 800,40 C860,20 940,60 1000,40 C1060,20 1140,60 1200,40 L1200,800 L0,800 Z" fill="none" stroke="#14b8a6" stroke-width="4" stroke-dasharray="3000" stroke-dashoffset="3000" /></svg>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+
+<!-- Contentful hero — fires immediately after hero parses -->
+<script>
+(async function () {
+  const SPACE = 'ha7fm2wzrbnt';
+  const TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
+  const BASE  = 'https://cdn.contentful.com/spaces/' + SPACE;
+  try {
+    const res  = await fetch(BASE + '/entries?content_type=homePage&access_token=' + TOKEN + '&limit=1&include=1');
+    const data = await res.json();
+    if (data.items && data.items.length > 0) {
+      const f = data.items[0].fields;
+      const assets = (data.includes && data.includes.Asset) || [];
+      if (f.heroImage) {
+        const asset = assets.find(a => a.sys.id === f.heroImage.sys.id);
+        if (asset && asset.fields.file && asset.fields.file.url) {
+          const el = document.getElementById('cf-hero-image');
+          if (el) el.src = 'https:' + asset.fields.file.url + '?w=1920&q=65&fm=webp';
+        }
+      }
+      if (f.heroImageMobile) {
+        const asset = assets.find(a => a.sys.id === f.heroImageMobile.sys.id);
+        if (asset && asset.fields.file && asset.fields.file.url) {
+          const el = document.getElementById('cf-hero-image-mobile');
+          if (el) el.src = 'https:' + asset.fields.file.url + '?w=910&q=65&fm=webp';
+        }
+      }
+      if (f.heroImageDecorative) {
+        const asset = assets.find(a => a.sys.id === f.heroImageDecorative.sys.id);
+        if (asset && asset.fields.file && asset.fields.file.url) {
+          const decorativeEl = document.getElementById('cf-hero-image-decorative');
+        if (decorativeEl) {
+          const url = 'https:' + asset.fields.file.url + '?w=1200&q=65&fm=webp';
+          decorativeEl.src = url;
+          // Set natural dimensions from Contentful metadata to fix aspect ratio
+          const d = asset.fields.file.details && asset.fields.file.details.image;
+          if (d) { decorativeEl.width = d.width; decorativeEl.height = d.height; }
+        }
+        }
+      }
+      if (f.portfolioTitle) {
+        const el = document.getElementById('cf-portfolio-title');
+        if (el) el.textContent = f.portfolioTitle;
+      }
+    }
+  } catch (e) { console.warn('Contentful hero fetch failed — static fallback works.', e); }
+})();
+</script>
 
   <!-- STATS SECTION -->
   <section class="py-24 fade-section bg-[#0D1F1C]" id="statsSection">
@@ -685,14 +720,7 @@
 
 <script>
 (function(){
-  // Show navbar immediately (no boot loader)
-  (function() {
-    const nav = document.getElementById('main-nav');
-    if (nav) {
-      nav.style.transform = 'translateY(0)';
-      nav.style.opacity = '1';
-    }
-  })();
+  // BOOT LOADER REMOVAL
   startNavbarAnimations();
   resetAndPlayHeroIntro();
   resetAndPlayEdgeTrace();
@@ -768,22 +796,17 @@
     const mobilePath=document.getElementById('wavyPathMobile');
     const animateTrace=(path,duration=3000)=>{
       if(!path)return;
-      // Hardcoded path lengths (from Lighthouse): avoids getTotalLength() forced layout
-      const length=path.id==='wavyPathDesktop'?3931:1765;
+      const length=path.getTotalLength();
       path.style.transition='none';
       path.style.strokeDasharray=length;
       path.style.strokeDashoffset=length;
+      path.getBoundingClientRect();
+      path.style.transition=`stroke-dashoffset ${duration}ms linear`;
+      path.style.strokeDashoffset='0';
       const parentContainer=path.closest('.relative');
-      // Double rAF flushes the style without forcing a synchronous reflow
-      requestAnimationFrame(()=>{
-        requestAnimationFrame(()=>{
-          path.style.transition=`stroke-dashoffset ${duration}ms linear`;
-          path.style.strokeDashoffset='0';
-          if(parentContainer){
-            setTimeout(()=>{parentContainer.classList.add('glow-active');setTimeout(()=>parentContainer.classList.remove('glow-active'),3000);},duration);
-          }
-        });
-      });
+      if(parentContainer){
+        setTimeout(()=>{parentContainer.classList.add('glow-active');setTimeout(()=>parentContainer.classList.remove('glow-active'),3000);},duration);
+      }
     };
     if(desktopPath)animateTrace(desktopPath,3000);
     if(mobilePath)animateTrace(mobilePath,3000);
@@ -1487,56 +1510,7 @@
 })();
 </script>
 
-<!-- Contentful fallback for hero image -->
-<script>
-(async function () {
-  try {
-    // Reuse the fetch started in <head> — avoids a second round-trip and resolves much earlier
-    const data = await window._cfFetch;
-    if (!data || !data.items || !data.items.length) return;
-    const f = data.items[0].fields;
-    const assets = (data.includes && data.includes.Asset) || [];
-    if (f.heroImage) {
-      const asset = assets.find(a => a.sys.id === f.heroImage.sys.id);
-      if (asset && asset.fields.file && asset.fields.file.url) {
-        const el = document.getElementById('cf-hero-image');
-        if (el) {
-          // Serve a smaller, more compressed image on mobile to improve LCP.
-          // On mobile viewports (< 768px) a 800px-wide image at q=60 is ~40 KB
-          // instead of the 99 KB full-size version, with no visible quality loss
-          // behind the 40% black overlay.
-          const isMobile = window.innerWidth < 768;
-          el.src = 'https:' + asset.fields.file.url +
-            (isMobile ? '?w=800&q=60&fm=webp' : '?w=1920&q=65&fm=webp');
-        }
-      }
-    }
-    if (f.heroImageMobile) {
-      const asset = assets.find(a => a.sys.id === f.heroImageMobile.sys.id);
-      if (asset && asset.fields.file && asset.fields.file.url) {
-        const el = document.getElementById('cf-hero-image-mobile');
-        if (el) el.src = 'https:' + asset.fields.file.url + '?w=910&q=65&fm=webp';
-      }
-    }
-    if (f.heroImageDecorative) {
-      const asset = assets.find(a => a.sys.id === f.heroImageDecorative.sys.id);
-      if (asset && asset.fields.file && asset.fields.file.url) {
-        const decorativeEl = document.getElementById('cf-hero-image-decorative');
-        if (decorativeEl) {
-          const url = 'https:' + asset.fields.file.url + '?w=1200&q=65&fm=webp';
-          decorativeEl.src = url;
-          const d = asset.fields.file.details && asset.fields.file.details.image;
-          if (d) { decorativeEl.width = d.width; decorativeEl.height = d.height; }
-        }
-      }
-    }
-    if (f.portfolioTitle) {
-      const el = document.getElementById('cf-portfolio-title');
-      if (el) el.textContent = f.portfolioTitle;
-    }
-  } catch (e) { console.warn('Contentful hero fetch failed — static fallback works.', e); }
-})();
-</script>
+
 
 <!-- Deferred Google Tag Manager -->
 <script defer src="https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6"></script>
