@@ -83,8 +83,10 @@
     @keyframes shake { 0%,100%{transform:translateX(0);}20%{transform:translateX(-4px);}40%{transform:translateX(4px);}60%{transform:translateX(-2px);}80%{transform:translateX(2px);} }
     .shake-animation { animation: shake 0.3s ease-in-out 0s 6; display: inline-block; }
 
-    /* Reveal animations – reduced to 1.5s */
-    .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade { transition: opacity 1s ease-out, transform 1s ease-out; }
+    /* REVEAL ANIMATIONS – 0.5s duration & stay revealed */
+    .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
     .reveal-up { opacity: 0; transform: translateY(30px); }
     .reveal-up.revealed { opacity: 1; transform: translateY(0); }
     .reveal-left { opacity: 0; transform: translateX(-30px); }
@@ -183,6 +185,26 @@
       height: auto;
     }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0; }
+
+    /* ── WCAG 2.4.7 / 2.4.11 – Visible focus ring for keyboard nav ── */
+    :focus-visible {
+      outline: 3px solid #14b8a6;
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+    /* ── WCAG 2.3.3 / 1.4.3 – Respect reduced-motion preference ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -360,6 +382,10 @@
 
 <script>
 (function(){
+  // Scroll to top on every reload
+  window.scrollTo(0,0);
+
+  // Show navbar immediately
   const nav = document.getElementById('main-nav');
   requestAnimationFrame(()=>{
     requestAnimationFrame(()=>{
@@ -403,26 +429,27 @@
   }
   startNavbarAnimations();
 
+  // REVEAL OBSERVERS – only add .revealed, never remove
   const reveals = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade');
-  const observer = new IntersectionObserver((entries) => {
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if(entry.isIntersecting) entry.target.classList.add('revealed');
-      else entry.target.classList.remove('revealed');
+      if (entry.isIntersecting) entry.target.classList.add('revealed');
     });
   }, { threshold: 0.2 });
-  reveals.forEach(el => observer.observe(el));
+  reveals.forEach(el => revealObserver.observe(el));
 
+  // Footer cross-reveal (only add)
   const footer = document.querySelector('footer');
   if(footer){
     const footerObs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if(e.isIntersecting) e.target.classList.add('is-visible');
-        else e.target.classList.remove('is-visible');
       });
     }, { threshold: 0.1 });
     footerObs.observe(footer);
   }
 
+  // Back to top
   const backBtn = document.getElementById('backToTopBtn');
   window.addEventListener('scroll', () => {
     if(window.scrollY > 300){
@@ -434,7 +461,9 @@
     }
   });
   backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  backBtn.addEventListener('keydown', (e) => { if(e.key==='Enter'||e.key===' ') { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); } });
 
+  // 24/7 support badge
   const supportText = document.getElementById('supportText');
   const badge = document.getElementById('supportBadge');
   let badgeCycle;
@@ -451,20 +480,26 @@
   }
   startBadgeCycle();
   badge.addEventListener('click', () => window.open('https://wa.me/16395274759', '_blank'));
+  badge.addEventListener('keydown', (e) => { if(e.key==='Enter'||e.key===' ') { e.preventDefault(); window.open('https://wa.me/16395274759', '_blank'); } });
 
+  // Mobile menu – close on outside click and scroll
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   if (mobileBtn && mobileMenu) {
-    mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-    window.addEventListener('scroll', () => {
-      if (!mobileMenu.classList.contains('hidden')) {
-        mobileMenu.classList.add('hidden');
-        mobileBtn.setAttribute('aria-expanded', 'false');
-      }
+    mobileBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      mobileBtn.setAttribute('aria-expanded', String(!isHidden));
     });
     document.addEventListener('click', function(event) {
       if (!mobileMenu.classList.contains('hidden') && !mobileBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
         mobileMenu.classList.add('hidden');
+        mobileBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    window.addEventListener('scroll', function() {
+      if (!mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        mobileBtn.setAttribute('aria-expanded', 'false');
       }
     });
   }

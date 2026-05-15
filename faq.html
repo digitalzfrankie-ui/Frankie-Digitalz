@@ -86,9 +86,9 @@
     @keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-4px);}40%{transform:translateX(4px);}60%{transform:translateX(-2px);}80%{transform:translateX(2px);}}
     .shake-animation{animation:shake 0.3s ease-in-out 0s 6;display:inline-block;}
 
-    /* ── REVEAL ANIMATIONS (1.5s) ────────────────────────────────── */
+    /* REVEAL ANIMATIONS – 0.5s duration & stay revealed */
     .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
-      transition: opacity 1s ease-out, transform 1s ease-out;
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     }
     .reveal-up{opacity:0;transform:translateY(30px);}
     .reveal-up.revealed{opacity:1;transform:translateY(0);}
@@ -126,9 +126,9 @@
     .back-to-top:hover{background-color:#d3d3d3;color:#000000;}
 
     /* ── FOOTER ANIMATIONS & TRACE ────────────────────────────────── */
-    .footer-reveal-left{transform:translateX(-30px);transition:all 1.5s ease-out;}
-    .footer-reveal-right{transform:translateX(30px);transition:all 1.5s ease-out;}
-    .footer-reveal-up{transform:translateY(20px);transition:all 1.5s ease-out;}
+    .footer-reveal-left{transform:translateX(-30px);transition:all 1s ease-out;}
+    .footer-reveal-right{transform:translateX(30px);transition:all 1s ease-out;}
+    .footer-reveal-up{transform:translateY(20px);transition:all 1s ease-out;}
     .is-visible .footer-reveal-left,.is-visible .footer-reveal-right,.is-visible .footer-reveal-up{opacity:1;transform:translate(0);}
     .trace-path{stroke-dasharray:3000;stroke-dashoffset:3000;animation:traceLoop 6s linear infinite;}
     @keyframes traceLoop{
@@ -339,6 +339,9 @@
 
 <script>
 (function(){
+  // Scroll to top on every reload
+  window.scrollTo(0,0);
+
   // Show navbar immediately
   const nav = document.getElementById('main-nav');
   if (nav) {
@@ -348,7 +351,7 @@
     });
   }
 
-  // Navbar animations (logo shake + brand colour swap)
+  // Navbar animations
   function startNavbarAnimations(){
     const logo = document.getElementById('nav-logo');
     if(logo){
@@ -400,21 +403,20 @@
     });
   });
 
-  // Scroll reveal
+  // REVEAL OBSERVERS – only add .revealed, never remove
   const reveals = document.querySelectorAll('.reveal-up, .reveal-left');
-  const observer = new IntersectionObserver((entries) => {
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('revealed');
-      else entry.target.classList.remove('revealed');
     });
   }, { threshold: 0.2 });
-  reveals.forEach(el => observer.observe(el));
+  reveals.forEach(el => revealObserver.observe(el));
 
-  // Footer cross‑reveal
+  // Footer cross-reveal (only add)
   const footer = document.querySelector('footer');
   if (footer) {
     const footerObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); else e.target.classList.remove('is-visible'); });
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
     }, { threshold: 0.1 });
     footerObs.observe(footer);
   }
@@ -456,7 +458,7 @@
     badge.addEventListener('keydown', (e) => { if(e.key==='Enter'||e.key===' '){e.preventDefault();window.open('https://wa.me/16395274759','_blank');}});
   }
 
-  // Mobile menu – close on outside tap
+  // Mobile menu – close on outside click and scroll
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   if (mobileBtn && mobileMenu) {
@@ -464,14 +466,14 @@
       const nowHidden = mobileMenu.classList.toggle('hidden');
       mobileBtn.setAttribute('aria-expanded', String(!nowHidden));
     });
-    window.addEventListener('scroll', () => {
-      if (!mobileMenu.classList.contains('hidden')) {
+    document.addEventListener('click', function(event) {
+      if (!mobileMenu.classList.contains('hidden') && !mobileBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
         mobileMenu.classList.add('hidden');
         mobileBtn.setAttribute('aria-expanded', 'false');
       }
     });
-    document.addEventListener('click', function(event) {
-      if (!mobileMenu.classList.contains('hidden') && !mobileBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+    window.addEventListener('scroll', function() {
+      if (!mobileMenu.classList.contains('hidden')) {
         mobileMenu.classList.add('hidden');
         mobileBtn.setAttribute('aria-expanded', 'false');
       }

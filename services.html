@@ -4,13 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- ═══ PRIMARY SEO ═══════════════════════════════════════════════════════ -->
   <title>Frankie Digitalz – Services | Web Development, E‑Commerce, Digital Marketing &amp; Consulting</title>
   <meta name="description" content="Frankie Digitalz offers professional web development, e‑commerce, UI/UX design, digital marketing, brand strategy, and technical consulting services. Get a free quote today.">
   <meta name="author" content="Frankie Digitalz">
   <meta name="robots" content="index, follow">
 
-  <!-- ═══ OPEN GRAPH ════════════════════════════════════════════════════════ -->
   <meta property="og:title" content="Frankie Digitalz – Services">
   <meta property="og:description" content="Professional web development, e‑commerce, UI/UX design, digital marketing, brand strategy, and technical consulting. Free consultation available.">
   <meta property="og:site_name" content="Frankie Digitalz">
@@ -21,28 +19,22 @@
   <meta property="og:image" content="https://frankiedigital.vercel.app/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@DigitalzFrankie">
-  <meta name="twitter:title" content="Frankie Digitalz – Services">
-  <meta name="twitter:description" content="Professional digital services to grow your business. Free quote available.">
-  <meta name="twitter:image" content="https://frankiedigital.vercel.app/og-image.png">
 
-  <!-- ═══ CANONICAL / HREFLANG (clean URL) ══════════════════════════════════ -->
   <link rel="canonical" href="https://frankiedigital.vercel.app/services">
   <link rel="alternate" hreflang="en" href="https://frankiedigital.vercel.app/services">
 
-  <!-- ═══ FAVICON ═══════════════════════════════════════════════════════════ -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%2314b8a6'/%3E%3C/svg%3E">
 
-  <!-- ═══ GOOGLE ANALYTICS ═══════════════════════════════════════════════════ -->
+  
+  
+  <link rel="preconnect" href="https://cdn.contentful.com">
+  <link rel="preconnect" href="https://images.ctfassets.net">
+  <link rel="dns-prefetch" href="https://images.ctfassets.net">
 
-  <!-- ═══ Tailwind CSS CDN ═══════════════════════════════════════════════════ -->
   <link rel="stylesheet" href="/css/style.css">
-
-  <!-- ═══ Google Fonts + Font Awesome ═══════════════════════════════════════ -->
-  <link rel="stylesheet" href="/css/fonts.css">
   <link rel="preload" href="/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/css/all.min.css"></noscript>
 
-  <!-- ═══ SCHEMA.ORG JSON-LD (no fake ProfessionalService) ══════════════════ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -79,39 +71,40 @@
     *{margin:0;padding:0;box-sizing:border-box;}
     body{font-family:'Inter',sans-serif;background:#d3d3d3;color:#000000;}
 
-    /* ── NAVBAR ANIMATIONS ───────────────────────────────────────── */
     @keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-4px);}40%{transform:translateX(4px);}60%{transform:translateX(-2px);}80%{transform:translateX(2px);}}
     .shake-animation{animation:shake 0.3s ease-in-out 0s 6;display:inline-block;}
 
-    /* ── LIQUID FOCUS ────────────────────────────────────────────── */
+    /* Liquid focus */
     .liquid-focus{filter:blur(15px);opacity:0;transform:scale(0.95);transition:filter 0.7s ease,opacity 0.5s ease,transform 0.6s ease;}
     .liquid-focus.is-active{filter:blur(0);opacity:1;transform:scale(1);}
 
-    /* ── BUTTONS ─────────────────────────────────────────────────── */
+    /* Buttons */
     .btn-primary{background:#14b8a6;color:#000000;transition:all 0.3s ease;}
-    .btn-primary:hover{background:#000000;color:#ffffff;}
+    .btn-primary:hover{background:hwb(0 100% 0%);color:#000000;}
     .btn-secondary{background:#000000;color:#d3d3d3;transition:all 0.3s ease;}
     .btn-secondary:hover{background:#14b8a6;color:#ffffff;}
 
-    /* ── FADE SECTIONS ───────────────────────────────────────────── */
+    /* Fade sections */
     .fade-section{transition:opacity 1s ease-in-out;opacity:0;}
     .fade-section.is-visible{opacity:1;}
-    .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
-  transition: opacity 1s ease-out, transform 1s ease-out;
-}
-.reveal-up { opacity: 0; transform: translateY(30px); }
-.reveal-up.revealed { opacity: 1; transform: translateY(0); }
-.reveal-left { opacity: 0; transform: translateX(-30px); }
-.reveal-left.revealed { opacity: 1; transform: translateX(0); }
-.reveal-right-scale { opacity: 0; transform: translateX(30px) scale(0.95); }
-.reveal-right-scale.revealed { opacity: 1; transform: translateX(0) scale(1); }
-.reveal-fade { opacity: 0; }
-.reveal-fade.revealed { opacity: 1; }
 
-    /* ── SERVICE CARD ────────────────────────────────────────────── */
+    /* REVEAL ANIMATIONS – 0.5s duration & stay revealed */
+    .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    .reveal-up { opacity: 0; transform: translateY(30px); }
+    .reveal-up.revealed { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-30px); }
+    .reveal-left.revealed { opacity: 1; transform: translateX(0); }
+    .reveal-right-scale { opacity: 0; transform: translateX(30px) scale(0.95); }
+    .reveal-right-scale.revealed { opacity: 1; transform: translateX(0) scale(1); }
+    .reveal-fade { opacity: 0; }
+    .reveal-fade.revealed { opacity: 1; }
+
+    /* Service card */
     .service-card{
       transition:all 0.3s ease;
-      box-shadow:0 4px 12px rgba(0,0,0,0.05);
+      box-shadow:0 4px 12px rgba(243, 243, 243, 0.05);
     }
     .service-card:hover{
       transform:translateY(-6px);
@@ -119,7 +112,6 @@
       border-color:#14b8a6 !important;
     }
 
-    /* ── BREATHING ICON ──────────────────────────────────────────── */
     .breathing-icon svg{
       animation:iconBreathe 2.5s ease-in-out infinite;
     }
@@ -128,11 +120,10 @@
       50%{transform:scale(1.02);}
     }
 
-    /* ── LEARN MORE BUTTON ───────────────────────────────────────── */
     .learn-more-btn{color:#14b8a6;transition:color 0.2s ease;background:none;border:none;cursor:pointer;padding:0;}
     .learn-more-btn:hover,.learn-more-btn:active{color:#000000;}
 
-    /* ── MODAL OVERLAY ───────────────────────────────────────────── */
+    /* Modal */
     .modal{
       display:none;
       position:fixed;top:0;left:0;width:100%;height:100%;
@@ -156,8 +147,6 @@
       transition:color 0.2s;line-height:1;
     }
     .modal-close:hover{color:#14b8a6;}
-
-    /* ── SVG TRACE — single teal line moving around modal border ── */
     .modal-trace-svg{
       position:absolute;top:0;left:0;
       width:100%;height:100%;
@@ -176,31 +165,26 @@
       from{stroke-dashoffset:0;}
       to{stroke-dashoffset:-1880;}
     }
-
-    .modal-title{color:#14b8a6;font-size:1.5rem;margin-bottom:0.8rem;font-weight:800;letter-spacing:-0.02em;}
-    .modal-description{color:rgba(255,255,255,0.92);line-height:1.7;margin-bottom:1.8rem;font-size:0.95rem;}
-    .modal-service-link{text-align:center;margin-top:0.5rem;}
+    .modal-title{color:#14b8a6;font-size:1.5rem;margin-bottom:0.8rem;font-weight:800;}
+    .modal-description{color:rgba(255,255,255,0.92);line-height:1.7;margin-bottom:1.8rem;}
     .modal-service-link a{
       display:inline-block;
       color:#14b8a6;
       text-decoration:none;
       font-weight:700;
-      font-size:1rem;
-      letter-spacing:0.02em;
       border-bottom:1px solid rgba(20,184,166,0.4);
       padding-bottom:2px;
       transition:color 0.2s,border-color 0.2s;
     }
     .modal-service-link a:hover{color:#ffffff;border-color:#ffffff;}
 
-    /* ── DARK SECTION ────────────────────────────────────────────── */
+    /* Dark section */
     .dark-section{background:#000000 !important;}
     .dark-section .text-black{color:#d3d3d3 !important;}
     .dark-section .text-black\/70{color:rgba(211,211,211,0.7) !important;}
     .dark-section .border-black\/10{border-color:rgba(211,211,211,0.1) !important;}
-    .dark-section .bg-black\/5{background-color:rgba(255,255,255,0.05) !important;}
 
-    /* ── NEURAL HUB NODES ────────────────────────────────────────── */
+    /* Neural hub */
     .service-node{position:absolute;cursor:pointer;transition:all 0.3s ease;transform:translate(-50%,-50%);}
     .service-node .node-icon{width:50px;height:50px;background:#000000;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,0,0,0.1);transition:all 0.3s ease;}
     .service-node .node-label{position:absolute;bottom:-35px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:12px;font-weight:bold;text-transform:uppercase;letter-spacing:1px;color:#000000;opacity:1;transition:all 0.3s ease;}
@@ -208,13 +192,11 @@
     .service-node.active .node-label{color:#14b8a6;transform:translateX(-50%) scale(1.05);}
     .particle{position:absolute;width:8px;height:8px;background:#14b8a6;border-radius:50%;box-shadow:0 0 8px #14b8a6;z-index:25;pointer-events:none;}
 
-    /* ── FOOTER ANIMATIONS ───────────────────────────────────────── */
+    /* Footer */
     .footer-reveal-left{transform:translateX(-30px);transition:all 1s ease-out;}
     .footer-reveal-right{transform:translateX(30px);transition:all 1s ease-out;}
     .footer-reveal-up{transform:translateY(20px);transition:all 1s ease-out;}
     .is-visible .footer-reveal-left,.is-visible .footer-reveal-right,.is-visible .footer-reveal-up{opacity:1;transform:translate(0);}
-
-    /* ── FOOTER TRACE PATH ───────────────────────────────────────── */
     .trace-path{stroke-dasharray:3000;stroke-dashoffset:3000;animation:traceLoop 6s linear infinite;}
     @keyframes traceLoop{
       0%{stroke-dashoffset:3000;stroke:rgba(20,184,166,0.1);}
@@ -222,55 +204,31 @@
       90%{stroke-dashoffset:0;stroke:rgba(20,184,166,1);}
       100%{stroke-dashoffset:0;stroke:rgba(20,184,166,0.1);}
     }
-
-    /* ── GHOST LOGO GLOW ─────────────────────────────────────────── */
     .animate-logo-glow{animation:logoGlow 3s ease-in-out infinite;}
     @keyframes logoGlow{
       0%,100%{opacity:0.05;}
       50%{opacity:0.15;}
     }
-
-    /* ── BREATHE (newsletter button) ─────────────────────────────── */
     .animate-breathe{animation:breathe 3.5s ease-in-out infinite;}
     @keyframes breathe{
       0%,100%{transform:scale(1);box-shadow:0 10px 20px -5px rgba(20,184,166,0.3);}
       50%{transform:scale(1.06);box-shadow:0 25px 30px -10px rgba(20,184,166,0.5);}
     }
 
-    /* ── BACK TO TOP ──────────────────────────────────────────────── */
+    /* Back to top */
     .back-to-top{background-color:#14b8a6;color:white;transition:all 0.3s ease;box-shadow:0 4px 16px rgba(20,184,166,0.5);}
-    .back-to-top:hover{background-color:#000000;color:white;box-shadow:0 4px 16px rgba(0,0,0,0.3);}
+    .back-to-top:hover{background-color:#000000;color:white;}
 
-    /* ── SR-ONLY (hidden SEO paragraph) ─────────────────────────── */
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
-
-    /* ── NEURAL HUB PANEL — light text on black bg */
-    #serviceTitle, #serviceDesc{color:#d3d3d3 !important;}
-    #serviceTags span{color:#000000 !important;}
-
-    /* ── REQUEST SERVICE BUTTON ───────────────────────────────────── */
-    #requestServiceBtn{background:#d3d3d3 !important;color:#000000 !important;}
-    #requestServiceBtn:hover{background:#14b8a6 !important;color:#000000 !important;}
-
-    /* ── BREADCRUMB & ANCHOR MENU STYLES ─────────────────────────── */
+    /* Breadcrumb */
     .service-breadcrumb {
       font-size: 0.875rem;
       margin-top: 1rem;
       margin-bottom: 1rem;
       color: #4b5563;
     }
-    .service-breadcrumb a {
-      color: #4b5563;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .service-breadcrumb a:hover {
-      color: #14b8a6;
-    }
-    .service-breadcrumb span.current {
-      color: #14b8a6;
-      font-weight: 500;
-    }
+    .service-breadcrumb a { color: #4b5563; text-decoration: none; transition: color 0.2s; }
+    .service-breadcrumb a:hover { color: #14b8a6; }
+    .service-breadcrumb span.current { color: #14b8a6; font-weight: 500; }
     .anchor-menu {
       display: flex;
       flex-wrap: wrap;
@@ -287,14 +245,10 @@
       text-decoration: none;
       transition: color 0.2s;
     }
-    .anchor-menu a:hover {
-      color: #000000;
-    }
-    @media (min-width: 768px) {
-      .anchor-menu a { font-size: 0.85rem; }
-    }
+    .anchor-menu a:hover { color: #000000; }
+    @media (min-width: 768px) { .anchor-menu a { font-size: 0.85rem; } }
 
-    /* ── SKIP LINK ────────────────────────────────────────────────── */
+    /* Skip link */
     .skip-link {
       position: absolute;
       left: -9999px;
@@ -316,14 +270,7 @@
       height: auto;
     }
 
-    /* ── FOCUS RINGS (WCAG 2.4.7) ───────────────────────────────────── */
-    a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
-      outline: 3px solid #14b8a6;
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-
-    /* ── REDUCED MOTION (WCAG 2.3.3) ────────────────────────────────── */
+    *:focus-visible{outline:3px solid #14b8a6;outline-offset:3px;border-radius:4px;}
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -341,9 +288,7 @@
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     24/7 STICKY SUPPORT BADGE (bottom-left)
-═══════════════════════════════════════════════════════════════════ -->
+<!-- 24/7 SUPPORT BADGE -->
 <div id="supportBadge" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto;min-width:48px;">
   <div class="relative flex items-center justify-center">
     <span class="absolute right-0 bottom-0 flex h-2 w-2 translate-x-[1px] translate-y-[1px]">
@@ -355,16 +300,12 @@
   <span id="supportText" class="text-[11px] font-black uppercase tracking-wider text-black whitespace-nowrap overflow-hidden transition-all duration-300" style="max-width:0px;opacity:0;">24/7 Support</span>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     BACK TO TOP (bottom-right)
-═══════════════════════════════════════════════════════════════════ -->
+<!-- BACK TO TOP -->
 <div id="backToTopBtn" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300">
   <i class="fas fa-arrow-up text-white text-sm"></i>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     NAVBAR (clean URLs)
-═══════════════════════════════════════════════════════════════════ -->
+<!-- NAVBAR -->
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-black/10 py-3 transition-all duration-500" style="transform:translateY(-100%);opacity:0;">
   <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
     <div class="flex items-center gap-3">
@@ -407,9 +348,7 @@
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     MODAL (SVG trace)
-═══════════════════════════════════════════════════════════════════ -->
+<!-- MODAL -->
 <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal-content" id="modalContent">
     <svg class="modal-trace-svg" id="modalTraceSvg" aria-hidden="true">
@@ -423,8 +362,7 @@
 </div>
 
 <main id="main-content">
-
-  <!-- PAGE HERO LABEL -->
+  <!-- HERO -->
   <section class="pt-32 pb-8 fade-section" style="background:#d3d3d3;">
     <div class="container mx-auto px-4 fade-inner text-center">
       <span class="font-mono text-sm tracking-[0.3em] text-black/70 uppercase mb-3 block">WHAT WE DO</span>
@@ -436,7 +374,7 @@
     </div>
   </section>
 
-  <!-- ── NEURAL HUB ─────────────────────────────────────────────── -->
+  <!-- NEURAL HUB -->
   <section class="py-24 dark-section" style="background:#0D1F1C;" id="neuralSection">
     <div class="container mx-auto px-4 relative z-10">
       <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
@@ -467,7 +405,7 @@
     </div>
   </section>
 
-  <!-- ── ALL SERVICES GRID ──────────────────────────────────────── -->
+  <!-- SERVICES GRID -->
   <section class="py-24 fade-section" style="background:#d3d3d3;" id="servicesSection">
     <div class="container mx-auto px-4 fade-inner">
       <div class="text-center mb-16">
@@ -487,123 +425,97 @@
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="servicesGrid">
-
         <div id="web-dev" class="service-card bg-white rounded-2xl p-6 border border-black/10" data-service="web">
           <div class="breathing-icon w-14 h-14 rounded-xl bg-teal-50 flex items-center justify-center mb-5">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="4 9 2 12 4 15"></polyline>
-              <polyline points="20 9 22 12 20 15"></polyline>
-              <line x1="9" y1="5" x2="15" y2="19"></line>
-            </svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="1.5"><polyline points="4 9 2 12 4 15"></polyline><polyline points="20 9 22 12 20 15"></polyline><line x1="9" y1="5" x2="15" y2="19"></line></svg>
           </div>
           <h3 class="text-xl font-bold text-black mb-1">Web Development</h3>
           <p class="text-black text-sm mb-1">Modern, responsive websites built with cutting-edge technology</p>
           <ul class="space-y-2 mb-1">
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Next.js / React</li>
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Tailwind CSS</li>
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>GraphQL / REST APIs</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Next.js / React</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Tailwind CSS</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>GraphQL / REST APIs</li>
           </ul>
           <button class="learn-more-btn text-sm font-semibold inline-flex items-center gap-1">Learn More About Web Development <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
         </div>
 
         <div id="uiux-dev" class="service-card bg-white rounded-2xl p-6 border border-black/10" data-service="uiux">
           <div class="breathing-icon w-14 h-14 rounded-xl bg-teal-50 flex items-center justify-center mb-5">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 19l7-7-3-3-7 7v3h3z"></path>
-              <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
-              <circle cx="11" cy="11" r="2"></circle>
-            </svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="1.5"><path d="M12 19l7-7-3-3-7 7v3h3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><circle cx="11" cy="11" r="2"></circle></svg>
           </div>
           <h3 class="text-xl font-bold text-black mb-2">UI/UX Design</h3>
           <p class="text-black text-sm mb-4">Beautiful, intuitive interfaces that users love</p>
           <ul class="space-y-2 mb-6">
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Figma / Adobe XD</li>
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Prototyping &amp; Wireframes</li>
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>User Testing</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Figma / Adobe XD</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Prototyping &amp; Wireframes</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>User Testing</li>
           </ul>
           <button class="learn-more-btn text-sm font-semibold inline-flex items-center gap-1">Learn More About UI/UX Design <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
         </div>
 
         <div id="ecom-dev" class="service-card bg-white rounded-2xl p-6 border border-black/10" data-service="ecom">
           <div class="breathing-icon w-14 h-14 rounded-xl bg-teal-50 flex items-center justify-center mb-5">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <path d="M16 10a4 4 0 0 1-8 0"></path>
-            </svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
           </div>
           <h3 class="text-xl font-bold text-black mb-2">E‑Commerce Solutions</h3>
           <p class="text-black text-sm mb-4">Complete online store solutions with seamless user experiences</p>
           <ul class="space-y-2 mb-6">
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Shopify / WooCommerce</li>
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Payment Gateways</li>
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Analytics &amp; Conversion</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Shopify / WooCommerce</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Payment Gateways</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Analytics &amp; Conversion</li>
           </ul>
           <button class="learn-more-btn text-sm font-semibold inline-flex items-center gap-1">Learn More About E‑Commerce Solutions <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
         </div>
 
         <div id="marketing-dev" class="service-card bg-white rounded-2xl p-6 border border-black/10" data-service="marketing">
           <div class="breathing-icon w-14 h-14 rounded-xl bg-teal-50 flex items-center justify-center mb-5">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path><polyline points="18 4 21 7 18 10"></polyline>
-            </svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="1.5"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path><polyline points="18 4 21 7 18 10"></polyline></svg>
           </div>
           <h3 class="text-xl font-bold text-black mb-2">Digital Marketing</h3>
           <p class="text-black text-sm mb-4">Reach your target audience effectively and convert visitors into customers</p>
           <ul class="space-y-2 mb-6">
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>SEO / SEM</li>
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Social Media Ads</li>
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Analytics Reporting</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>SEO / SEM</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Social Media Ads</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Analytics Reporting</li>
           </ul>
           <button class="learn-more-btn text-sm font-semibold inline-flex items-center gap-1">Learn More About Digital Marketing <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
         </div>
 
         <div id="brand-dev" class="service-card bg-white rounded-2xl p-6 border border-black/10" data-service="brand">
           <div class="breathing-icon w-14 h-14 rounded-xl bg-teal-50 flex items-center justify-center mb-5">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
           </div>
           <h3 class="text-xl font-bold text-black mb-2">Brand Strategy</h3>
           <p class="text-black text-sm mb-4">Comprehensive branding solutions that establish a strong market presence</p>
           <ul class="space-y-2 mb-6">
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Brand Identity</li>
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Positioning &amp; Messaging</li>
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Visual Design</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Brand Identity</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Positioning &amp; Messaging</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Visual Design</li>
           </ul>
           <button class="learn-more-btn text-sm font-semibold inline-flex items-center gap-1">Learn More About Brand Strategy <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
         </div>
 
         <div id="consulting-dev" class="service-card bg-white rounded-2xl p-6 border border-black/10" data-service="consulting">
           <div class="breathing-icon w-14 h-14 rounded-xl bg-teal-50 flex items-center justify-center mb-5">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="3"></circle>
-              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"></path>
-              <path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"></path>
-            </svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="1.5"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"></path></svg>
           </div>
           <h3 class="text-xl font-bold text-black mb-2">Technical Consulting</h3>
           <p class="text-black text-sm mb-4">Expert guidance on technology stack and digital transformation</p>
           <ul class="space-y-2 mb-6">
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Tech Audit</li>
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Architecture Design</li>
-            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Scalability &amp; Performance</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Tech Audit</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Architecture Design</li>
+            <li class="flex items-center gap-2 text-sm text-black"><svg class="w-4 h-4 text-[#14b8a6]" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"></path></svg>Scalability &amp; Performance</li>
           </ul>
           <button class="learn-more-btn text-sm font-semibold inline-flex items-center gap-1">Learn More About Technical Consulting <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ── NEWSLETTER ─────────────────────────────────────────────── -->
+  <!-- NEWSLETTER -->
   <section class="py-24 relative overflow-hidden fade-section" style="background:#d3d3d3;">
     <div class="absolute inset-0 flex items-center justify-center z-0 opacity-10 pointer-events-none">
-      <svg class="w-[500px] h-[500px] fill-[#14b8a6] animate-logo-glow" viewBox="0 0 1000 800">
-        <path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z"/>
-        <path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z"/>
-        <path d="M225 130 L305 210 L225 210 Z"/>
-      </svg>
+      <svg class="w-[500px] h-[500px] fill-[#14b8a6] animate-logo-glow" viewBox="0 0 1000 800"><path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z"/><path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z"/><path d="M225 130 L305 210 L225 210 Z"/></svg>
     </div>
     <div class="container mx-auto px-4 relative z-10 fade-inner">
       <div class="text-center mb-16">
@@ -630,12 +542,9 @@
       </div>
     </div>
   </section>
-
 </main>
 
-<!-- ══════════════════════════════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer class="relative pt-24 pb-12 overflow-hidden dark-section fade-section" style="background:#000000;border-top:1px solid rgba(255,255,255,0.1);">
   <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
     <svg class="w-[800px] h-[800px] fill-none stroke-[#14b8a6]/10 stroke-2" viewBox="0 0 1000 800">
@@ -658,35 +567,9 @@
         </div>
       </div>
       <div class="footer-reveal-right opacity-0 grid grid-cols-1 md:grid-cols-3 gap-12">
-        <div>
-          <h3 class="font-black text-white uppercase tracking-wider text-xs mb-6">Services</h3>
-          <ul class="space-y-4">
-            <li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Web Development</a></li>
-            <li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">E‑Commerce</a></li>
-            <li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">UI/UX Design</a></li>
-            <li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Digital Marketing</a></li>
-            <li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Brand Strategy</a></li>
-            <li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Technical Consulting</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="font-black text-white uppercase tracking-wider text-xs mb-6">Company</h3>
-          <ul class="space-y-4">
-            <li><a href="/about" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">About Us</a></li>
-            <li><a href="/portfolio" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Portfolio</a></li>
-            <li><a href="/faq" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">FAQ</a></li>
-            <li><a href="/blog" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Blog</a></li>
-            <li><a href="/contact" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="font-black text-white uppercase tracking-wider text-xs mb-6">Legal</h3>
-          <ul class="space-y-4">
-            <li><a href="/privacy" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Privacy Policy</a></li>
-            <li><a href="/terms" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Terms of Service</a></li>
-            <li><a href="/cookies" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Cookie Policy</a></li>
-          </ul>
-        </div>
+        <div><h3 class="font-black text-white uppercase tracking-wider text-xs mb-6">Services</h3><ul class="space-y-4"><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Web Development</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">E‑Commerce</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">UI/UX Design</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Digital Marketing</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Brand Strategy</a></li><li><a href="/services" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Technical Consulting</a></li></ul></div>
+        <div><h3 class="font-black text-white uppercase tracking-wider text-xs mb-6">Company</h3><ul class="space-y-4"><li><a href="/about" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">About Us</a></li><li><a href="/portfolio" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Portfolio</a></li><li><a href="/faq" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">FAQ</a></li><li><a href="/blog" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Blog</a></li><li><a href="/contact" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Contact</a></li></ul></div>
+        <div><h3 class="font-black text-white uppercase tracking-wider text-xs mb-6">Legal</h3><ul class="space-y-4"><li><a href="/privacy" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Privacy Policy</a></li><li><a href="/terms" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Terms of Service</a></li><li><a href="/cookies" class="text-white/60 hover:text-[#14b8a6] text-sm font-medium transition-all hover:translate-x-1 inline-block">Cookie Policy</a></li></ul></div>
       </div>
     </div>
     <div class="footer-reveal-up opacity-0">
@@ -698,8 +581,10 @@
 
 <script>
 (function(){
+  // Scroll to top on every reload
+  window.scrollTo(0,0);
 
-  /* ── 1. SHOW NAVBAR IMMEDIATELY (no boot sequence) ───────────────── */
+  // Show navbar immediately
   const nav = document.getElementById('main-nav');
   requestAnimationFrame(()=>{
     requestAnimationFrame(()=>{
@@ -708,7 +593,7 @@
     });
   });
 
-  /* ── 2. NAVBAR LOGO + BRAND COLOUR ANIMATIONS ────────────────────── */
+  // Navbar animations
   function startNavbarAnimations(){
     const logo = document.getElementById('nav-logo');
     if(logo){
@@ -743,7 +628,7 @@
   }
   startNavbarAnimations();
 
-  /* ── 3. NEURAL HUB ───────────────────────────────────────────────── */
+  // Neural Hub
   function initNeuralHub(){
     const container = document.getElementById('neuralMap');
     if(!container) return;
@@ -805,18 +690,18 @@
 
     function createNodes(){
       nodesContainer.innerHTML = '';
+      const nodeIcons={
+        web:'<polyline points="4 9 2 12 4 15"/><polyline points="20 9 22 12 20 15"/><line x1="9" y1="5" x2="15" y2="19"/>',
+        uiux:'<path d="M12 19l7-7-3-3-7 7v3h3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/>',
+        ecom:'<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>',
+        marketing:'<path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/><polyline points="18 4 21 7 18 10"/>',
+        brand:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+        consulting:'<circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/>'
+      };
       services.forEach(service=>{
         const nodeDiv = document.createElement('div');
         nodeDiv.className = 'service-node';
         nodeDiv.setAttribute('data-service', service.id);
-        const nodeIcons={
-          web:'<polyline points="4 9 2 12 4 15"/><polyline points="20 9 22 12 20 15"/><line x1="9" y1="5" x2="15" y2="19"/>',
-          uiux:'<path d="M12 19l7-7-3-3-7 7v3h3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/>',
-          ecom:'<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>',
-          marketing:'<path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/><polyline points="18 4 21 7 18 10"/>',
-          brand:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
-          consulting:'<circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/>'
-        };
         nodeDiv.innerHTML = `<div class="node-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${nodeIcons[service.id]||nodeIcons.web}</svg></div><div class="node-label">${service.id==='ecom'?'E&#x2011;Commerce':service.title}</div>`;
         nodesContainer.appendChild(nodeDiv);
         service.element = nodeDiv;
@@ -844,7 +729,8 @@
 
       serviceTitle.innerText = service.title;
       serviceDesc.innerText  = service.desc;
-      serviceTags.innerHTML  = service.tags.map(t=>`<span class="px-3 py-1.5 bg-[#d3d3d3] rounded-full text-black text-xs border border-black/10">${t}</span>`).join('');
+      // MODIFIED: tags now have black background, white text, white border with 0.2 opacity
+      serviceTags.innerHTML  = service.tags.map(t=>`<span class="px-3 py-1.5 bg-black rounded-full text-white text-xs border border-white/20">${t}</span>`).join('');
       nodeIdSpan.innerText   = (services.findIndex(s=>s.id===serviceId)+1).toString().padStart(2,'0');
 
       services.forEach(s=> s.element.classList.remove('active'));
@@ -916,7 +802,7 @@
   }
   initNeuralHub();
 
-  /* ── 4. MODAL — service details ──────────────────────────────────── */
+  // Modal for service details
   const modal            = document.getElementById('modal');
   const modalContent     = document.getElementById('modalContent');
   const modalTitle       = document.getElementById('modalTitle');
@@ -961,27 +847,35 @@
   document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModalFn(); });
   window.addEventListener('resize',()=>{ if(modal.style.display==='flex') resizeTraceRect(); });
 
-  /* ── 5. FADE SECTIONS (IntersectionObserver) ─────────────────────── */
+  // Fade sections – only add is-visible once
   document.querySelectorAll('.fade-section').forEach(section=>{
     const inner = section.querySelector('.fade-inner');
     if(!inner) return;
     const obs = new IntersectionObserver(entries=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting) section.classList.add('is-visible');
-        else section.classList.remove('is-visible');
       });
     },{threshold:0.15});
     obs.observe(section);
   });
 
-  /* ── 6. FOOTER CROSS-REVEAL ──────────────────────────────────────── */
-  const footer    = document.querySelector('footer');
+  // Reveal elements – only add .revealed, never remove
+  const reveals = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('revealed');
+    });
+  }, { threshold: 0.2 });
+  reveals.forEach(el => revealObserver.observe(el));
+
+  // Footer cross-reveal
+  const footer = document.querySelector('footer');
   const footerObs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('is-visible'); else e.target.classList.remove('is-visible'); });
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('is-visible'); });
   },{threshold:0.1});
   if(footer) footerObs.observe(footer);
 
-  /* ── 7. BACK TO TOP (appears after 300px scroll) ─────────────────── */
+  // Back to top
   const backBtn = document.getElementById('backToTopBtn');
   window.addEventListener('scroll',()=>{
     if(window.scrollY > 300){
@@ -994,9 +888,9 @@
   });
   backBtn.addEventListener('click',()=> window.scrollTo({top:0,behavior:'smooth'}));
 
-  /* ── 8. 24/7 SUPPORT BADGE ───────────────────────────────────────── */
+  // 24/7 Support Badge
   const supportText = document.getElementById('supportText');
-  const badge       = document.getElementById('supportBadge');
+  const badge = document.getElementById('supportBadge');
   function startBadgeCycle(){
     setInterval(()=>{
       supportText.style.maxWidth = '200px';
@@ -1006,31 +900,31 @@
   }
   startBadgeCycle();
   badge.addEventListener('click',()=> window.open('https://wa.me/16395274759','_blank'));
+  badge.addEventListener('keydown',(e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); window.open('https://wa.me/16395274759','_blank'); } });
 
-  /* ── 9. MOBILE MENU ──────────────────────────────────────────────── */
-  const mobileBtn  = document.getElementById('mobileMenuBtn');
+  // Mobile menu – close on outside click and on scroll
+  const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   if(mobileBtn && mobileMenu){
     mobileBtn.addEventListener('click',()=> mobileMenu.classList.toggle('hidden'));
-    window.addEventListener('scroll', () => {
-      if (!mobileMenu.classList.contains('hidden')) {
-        mobileMenu.classList.add('hidden');
-        mobileBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
     document.addEventListener('click', function(event) {
       if (!mobileMenu.classList.contains('hidden') && !mobileBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
         mobileMenu.classList.add('hidden');
       }
     });
+    window.addEventListener('scroll', function() {
+      if (!mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
   }
 
-  // Newsletter AJAX
+  // Newsletter
   const newsletterForm = document.getElementById('newsletterForm');
   const newsletterFormContainer = document.getElementById('newsletterFormContainer');
   const newsletterThankYou = document.getElementById('newsletterThankYou');
   const newsletterSubmitBtn = document.getElementById('newsletterSubmitBtn');
-  if (newsletterForm) {
+  if(newsletterForm){
     newsletterForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const name = document.getElementById('newsletterName').value.trim();
@@ -1057,7 +951,7 @@
     });
   }
   const newsletterBackBtn = document.getElementById('newsletterBackBtn');
-  if (newsletterBackBtn) {
+  if(newsletterBackBtn){
     newsletterBackBtn.addEventListener('click', () => {
       newsletterFormContainer.style.display = 'block';
       newsletterThankYou.style.display = 'none';
@@ -1066,10 +960,11 @@
     });
   }
 
+  // Back to top keyboard
+  backBtn.addEventListener('keydown',(e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); } });
 })();
 </script>
 
-<!-- ═══ GOOGLE ANALYTICS (deferred) ══════════════════════════════════════════ -->
 <script defer src="https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJQPN0DSW6');</script>
 

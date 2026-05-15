@@ -27,19 +27,32 @@
   
   
   <link rel="preconnect" href="https://cdn.contentful.com">
-  
+  <link rel="preconnect" href="https://images.ctfassets.net" crossorigin>
+  <link rel="dns-prefetch" href="https://images.ctfassets.net">
 
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preload" href="/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
 
   <!-- Font Awesome: async to avoid render-blocking -->
   <link rel="preload" href="/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/css/all.min.css"></noscript>
 
   <style>
-    /* font-display: swap override for Font Awesome – prevents FOIT */
-    @font-face { font-family: 'Font Awesome 6 Free'; font-display: swap; }
-    @font-face { font-family: 'Font Awesome 6 Brands'; font-display: swap; }
-    body.boot-loading { overflow: hidden; }
+    /* Font Awesome font-display:swap – prevents invisible-text flash */
+    @font-face {
+      font-family: 'Font Awesome 6 Free';
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap;
+      src: url('/webfonts/fa-solid-900.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Font Awesome 6 Brands';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/webfonts/fa-brands-400.woff2') format('woff2');
+    }
     .letter-animation {
       display: inline-block;
       opacity: 0;
@@ -134,7 +147,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: #0f766e; /* WCAG fix: was #14b8a6 (2.46:1 on white), now #0f766e (4.98:1) */
+      color: #0f766e;
       margin-bottom: 0.5rem;
     }
     .team-description {
@@ -172,8 +185,9 @@
       transition: transform 0.1s linear;
     }
 
+    /* REVEAL ANIMATIONS - 0.5s duration & stay revealed */
     .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
-      transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     }
     .reveal-up { opacity: 0; transform: translateY(30px); }
     .reveal-up.revealed { opacity: 1; transform: translateY(0); }
@@ -200,8 +214,12 @@
     }
     .logo-pulse { animation: logoPulse 2s ease-in-out infinite; }
 
-    .animate-marquee-left { animation: marqueeLeft 25s linear infinite; }
-    .animate-marquee-right { animation: marqueeRight 30s linear infinite; }
+    /* Marquee animations - initially paused */
+    .animate-marquee-left { animation: marqueeLeft 25s linear infinite; animation-play-state: paused; }
+    .animate-marquee-right { animation: marqueeRight 30s linear infinite; animation-play-state: paused; }
+    .marquee-running {
+      animation-play-state: running !important;
+    }
     @keyframes marqueeLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
     @keyframes marqueeRight { 0% { transform: translateX(-100%); } 100% { transform: translateX(0); } }
 
@@ -299,22 +317,31 @@
     .contact-btn-hover:hover {
       background-color: #000000 !important;
     }
+
+    /* ── WCAG 2.4.7 / 2.4.11 – Visible focus ring for keyboard nav ── */
+    :focus-visible {
+      outline: 3px solid #14b8a6;
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+    /* ── WCAG 2.3.3 / 1.4.3 – Respect reduced-motion preference ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
   </style>
 </head>
-<body class="boot-loading">
+<body>
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
-
-<!-- BOOT LOADER -->
-<div id="boot-loader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-black">
-  <div class="logo-pulse w-20 h-20 mb-4">
-    <svg class="w-full h-full fill-[#14b8a6]" viewBox="0 0 1000 800">
-      <path d="M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z"/>
-      <path d="M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z"/>
-      <path d="M225 130 L305 210 L225 210 Z"/>
-    </svg>
-  </div>
-</div>
 
 <!-- 24/7 SUPPORT BADGE -->
 <div id="supportBadge" role="button" tabindex="0" aria-label="Contact us via WhatsApp for 24/7 support" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto; min-width:48px;">
@@ -327,7 +354,7 @@
 
 <div id="backToTopBtn" role="button" tabindex="0" aria-label="Back to top" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300 bg-[#14b8a6] hover:bg-black shadow-md hover:shadow-xl"><i class="fas fa-arrow-up text-white text-sm" aria-hidden="true"></i></div>
 
-<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-black/10 py-3 transition-all duration-700 transform -translate-y-full opacity-0">
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-black/10 py-3 transition-all duration-700">
   <div class="container mx-auto px-4 lg:px-8 flex justify-between items-center">
     <div class="flex items-center gap-3">
       <svg id="nav-logo" aria-hidden="true" width="40" height="40" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill:#14b8a6; transition: all 0.2s ease;">
@@ -373,14 +400,14 @@
   <!-- HERO SECTION -->
   <section class="min-h-screen flex items-center relative overflow-hidden pt-28 pb-16 bg-[#d3d3d3]">
     <div class="absolute inset-0 z-0">
-      <img id="cf-hero-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Frankie Digitalz hero background" class="w-full h-full object-cover" width="1920" height="1080" fetchpriority="high">
+      <img id="cf-hero-image" src="hero.WEBP" alt="Frankie Digitalz hero background" class="w-full h-full object-cover" width="1920" height="1080" fetchpriority="high">
       <div class="absolute inset-0 bg-black/40 z-10"></div>
     </div>
     <div class="container mx-auto px-4 lg:px-8 relative z-20">
       <div class="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
         <div class="lg:hidden w-full max-w-sm mx-auto relative" id="heroMobileWrapper">
           <div class="rounded-2xl overflow-hidden border border-black/10 shadow-xl relative">
-            <img id="cf-hero-image-mobile" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Frankie Digitalz mobile hero" class="w-full h-auto object-cover aspect-[4/3]" width="500" height="400" fetchpriority="high">
+            <img id="cf-hero-image-mobile" src="heromobile.WEBP" alt="Frankie Digitalz mobile hero" class="w-full h-auto object-cover aspect-[4/3]" width="500" height="400" fetchpriority="high">
             <svg class="absolute top-0 left-0 w-full h-full pointer-events-none" viewBox="0 0 500 400" preserveAspectRatio="none"><path id="wavyPathMobile" d="M0,20 C30,10 70,30 100,20 C130,10 170,30 200,20 C230,10 270,30 300,20 C330,10 370,30 400,20 C430,10 470,30 500,20 L500,400 L0,400 Z" fill="none" stroke="#14b8a6" stroke-width="3" stroke-dasharray="2000" stroke-dashoffset="2000" /></svg>
           </div>
         </div>
@@ -409,7 +436,7 @@
         </div>
         <div class="hidden lg:block relative reveal-slow" id="heroDesktopWrapper">
           <div class="rounded-3xl overflow-hidden shadow-2xl border-[8px] border-white/20 transition-transform duration-1000 hover:scale-105 relative">
-            <img id="cf-hero-image-decorative" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Frankie Digitalz hero decorative" class="w-full h-auto" style="aspect-ratio:auto">
+            <img id="cf-hero-image-decorative" src="heromobile.WEBP" alt="Frankie Digitalz hero decorative" class="w-full h-auto" style="aspect-ratio:auto">
             <svg class="absolute top-0 left-0 w-full h-full pointer-events-none" viewBox="0 0 1200 800" preserveAspectRatio="none"><path id="wavyPathDesktop" d="M0,40 C60,20 140,60 200,40 C260,20 340,60 400,40 C460,20 540,60 600,40 C660,20 740,60 800,40 C860,20 940,60 1000,40 C1060,20 1140,60 1200,40 L1200,800 L0,800 Z" fill="none" stroke="#14b8a6" stroke-width="4" stroke-dasharray="3000" stroke-dashoffset="3000" /></svg>
           </div>
         </div>
@@ -433,8 +460,8 @@
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <section class="py-24 fade-section bg-[#d3d3d3]">
+  <!-- MARQUEE SECTION -->
+  <section class="py-24 fade-section bg-[#d3d3d3]" id="marqueeSection">
     <div class="container mx-auto px-4 fade-inner">
       <div class="text-center mb-4"><span id="infraLabel" class="text-black text-sm font-mono tracking-wider uppercase">INFRASTRUCTURE PARTNERS</span></div>
       <div class="relative flex overflow-hidden mb-12 [mask-image:_linear-gradient(to_right,transparent_0,_black_20%,_black_80%,transparent_100%)]"><div class="flex animate-marquee-left gap-8 py-4 whitespace-nowrap" id="infraMarquee"></div></div>
@@ -505,10 +532,10 @@
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <div class="flex flex-wrap gap-3 mb-8" id="tabButtons">
-            <button data-tab="approach" class="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20 bg-[#14b8a6] text-black shadow-md">Approach</button>
-            <button data-tab="process" class="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20 bg-white text-black hover:bg-[#14b8a6] hover:text-black transition-all duration-300">Process</button>
-            <button data-tab="results" class="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20 bg-white text-black hover:bg-[#14b8a6] hover:text-black transition-all duration-300">Results</button>
-            <button data-tab="promise" class="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20 bg-white text-black hover:bg-[#14b8a6] hover:text-black transition-all duration-300">Promise</button>
+            <button data-tab="approach" role="tab" aria-selected="true" class="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20 bg-[#14b8a6] text-black shadow-md">Approach</button>
+            <button data-tab="process" role="tab" aria-selected="false" class="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20 bg-white text-black hover:bg-[#14b8a6] hover:text-black transition-all duration-300">Process</button>
+            <button data-tab="results" role="tab" aria-selected="false" class="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20 bg-white text-black hover:bg-[#14b8a6] hover:text-black transition-all duration-300">Results</button>
+            <button data-tab="promise" role="tab" aria-selected="false" class="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20 bg-white text-black hover:bg-[#14b8a6] hover:text-black transition-all duration-300">Promise</button>
           </div>
           <div id="tabContent">
             <h3 class="text-2xl md:text-4xl font-black text-white mb-6">Human-Centered Design</h3>
@@ -522,7 +549,7 @@
           </div>
         </div>
         <div class="bg-white/60 rounded-[2.5rem] p-12 text-center border border-white/20">
-          <div class="text-6xl mb-6">🚀</div>
+          <div class="text-6xl mb-6">🎯</div>
           <p class="text-black text-xl font-medium leading-relaxed">We combine strategy, design, and technology to deliver measurable results.</p>
         </div>
       </div>
@@ -592,9 +619,9 @@
         <div class="w-16 h-1 bg-[#14b8a6] mx-auto mt-4 rounded-full"></div>
       </div>
       <div id="faqContainer">
-        <div class="faq-item border-b border-black/10 py-6"><button class="faq-q w-full text-left flex justify-between items-center text-lg font-bold text-black"><span>What services does Frankie Digitalz offer?</span><i class="fas fa-chevron-down text-[#14b8a6] transition-transform"></i></button><div class="faq-a hidden mt-3 text-black/70 leading-relaxed">We offer web development, e-commerce, UI/UX, digital marketing, brand strategy, and technical consulting.</div></div>
-        <div class="faq-item border-b border-black/10 py-6"><button class="faq-q w-full text-left flex justify-between items-center text-lg font-bold text-black"><span>Do you provide custom website design?</span><i class="fas fa-chevron-down text-[#14b8a6] transition-transform"></i></button><div class="faq-a hidden mt-3 text-black/70 leading-relaxed">Yes, every website is custom-built to reflect your brand identity.</div></div>
-        <div class="faq-item border-b border-black/10 py-6"><button class="faq-q w-full text-left flex justify-between items-center text-lg font-bold text-black"><span>Can you help with e-commerce SEO and marketing?</span><i class="fas fa-chevron-down text-[#14b8a6] transition-transform"></i></button><div class="faq-a hidden mt-3 text-black/70 leading-relaxed">Absolutely. We offer full SEO and digital marketing services to drive traffic and sales.</div></div>
+        <div class="faq-item border-b border-black/10 py-6"><button class="faq-q w-full text-left flex justify-between items-center text-lg font-bold text-black" aria-expanded="false"><span>What services does Frankie Digitalz offer?</span><i class="fas fa-chevron-down text-[#14b8a6] transition-transform"></i></button><div class="faq-a hidden mt-3 text-black/70 leading-relaxed">We offer web development, e-commerce, UI/UX, digital marketing, brand strategy, and technical consulting.</div></div>
+        <div class="faq-item border-b border-black/10 py-6"><button class="faq-q w-full text-left flex justify-between items-center text-lg font-bold text-black" aria-expanded="false"><span>Do you provide custom website design?</span><i class="fas fa-chevron-down text-[#14b8a6] transition-transform"></i></button><div class="faq-a hidden mt-3 text-black/70 leading-relaxed">Yes, every website is custom-built to reflect your brand identity.</div></div>
+        <div class="faq-item border-b border-black/10 py-6"><button class="faq-q w-full text-left flex justify-between items-center text-lg font-bold text-black" aria-expanded="false"><span>Can you help with e-commerce SEO and marketing?</span><i class="fas fa-chevron-down text-[#14b8a6] transition-transform"></i></button><div class="faq-a hidden mt-3 text-black/70 leading-relaxed">Absolutely. We offer full SEO and digital marketing services to drive traffic and sales.</div></div>
       </div>
       <div class="text-center mt-12">
         <a href="/faq" class="faq-opacity-pulse faq-btn-hover inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-sm bg-[#14b8a6] text-white shadow-md hover:shadow-xl transition-all duration-300">View All FAQs<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
@@ -682,20 +709,15 @@
 
 <script>
 (function(){
-  // BOOT LOADER REMOVAL
-  const bootDiv = document.getElementById('boot-loader');
-  setTimeout(() => {
-    if (bootDiv) bootDiv.remove();
-    document.body.classList.remove('boot-loading');
-    const nav = document.getElementById('main-nav');
-    if (nav) {
-      nav.style.transform = 'translateY(0)';
-      nav.style.opacity = '1';
-    }
-    startNavbarAnimations();
-    resetAndPlayHeroIntro();
-    resetAndPlayEdgeTrace();
-  }, 1000);
+  // Scroll to top on every reload
+  window.scrollTo(0,0);
+  
+  // Navbar immediate show
+  const nav = document.getElementById('main-nav');
+  if (nav) { nav.style.transform = 'translateY(0)'; nav.style.opacity = '1'; }
+  startNavbarAnimations();
+  resetAndPlayHeroIntro();
+  resetAndPlayEdgeTrace();
 
   function startNavbarAnimations(){
     setTimeout(()=>{
@@ -788,7 +810,7 @@
   const heroObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){resetAndPlayHeroIntro();resetAndPlayEdgeTrace();}});},{threshold:0.3});
   if(heroSection)heroObserver.observe(heroSection);
 
-  // FADE SECTIONS OBSERVER
+  // FADE SECTIONS OBSERVER - now only adds class, never removes
   const fadeSections = document.querySelectorAll('.fade-section');
   fadeSections.forEach(section => {
     const inner = section.querySelector('.fade-inner');
@@ -820,30 +842,24 @@
               window._teamScrollStarted = true;
               initTeamInfiniteScroll();
             }
+            if (section.id === 'marqueeSection' && !window._marqueeAnimationStarted) {
+              window._marqueeAnimationStarted = true;
+              startMarqueeAnimation();
+            }
           }, 1500);
-        } else {
-          section.classList.remove('is-visible');
-          if (fadeTimeout) clearTimeout(fadeTimeout);
-          if (section.id === 'statsSection') {
-            if (window._statsTypingInterval) { clearInterval(window._statsTypingInterval); window._statsTypingInterval = null; }
-            if (window._statsFlickerInterval) { clearInterval(window._statsFlickerInterval); window._statsFlickerInterval = null; }
-            window._statsActive = false;
-            const calcTrigger = document.getElementById('calc-trigger');
-            const systemStatus = document.getElementById('system-status');
-            const impactTitle = document.getElementById('impactTitle');
-            if (calcTrigger) calcTrigger.style.opacity = '0';
-            if (systemStatus) systemStatus.innerHTML = '';
-            if (impactTitle) { impactTitle.style.opacity = '0'; impactTitle.classList.remove('is-active'); }
-            const numbers = section.querySelectorAll('.stat-number');
-            numbers.forEach(num => { num.innerText = '0'; });
-            const signs = section.querySelectorAll('.sign');
-            signs.forEach((sign, idx) => { sign.innerText = (idx === 3 ? '%' : '+'); });
-          }
         }
       });
     }, { threshold: 0.2 });
     observer.observe(section);
   });
+
+  // Start marquee animation only once when section becomes visible
+  function startMarqueeAnimation() {
+    const leftMarquee = document.querySelector('#infraMarquee');
+    const rightMarquee = document.querySelector('#techMarquee');
+    if (leftMarquee) leftMarquee.classList.add('marquee-running');
+    if (rightMarquee) rightMarquee.classList.add('marquee-running');
+  }
 
   // STATS
   function initStats(){
@@ -923,7 +939,7 @@
     playStatsSequence();
   }
 
-  // MARQUEE
+  // MARQUEE (build only)
   function initMarquee(){
     const infraItems=[{name:"Shopify",svg:'<svg class="h-8 w-auto fill-current" viewBox="0 0 100 40"><text x="5" y="28" font-family="Arial" font-weight="bold" font-size="20">Shopify</text></svg>'},{name:"WooCommerce",svg:'<svg class="h-8 w-auto fill-current" viewBox="0 0 100 40"><text x="5" y="28" font-family="Arial" font-weight="bold" font-size="20">Woo</text></svg>'},{name:"Stripe",svg:'<svg class="h-8 w-auto fill-current" viewBox="0 0 100 40"><text x="5" y="28" font-family="Arial" font-weight="bold" font-size="20">Stripe</text></svg>'},{name:"Zapier",svg:'<svg class="h-8 w-auto fill-current" viewBox="0 0 100 40"><text x="5" y="28" font-family="Arial" font-weight="bold" font-size="20">Zapier</text></svg>'},{name:"WordPress",svg:'<svg class="h-8 w-auto fill-current" viewBox="0 0 100 40"><text x="5" y="28" font-family="Arial" font-weight="bold" font-size="20">WordPress</text></svg>'},{name:"Wix",svg:'<svg class="h-8 w-auto fill-current" viewBox="0 0 100 40"><text x="5" y="28" font-family="Arial" font-weight="bold" font-size="20">Wix</text></svg>'},{name:"Squarespace",svg:'<svg class="h-8 w-auto fill-current" viewBox="0 0 100 40"><text x="5" y="28" font-family="Arial" font-weight="bold" font-size="20">Squarespace</text></svg>'}];
     const techItems=[{name:"Meta Ads",svg:'<svg class="h-8 w-auto fill-current" viewBox="0 0 100 40"><text x="5" y="28" font-family="Arial" font-weight="bold" font-size="20">Meta</text></svg>'},{name:"Google Ads",svg:'<svg class="h-8 w-auto fill-current" viewBox="0 0 100 40"><text x="5" y="28" font-family="Arial" font-weight="bold" font-size="20">Google Ads</text></svg>'},{name:"TikTok",svg:'<svg class="h-8 w-auto fill-current" viewBox="0 0 100 40"><text x="5" y="28" font-family="Arial" font-weight="bold" font-size="20">TikTok</text></svg>'},{name:"Klaviyo",svg:'<svg class="h-8 w-auto fill-current" viewBox="0 0 100 40"><text x="5" y="28" font-family="Arial" font-weight="bold" font-size="20">Klaviyo</text></svg>'},{name:"Mailchimp",svg:'<svg class="h-8 w-auto fill-current" viewBox="0 0 100 40"><text x="5" y="28" font-family="Arial" font-weight="bold" font-size="20">Mailchimp</text></svg>'}];
@@ -1176,7 +1192,7 @@
     animate();
   }
 
-  // TEAM INFINITE SCROLL with auto‑scroll stop on expand and auto‑collapse after 3 seconds
+  // TEAM INFINITE SCROLL with local images & descriptions mapping
   function initTeamInfiniteScroll(){
     const wrapper = document.getElementById('teamScrollWrapper');
     const track = document.getElementById('teamScrollTrack');
@@ -1193,6 +1209,14 @@
     let startX = 0;
     let dragStartTranslate = 0;
 
+    // Mapping: status -> local image, display role, description
+    const statusMap = {
+      founder: { image: '/ceo.WEBP', role: 'CEO', description: 'Strategic leader aligning technology with business goals to drive sustainable growth.' },
+      ceo: { image: '/manager.WEBP', role: 'Manager', description: 'Keeps projects on track, teams aligned, and ensures on‑time, high‑quality delivery.' },
+      manager: { image: '/developer.WEBP', role: 'Developer', description: 'Full‑stack engineer building fast, scalable, and secure web applications.' },
+      designer: { image: '/designer.WEBP', role: 'Designer', description: 'Creates intuitive interfaces and beautiful brand experiences users love.' }
+    };
+
     async function fetchTeamMembers() {
       const url = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=teamMember`;
       try {
@@ -1202,26 +1226,21 @@
         const assets = data.includes?.Asset || [];
         return data.items.map(item => {
           const fields = item.fields;
-          let imageUrl = null;
-          if (fields.image) {
-            const asset = assets.find(a => a.sys.id === fields.image.sys.id);
-            if (asset) imageUrl = `https:${asset.fields.file.url}`;
-          }
-          let role = "";
-          switch (fields.status) {
-            case 'founder': role = "CEO"; break;
-            case 'ceo': role = "Manager"; break;
-            case 'manager': role = "Developer"; break;
-            case 'designer': role = "Designer"; break;
-            default: role = fields.status || "Team Member";
-          }
-          return { name: fields.name || "Team Member", role: role, image: imageUrl, description: fields.description || "Experienced professional dedicated to delivering excellence.", status: fields.status };
+          const status = fields.status || '';
+          const mapping = statusMap[status] || statusMap.manager;
+          // Role display from mapping (status-based)
+          const role = mapping.role;
+          // Description from mapping
+          const description = mapping.description;
+          // Image from mapping (local WEBP)
+          const imageUrl = mapping.image;
+          return { name: fields.name || "Team Member", role: role, image: imageUrl, description: description, status: status };
         });
       } catch (error) { console.warn('Contentful team fetch failed', error); return []; }
     }
 
     function buildCard(member){
-      return `<div class="team-card" data-status="${member.status}"><div class="team-avatar"><img src="${member.image || 'https://placehold.co/128x128/000000/14b8a6?text=Avatar'}" alt="${member.name}" loading="lazy" width="128" height="128"></div><h3 class="text-xl font-black text-black">${member.name}</h3><div class="team-status text-sm font-bold text-[#14b8a6] uppercase tracking-wide">${member.role}</div><div class="team-description text-black/80 text-sm">${member.description}</div></div>`;
+      return `<div class="team-card" data-status="${member.status}"><div class="team-avatar"><img src="${member.image}" alt="${member.name}" loading="lazy" width="128" height="128"></div><h3 class="text-xl font-black text-black">${member.name}</h3><div class="team-status text-sm font-bold text-[#14b8a6] uppercase tracking-wide">${member.role}</div><div class="team-description text-black/80 text-sm">${member.description}</div></div>`;
     }
 
     function populateTrack(members){
@@ -1384,7 +1403,7 @@
 
   // FOOTER REVEAL
   const footer = document.querySelector('footer');
-  const footerObserver = new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('is-visible'); else entry.target.classList.remove('is-visible'); }); },{threshold:0.1});
+  const footerObserver = new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('is-visible'); }); },{threshold:0.1});
   if(footer) footerObserver.observe(footer);
 
   // BACK TO TOP
@@ -1413,7 +1432,7 @@
   startBadgeCycle();
   badge.addEventListener('click',()=>window.open('https://wa.me/16395274759','_blank'));
 
-  // MOBILE MENU CLOSE ON OUTSIDE TAP
+  // MOBILE MENU CLOSE ON OUTSIDE TAP + SCROLL
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   if(mobileBtn&&mobileMenu){
@@ -1423,6 +1442,12 @@
     });
     document.addEventListener('click', function(event) {
       if (!mobileMenu.classList.contains('hidden') && !mobileBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
+        mobileMenu.classList.add('hidden');
+        mobileBtn.setAttribute('aria-expanded','false');
+      }
+    });
+    window.addEventListener('scroll', function() {
+      if (!mobileMenu.classList.contains('hidden')) {
         mobileMenu.classList.add('hidden');
         mobileBtn.setAttribute('aria-expanded','false');
       }
@@ -1479,70 +1504,6 @@
       document.getElementById('newsletterEmail').value = '';
     });
   }
-})();
-</script>
-
-<!-- Contentful hero — cached for instant load on repeat visits -->
-<script>
-(async function () {
-  const SPACE = 'ha7fm2wzrbnt';
-  const TOKEN = 'aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ';
-  const BASE  = 'https://cdn.contentful.com/spaces/' + SPACE;
-  const CACHE_KEY = 'fd_hero_imgs';
-
-  // Load from cache instantly (no API wait)
-  try {
-    const cached = localStorage.getItem(CACHE_KEY);
-    if (cached) {
-      const imgs = JSON.parse(cached);
-      if (imgs.bg) document.getElementById('cf-hero-image').src = imgs.bg;
-      if (imgs.mobile) document.getElementById('cf-hero-image-mobile').src = imgs.mobile;
-      if (imgs.deco) {
-        const d = document.getElementById('cf-hero-image-decorative');
-        if (d) { d.src = imgs.deco; if (imgs.decoW) { d.width = imgs.decoW; d.height = imgs.decoH; } }
-      }
-    }
-  } catch(e) {}
-
-  // Fetch from Contentful in background to refresh cache
-  try {
-    const res  = await fetch(BASE + '/entries?content_type=homePage&access_token=' + TOKEN + '&limit=1&include=1');
-    const data = await res.json();
-    if (data.items && data.items.length > 0) {
-      const f = data.items[0].fields;
-      const assets = (data.includes && data.includes.Asset) || [];
-      const newCache = {};
-      if (f.heroImage) {
-        const a = assets.find(a => a.sys.id === f.heroImage.sys.id);
-        if (a?.fields?.file?.url) {
-          newCache.bg = 'https:' + a.fields.file.url + '?w=1920&q=65&fm=webp';
-          document.getElementById('cf-hero-image').src = newCache.bg;
-        }
-      }
-      if (f.heroImageMobile) {
-        const a = assets.find(a => a.sys.id === f.heroImageMobile.sys.id);
-        if (a?.fields?.file?.url) {
-          newCache.mobile = 'https:' + a.fields.file.url + '?w=910&q=65&fm=webp';
-          document.getElementById('cf-hero-image-mobile').src = newCache.mobile;
-        }
-      }
-      if (f.heroImageDecorative) {
-        const a = assets.find(a => a.sys.id === f.heroImageDecorative.sys.id);
-        if (a?.fields?.file?.url) {
-          const el = document.getElementById('cf-hero-image-decorative');
-          newCache.deco = 'https:' + a.fields.file.url + '?w=1200&q=65&fm=webp';
-          const dim = a.fields.file.details?.image;
-          if (dim) { newCache.decoW = dim.width; newCache.decoH = dim.height; }
-          if (el) { el.src = newCache.deco; if (dim) { el.width = dim.width; el.height = dim.height; } }
-        }
-      }
-      if (f.portfolioTitle) {
-        const el = document.getElementById('cf-portfolio-title');
-        if (el) el.textContent = f.portfolioTitle;
-      }
-      localStorage.setItem(CACHE_KEY, JSON.stringify(newCache));
-    }
-  } catch (e) { console.warn('Contentful fetch failed.', e); }
 })();
 </script>
 

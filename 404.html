@@ -91,6 +91,39 @@
       width: auto;
       height: auto;
     }
+
+    /* REVEAL ANIMATIONS – 0.5s duration & stay revealed */
+    .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    .reveal-up { opacity: 0; transform: translateY(30px); }
+    .reveal-up.revealed { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-30px); }
+    .reveal-left.revealed { opacity: 1; transform: translateX(0); }
+    .reveal-right-scale { opacity: 0; transform: translateX(30px) scale(0.95); }
+    .reveal-right-scale.revealed { opacity: 1; transform: translateX(0) scale(1); }
+    .reveal-fade { opacity: 0; }
+    .reveal-fade.revealed { opacity: 1; }
+
+    /* ── WCAG 2.4.7 / 2.4.11 – Visible focus ring for keyboard nav ── */
+    :focus-visible {
+      outline: 3px solid #14b8a6;
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+    /* ── WCAG 2.3.3 / 1.4.3 – Respect reduced-motion preference ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-up, .reveal-left, .reveal-right-scale, .reveal-fade {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -146,16 +179,16 @@
 
 <main id="main-content" class="flex-grow flex items-center justify-center pt-32 pb-20 px-4">
   <div class="max-w-2xl mx-auto text-center">
-    <div class="error-code mb-4">404</div>
-    <h1 class="text-3xl md:text-4xl font-bold text-black mb-4">Page not found</h1>
-    <p class="text-black/70 text-lg mb-6">Sorry, the page you are looking for does not exist or has been moved.</p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+    <div class="error-code mb-4 reveal-up" aria-hidden="true">404</div>
+    <h1 class="text-3xl md:text-4xl font-bold text-black mb-4 reveal-up">Page not found</h1>
+    <p class="text-black/70 text-lg mb-6 reveal-up">Sorry, the page you are looking for does not exist or has been moved.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8 reveal-up">
       <a href="/" class="btn-teal text-black px-6 py-3 rounded-full font-semibold shadow-md hover:shadow-lg transition hover:text-white">← Back to Homepage</a>
       <a href="/contact" class="border border-teal-700 text-teal-800 px-6 py-3 rounded-full font-semibold hover:bg-teal-50 transition">Contact Support</a>
     </div>
-    <div class="bg-white/80 p-5 rounded-2xl border border-black/10 shadow-md">
+    <div class="bg-white/80 p-5 rounded-2xl border border-black/10 shadow-md reveal-up">
       <p class="text-black/70 text-sm mb-3">Or try searching our site:</p>
-      <form action="https://www.google.com/search" method="get" target="_blank" class="flex flex-col sm:flex-row gap-3">
+      <form role="search" action="https://www.google.com/search" method="get" target="_blank" class="flex flex-col sm:flex-row gap-3">
         <input type="hidden" name="sitesearch" value="frankiedigital.vercel.app">
         <input type="text" name="q" placeholder="What are you looking for?" class="search-input flex-1 px-5 py-3 rounded-full border border-black/20 bg-white text-black focus:border-teal-600" aria-label="Search our site">
         <button type="submit" class="btn-teal text-black px-6 py-3 rounded-full font-semibold hover:text-white transition">Search</button>
@@ -172,6 +205,9 @@
 
 <script>
 (function(){
+  // Scroll to top on every reload
+  window.scrollTo(0,0);
+
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   if (mobileBtn && mobileMenu) {
@@ -203,6 +239,15 @@
   });
   backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   backBtn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); } });
+
+  // REVEAL OBSERVERS – only add .revealed, never remove
+  const reveals = document.querySelectorAll('.reveal-up');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('revealed');
+    });
+  }, { threshold: 0.2 });
+  reveals.forEach(el => revealObserver.observe(el));
 })();
 </script>
 
