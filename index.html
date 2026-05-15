@@ -29,11 +29,16 @@
   <link rel="preconnect" href="https://cdn.contentful.com">
   
 
-  <link rel="preload" as="image" href="/hero.png" fetchpriority="high">
-
   <link rel="stylesheet" href="/css/style.css">
 
+  <!-- Font Awesome: async to avoid render-blocking -->
+  <link rel="preload" href="/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/all.min.css"></noscript>
+
   <style>
+    /* font-display: swap override for Font Awesome – prevents FOIT */
+    @font-face { font-family: 'Font Awesome 6 Free'; font-display: swap; }
+    @font-face { font-family: 'Font Awesome 6 Brands'; font-display: swap; }
     body.boot-loading { overflow: hidden; }
     .letter-animation {
       display: inline-block;
@@ -368,14 +373,14 @@
   <!-- HERO SECTION -->
   <section class="min-h-screen flex items-center relative overflow-hidden pt-28 pb-16 bg-[#d3d3d3]">
     <div class="absolute inset-0 z-0">
-      <img id="cf-hero-image" src="hero.png" alt="Frankie Digitalz hero background" class="w-full h-full object-cover" width="1920" height="1080" fetchpriority="high">
+      <img id="cf-hero-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Frankie Digitalz hero background" class="w-full h-full object-cover" width="1920" height="1080" fetchpriority="high">
       <div class="absolute inset-0 bg-black/40 z-10"></div>
     </div>
     <div class="container mx-auto px-4 lg:px-8 relative z-20">
       <div class="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
         <div class="lg:hidden w-full max-w-sm mx-auto relative" id="heroMobileWrapper">
           <div class="rounded-2xl overflow-hidden border border-black/10 shadow-xl relative">
-            <img id="cf-hero-image-mobile" src="heromobile.png" alt="Frankie Digitalz mobile hero" class="w-full h-auto object-cover aspect-[4/3]" width="500" height="400" fetchpriority="high">
+            <img id="cf-hero-image-mobile" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Frankie Digitalz mobile hero" class="w-full h-auto object-cover aspect-[4/3]" width="500" height="400" fetchpriority="high">
             <svg class="absolute top-0 left-0 w-full h-full pointer-events-none" viewBox="0 0 500 400" preserveAspectRatio="none"><path id="wavyPathMobile" d="M0,20 C30,10 70,30 100,20 C130,10 170,30 200,20 C230,10 270,30 300,20 C330,10 370,30 400,20 C430,10 470,30 500,20 L500,400 L0,400 Z" fill="none" stroke="#14b8a6" stroke-width="3" stroke-dasharray="2000" stroke-dashoffset="2000" /></svg>
           </div>
         </div>
@@ -392,7 +397,7 @@
             <div id="tagline" class="text-base md:text-xl font-medium opacity-0 transition-all duration-700 mb-4">Engineering Vision. Building Digital Sovereignty.</div>
             <p class="text-white/90 text-lg max-w-lg mx-auto lg:mx-0 mb-8 leading-relaxed">Frankie Digitalz architects powerful digital experiences that transform complex ideas into high-performance business tools.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a class="btn-primary px-8 py-4 rounded-xl font-bold text-sm inline-flex items-center justify-center gap-2 shadow-md hover:shadow-xl bg-[#14b8a6] text-white hover:bg-black transition" href="/contact">Get Free Consultation<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg></a>
+              <a class="btn-primary px-8 py-4 rounded-xl font-bold text-sm inline-flex items-center justify-center gap-2 shadow-md hover:shadow-xl bg-[#14b8a6] text-black hover:bg-black hover:text-white transition" href="/contact">Get Free Consultation<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg></a>
               <a class="hero-secondary-btn px-8 py-4 rounded-xl font-bold text-sm inline-flex items-center justify-center gap-2 shadow-md hover:shadow-xl" href="/portfolio">See Our Work</a>
             </div>
             <div class="reveal-slow flex items-center gap-x-4 gap-y-2 mt-10 justify-center lg:justify-start text-white/80 text-xs font-medium">
@@ -404,7 +409,7 @@
         </div>
         <div class="hidden lg:block relative reveal-slow" id="heroDesktopWrapper">
           <div class="rounded-3xl overflow-hidden shadow-2xl border-[8px] border-white/20 transition-transform duration-1000 hover:scale-105 relative">
-            <img id="cf-hero-image-decorative" src="hero.png" alt="Frankie Digitalz hero decorative" class="w-full h-auto" width="1200" height="800">
+            <img id="cf-hero-image-decorative" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Frankie Digitalz hero decorative" class="w-full h-auto" style="aspect-ratio:auto">
             <svg class="absolute top-0 left-0 w-full h-full pointer-events-none" viewBox="0 0 1200 800" preserveAspectRatio="none"><path id="wavyPathDesktop" d="M0,40 C60,20 140,60 200,40 C260,20 340,60 400,40 C460,20 540,60 600,40 C660,20 740,60 800,40 C860,20 940,60 1000,40 C1060,20 1140,60 1200,40 L1200,800 L0,800 Z" fill="none" stroke="#14b8a6" stroke-width="4" stroke-dasharray="3000" stroke-dashoffset="3000" /></svg>
           </div>
         </div>
@@ -675,9 +680,7 @@
   </div>
 </footer>
 
-<link rel="stylesheet" href="/css/all.min.css">
 
-<script>
 (function(){
   // BOOT LOADER REMOVAL
   const bootDiv = document.getElementById('boot-loader');
@@ -1495,21 +1498,27 @@
         const asset = assets.find(a => a.sys.id === f.heroImage.sys.id);
         if (asset && asset.fields.file && asset.fields.file.url) {
           const el = document.getElementById('cf-hero-image');
-          if (el) el.src = 'https:' + asset.fields.file.url;
+          if (el) el.src = 'https:' + asset.fields.file.url + '?w=1920&q=65&fm=webp';
         }
       }
       if (f.heroImageMobile) {
         const asset = assets.find(a => a.sys.id === f.heroImageMobile.sys.id);
         if (asset && asset.fields.file && asset.fields.file.url) {
           const el = document.getElementById('cf-hero-image-mobile');
-          if (el) el.src = 'https:' + asset.fields.file.url;
+          if (el) el.src = 'https:' + asset.fields.file.url + '?w=910&q=65&fm=webp';
         }
       }
       if (f.heroImageDecorative) {
         const asset = assets.find(a => a.sys.id === f.heroImageDecorative.sys.id);
         if (asset && asset.fields.file && asset.fields.file.url) {
           const decorativeEl = document.getElementById('cf-hero-image-decorative');
-          if (decorativeEl) decorativeEl.src = 'https:' + asset.fields.file.url;
+        if (decorativeEl) {
+          const url = 'https:' + asset.fields.file.url + '?w=1200&q=65&fm=webp';
+          decorativeEl.src = url;
+          // Set natural dimensions from Contentful metadata to fix aspect ratio
+          const d = asset.fields.file.details && asset.fields.file.details.image;
+          if (d) { decorativeEl.width = d.width; decorativeEl.height = d.height; }
+        }
         }
       }
       if (f.portfolioTitle) {

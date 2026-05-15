@@ -40,7 +40,8 @@
 
   <!-- ═══ Tailwind CSS CDN & Font Awesome ═══════════════════════════════════ -->
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/all.min.css">
+  <link rel="preload" href="/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/all.min.css"></noscript>
 
   <!-- ═══ SCHEMA.ORG JSON-LD (FAQPage) ══════════════════════════════════════ -->
   <script type="application/ld+json">

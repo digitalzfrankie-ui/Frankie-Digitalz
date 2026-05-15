@@ -42,7 +42,8 @@
   <link rel="stylesheet" href="/css/style.css">
 
   <!-- ═══ Font Awesome (kept) ═══════════════════════════════════════════════ -->
-  <link rel="stylesheet" href="/css/all.min.css">
+  <link rel="preload" href="/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/all.min.css"></noscript>
 
   <!-- ═══ SCHEMA.ORG JSON-LD (CollectionPage) ═══════════════════════════════ -->
   <script type="application/ld+json">
