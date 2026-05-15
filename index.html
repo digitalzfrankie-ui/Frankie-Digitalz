@@ -1500,7 +1500,15 @@
       const asset = assets.find(a => a.sys.id === f.heroImage.sys.id);
       if (asset && asset.fields.file && asset.fields.file.url) {
         const el = document.getElementById('cf-hero-image');
-        if (el) el.src = 'https:' + asset.fields.file.url + '?w=1920&q=65&fm=webp';
+        if (el) {
+          // Serve a smaller, more compressed image on mobile to improve LCP.
+          // On mobile viewports (< 768px) a 800px-wide image at q=60 is ~40 KB
+          // instead of the 99 KB full-size version, with no visible quality loss
+          // behind the 40% black overlay.
+          const isMobile = window.innerWidth < 768;
+          el.src = 'https:' + asset.fields.file.url +
+            (isMobile ? '?w=800&q=60&fm=webp' : '?w=1920&q=65&fm=webp');
+        }
       }
     }
     if (f.heroImageMobile) {

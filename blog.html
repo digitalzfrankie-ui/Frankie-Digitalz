@@ -401,7 +401,9 @@
 
   function getImageUrl(assetId, includes) {
     const asset = includes?.Asset?.find(a => a.sys.id === assetId);
-    return asset?.fields?.file?.url ? `https:${asset.fields.file.url}` : null;
+    // Resize to card thumbnail width (400px display, 600px for 2× retina) and
+    // convert to WebP at q=70 to reduce payload on blog listing page.
+    return asset?.fields?.file?.url ? `https:${asset.fields.file.url}?w=600&q=70&fm=webp` : null;
   }
 
   function formatDate(dateStr) {

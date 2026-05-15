@@ -391,7 +391,9 @@
 
   function getImageUrl(assetId, includes) {
     const asset = includes?.Asset?.find(a => a.sys.id === assetId);
-    return asset?.fields?.file?.url ? `https:${asset.fields.file.url}` : null;
+    // Append Contentful image transform params: resize to card display width and
+    // convert to WebP at q=70. Cards render at 400px so 600px covers 2× retina.
+    return asset?.fields?.file?.url ? `https:${asset.fields.file.url}?w=600&q=70&fm=webp` : null;
   }
 
   function convertContentfulItem(item, includes) {

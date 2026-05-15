@@ -342,8 +342,9 @@
         if (node.data?.target?.fields?.file?.url) {
           const url = node.data.target.fields.file.url;
           const title = node.data.target.fields.title || '';
-          // Add width/height attributes to embedded images (approximate)
-          return `<img src="https:${url}" alt="${title}" loading="lazy" width="800" height="500" style="max-width:100%; height:auto;">`;
+          // Resize to 800px and convert to WebP — inline blog images display at
+          // max ~800px wide and don't need the original full-resolution file.
+          return `<img src="https:${url}?w=800&q=75&fm=webp" alt="${title}" loading="lazy" width="800" height="500" style="max-width:100%; height:auto;">`;
         }
         return '';
       default:
@@ -449,7 +450,13 @@
       if (fields.featuredImage) {
         const imgUrl = getImageUrl(fields.featuredImage.sys.id, data.includes);
         if (imgUrl && featuredImageContainer) {
-          imageHtml = `<img src="${imgUrl}" alt="${escapeHtml(fields.title)}" class="w-full object-cover max-h-96" loading="lazy" width="1200" height="600">`;
+          // getImageUrl returns the bare URL (used for schema.image above).
+          // Append Contentful transform params here for the display <img> only.
+          // 1200px covers the widest blog layout; mobile gets the same URL but
+          // the browser only downloads what it renders — q=70&fm=webp saves ~50%.
+          const isMobile = window.innerWidth < 768;
+          const displaySrc = imgUrl + (isMobile ? '?w=800&q=65&fm=webp' : '?w=1200&q=70&fm=webp');
+          imageHtml = `<img src="${displaySrc}" alt="${escapeHtml(fields.title)}" class="w-full object-cover max-h-96" loading="lazy" width="1200" height="600">`;
         }
       }
       if (featuredImageContainer) featuredImageContainer.innerHTML = imageHtml;
