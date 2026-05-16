@@ -3,28 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>
-    // Load GTM only after first user interaction – keeps LCP clean
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    var _gtmLoaded = false;
-    function loadGTM() {
-      if (_gtmLoaded) return;
-      _gtmLoaded = true;
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6';
-      document.head.appendChild(s);
-      s.onload = function(){ gtag('config', 'G-HJQPN0DSW6', { anonymize_ip: true }); };
-      ['scroll','click','mousemove','touchstart','keydown'].forEach(function(e){
-        window.removeEventListener(e, loadGTM, { passive: true });
-      });
-    }
-    ['scroll','click','mousemove','touchstart','keydown'].forEach(function(e){
-      window.addEventListener(e, loadGTM, { once: true, passive: true });
-    });
-  </script>
+
   <title>Frankie Digitalz – Web Development &amp; Digital Marketing</title>
   <meta name="description" content="Frankie Digitalz offers expert web development, e-commerce solutions, and digital marketing to grow your business. Free consultation available.">
   <meta name="author" content="Frankie Digitalz">
@@ -54,7 +33,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%2314b8a6'/%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://www.googletagmanager.com">
   <link rel="preconnect" href="https://cdn.contentful.com">
   <link rel="preconnect" href="https://images.ctfassets.net" crossorigin>
   <link rel="dns-prefetch" href="https://images.ctfassets.net">
