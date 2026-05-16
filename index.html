@@ -4,18 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
+    // Load GTM only after first user interaction – keeps LCP clean
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    function loadGA(){
-      const s = document.createElement('script');
+    var _gtmLoaded = false;
+    function loadGTM() {
+      if (_gtmLoaded) return;
+      _gtmLoaded = true;
+      var s = document.createElement('script');
       s.async = true;
       s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6';
       document.head.appendChild(s);
-      s.onload = function(){ gtag('config','G-HJQPN0DSW6',{ anonymize_ip: true }); };
+      s.onload = function(){ gtag('config', 'G-HJQPN0DSW6', { anonymize_ip: true }); };
+      ['scroll','click','mousemove','touchstart','keydown'].forEach(function(e){
+        window.removeEventListener(e, loadGTM, { passive: true });
+      });
     }
-    if ('requestIdleCallback' in window) { requestIdleCallback(loadGA, { timeout: 3000 }); }
-    else { window.addEventListener('load', loadGA); }
+    ['scroll','click','mousemove','touchstart','keydown'].forEach(function(e){
+      window.addEventListener(e, loadGTM, { once: true, passive: true });
+    });
   </script>
   <title>Frankie Digitalz – Web Development &amp; Digital Marketing</title>
   <meta name="description" content="Frankie Digitalz offers expert web development, e-commerce solutions, and digital marketing to grow your business. Free consultation available.">
