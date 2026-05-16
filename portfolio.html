@@ -19,6 +19,9 @@
   <meta property="og:image" content="https://frankiedigital.vercel.app/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@DigitalzFrankie">
+  <meta name="twitter:title" content="Frankie Digitalz – Portfolio | Real Stores, Real Results">
+  <meta name="twitter:description" content="Browse our portfolio of e-commerce stores we have grown, redesigned, and optimized for conversion.">
+  <meta name="twitter:image" content="https://frankiedigital.vercel.app/og-image.png">
 
   <link rel="canonical" href="https://frankiedigital.vercel.app/portfolio">
   <link rel="alternate" hreflang="en" href="https://frankiedigital.vercel.app/portfolio">
@@ -36,6 +39,9 @@
   <!-- Preload hero image -->
   <link rel="preload" as="image" href="https://frankiedigital.vercel.app/portfolio-hero.png" fetchpriority="high">
 
+    <!-- Preload webfonts to eliminate icon FOUC -->
+  <link rel="preload" href="/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/style.css">
 
   <style>
@@ -195,6 +201,23 @@
   <script>
   window._cfFetch = fetch('https://cdn.contentful.com/spaces/ha7fm2wzrbnt/environments/master/entries?content_type=portfolio&order=-fields.publishDate', {headers:{Authorization:'Bearer aHD6agJic7zpquFTSOczZyIjKvYiZk-7A-eEp_5OLZQ'}}).then(function(r){return r.json();}).catch(function(){return null;});
   </script>
+  <!-- Schema: CollectionPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Portfolio – Frankie Digitalz",
+    "url": "https://frankiedigital.vercel.app/portfolio",
+    "description": "Real e-commerce stores we have grown, redesigned, and optimized for conversion.",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem","position": 1,"name": "Home","item": "https://frankiedigital.vercel.app/"},
+        {"@type": "ListItem","position": 2,"name": "Portfolio","item": "https://frankiedigital.vercel.app/portfolio"}
+      ]
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -350,8 +373,6 @@
   </div>
 </footer>
 
-<link rel="preload" href="/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="/css/all.min.css"></noscript>
 
 <script>
 (function(){

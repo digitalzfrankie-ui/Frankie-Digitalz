@@ -35,6 +35,9 @@
   <link rel="dns-prefetch" href="https://images.ctfassets.net">
   
 
+    <!-- Preload webfonts to eliminate icon FOUC -->
+  <link rel="preload" href="/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="preload" href="/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/css/all.min.css"></noscript>
@@ -143,6 +146,27 @@
       }
     }
   </style>
+
+  <!-- Schema: BlogPosting (metadata dynamically updated by JS) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Frankie Digitalz",
+      "url": "https://frankiedigital.vercel.app",
+      "logo": { "@type": "ImageObject", "url": "https://frankiedigital.vercel.app/og-image.png" }
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem","position": 1,"name": "Home","item": "https://frankiedigital.vercel.app/"},
+        {"@type": "ListItem","position": 2,"name": "Blog","item": "https://frankiedigital.vercel.app/blog"}
+      ]
+    }
+  }
+  </script>
 
   <!-- Start Contentful fetch immediately so post content loads faster -->
   <script>

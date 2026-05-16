@@ -19,18 +19,17 @@
   <meta property="og:image" content="https://frankiedigital.vercel.app/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@DigitalzFrankie">
+  <meta name="twitter:title" content="Frankie Digitalz – Services | Web Development, E‑Commerce &amp; More">
+  <meta name="twitter:description" content="Professional web development, e‑commerce, UI/UX design, digital marketing, brand strategy, and technical consulting. Free consultation.">
+  <meta name="twitter:image" content="https://frankiedigital.vercel.app/og-image.png">
 
   <link rel="canonical" href="https://frankiedigital.vercel.app/services">
   <link rel="alternate" hreflang="en" href="https://frankiedigital.vercel.app/services">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%2314b8a6'/%3E%3C/svg%3E">
-
-  
-  
-  <link rel="preconnect" href="https://cdn.contentful.com">
-  <link rel="preconnect" href="https://images.ctfassets.net">
-  <link rel="dns-prefetch" href="https://images.ctfassets.net">
-
+<!-- Preload webfonts to eliminate icon FOUC -->
+  <link rel="preload" href="/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="preload" href="/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/css/all.min.css"></noscript>
@@ -289,7 +288,7 @@
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- 24/7 SUPPORT BADGE -->
-<div id="supportBadge" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto;min-width:48px;">
+<div id="supportBadge" role="button" tabindex="0" aria-label="Contact 24/7 support via WhatsApp" class="fixed bottom-6 left-6 z-[1000] flex items-center gap-2 bg-white border border-teal-500 rounded-full px-3 py-2 shadow-xl cursor-pointer transition-all duration-300" style="width:auto;min-width:48px;">
   <div class="relative flex items-center justify-center">
     <span class="absolute right-0 bottom-0 flex h-2 w-2 translate-x-[1px] translate-y-[1px]">
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
@@ -301,7 +300,7 @@
 </div>
 
 <!-- BACK TO TOP -->
-<div id="backToTopBtn" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300">
+<div id="backToTopBtn" role="button" tabindex="0" aria-label="Back to top" class="back-to-top fixed bottom-6 right-6 w-12 h-12 rounded-full flex items-center justify-center cursor-pointer z-50 opacity-0 invisible transition-all duration-300">
   <i class="fas fa-arrow-up text-white text-sm"></i>
 </div>
 
@@ -330,7 +329,7 @@
     </div>
     <div class="flex items-center gap-4">
       <a class="hidden lg:inline-flex px-6 py-2.5 bg-[#14b8a6] text-black text-sm font-bold rounded-full hover:bg-[#d3d3d3] transition-all duration-300" href="/contact">Get Started</a>
-      <button id="mobileMenuBtn" aria-label="Menu" class="lg:hidden text-[#14b8a6] p-2">
+      <button id="mobileMenuBtn" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu" class="lg:hidden text-[#14b8a6] p-2">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>
@@ -901,12 +900,13 @@
   startBadgeCycle();
   badge.addEventListener('click',()=> window.open('https://wa.me/16395274759','_blank'));
   badge.addEventListener('keydown',(e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); window.open('https://wa.me/16395274759','_blank'); } });
+  badge.addEventListener('keydown',(e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); window.open('https://wa.me/16395274759','_blank'); } });
 
   // Mobile menu – close on outside click and on scroll
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   if(mobileBtn && mobileMenu){
-    mobileBtn.addEventListener('click',()=> mobileMenu.classList.toggle('hidden'));
+    mobileBtn.addEventListener('click',()=>{ const isHidden = mobileMenu.classList.toggle('hidden'); mobileBtn.setAttribute('aria-expanded', String(!isHidden)); });
     document.addEventListener('click', function(event) {
       if (!mobileMenu.classList.contains('hidden') && !mobileBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
         mobileMenu.classList.add('hidden');
@@ -966,7 +966,7 @@
 </script>
 
 <script defer src="https://www.googletagmanager.com/gtag/js?id=G-HJQPN0DSW6"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJQPN0DSW6');</script>
+<script defer>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJQPN0DSW6');</script>
 
 </body>
 </html>

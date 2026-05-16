@@ -19,6 +19,8 @@
   <meta property="og:image" content="https://frankiedigital.vercel.app/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@DigitalzFrankie">
+  <meta name="twitter:title" content="Frankie Digitalz – About Us">
+  <meta name="twitter:description" content="Crafting digital excellence. Learn about our mission, values, and team at Frankie Digitalz.">
   <meta name="twitter:image" content="https://frankiedigital.vercel.app/og-image.png">
 
   <!-- Canonical & hreflang (clean URL) -->
@@ -29,14 +31,10 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%2314b8a6'/%3E%3C/svg%3E">
 
   <!-- Preconnect & font optimisation -->
-  
-  
-  <link rel="preconnect" href="https://cdn.contentful.com">
-  <link rel="preconnect" href="https://images.ctfassets.net">
-  <link rel="dns-prefetch" href="https://images.ctfassets.net">
-  
-
-  <!-- Tailwind CSS CDN (kept as is) -->
+<!-- Tailwind CSS CDN (kept as is) -->
+    <!-- Preload webfonts to eliminate icon FOUC -->
+  <link rel="preload" href="/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/style.css">
 
   <!-- Font Awesome (kept) -->
@@ -124,7 +122,7 @@
     .dark-hero-section { background-color: #d3d3d3; }
     .dark-hero-section .tag { background-color: rgba(20,184,166,0.2); color: #99f6e4; }
     .dark-hero-section h1 { color: #000000; }
-    .dark-hero-section .description { color: #d1d5db; }
+    .dark-hero-section .description { color: #1f2937; }
 
     /* Stat cards – original dark background, hover teal with white number */
     .stat-card-dark {
@@ -250,7 +248,7 @@
     </div>
     <div class="flex items-center gap-4">
       <a class="hidden lg:inline-flex px-6 py-2.5 bg-[#14b8a6] text-black text-sm font-bold rounded-full hover:bg-[#d3d3d3] transition-all duration-300" href="/contact">Get Started</a>
-      <button id="mobileMenuBtn" class="lg:hidden text-[#14b8a6] p-2" aria-label="Menu">
+      <button id="mobileMenuBtn" class="lg:hidden text-[#14b8a6] p-2" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>

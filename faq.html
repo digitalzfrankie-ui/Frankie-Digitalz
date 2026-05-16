@@ -33,14 +33,10 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%2314b8a6'/%3E%3C/svg%3E">
 
   <!-- ═══ Preconnect & font optimisation ════════════════════════════════════ -->
-  
-  
-  <link rel="preconnect" href="https://cdn.contentful.com">
-  <link rel="preconnect" href="https://images.ctfassets.net">
-  <link rel="dns-prefetch" href="https://images.ctfassets.net">
-  
-
-  <!-- ═══ Tailwind CSS CDN & Font Awesome ═══════════════════════════════════ -->
+<!-- ═══ Tailwind CSS CDN & Font Awesome ═══════════════════════════════════ -->
+    <!-- Preload webfonts to eliminate icon FOUC -->
+  <link rel="preload" href="/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/style.css">
   <link rel="preload" href="/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/css/all.min.css"></noscript>
