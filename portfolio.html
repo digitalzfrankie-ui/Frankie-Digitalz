@@ -29,32 +29,33 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 800'%3E%3Crect width='1000' height='800' fill='%23000000'/%3E%3Cpath d='M145 250 L525 250 C705 250 855 360 855 490 C855 620 705 730 525 730 L345 730 L345 490 L505 490 L505 570 L425 570 L425 650 C575 650 695 580 695 490 C695 400 615 330 525 330 L225 330 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 370 L525 370 L445 450 L305 450 L305 680 L225 760 Z' fill='%2314b8a6'/%3E%3Cpath d='M225 130 L305 210 L225 210 Z' fill='%2314b8a6'/%3E%3C/svg%3E">
 
   <!-- Preconnect & font optimisation -->
-  
-  
   <link rel="preconnect" href="https://cdn.contentful.com">
   <link rel="preconnect" href="https://images.ctfassets.net">
   <link rel="dns-prefetch" href="https://images.ctfassets.net">
-  
 
   <!-- Preload hero image -->
   <link rel="preload" as="image" href="https://frankiedigital.vercel.app/portfolio-hero.png" fetchpriority="high">
 
-    <!-- Preload webfonts to eliminate icon FOUC -->
+  <!-- Preload webfonts to eliminate icon FOUC -->
   <link rel="preload" href="/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- FIX 1: Load Font Awesome 7 CSS (was missing entirely) -->
+  <link rel="stylesheet" href="/css/all.css">
+  <!-- Your Tailwind + custom styles -->
   <link rel="stylesheet" href="/css/style.css">
 
   <style>
-    /* Font Awesome font-display:swap – prevents invisible-text flash */
+    /* FIX 2: Font family names updated from v6 → v7 */
     @font-face {
-      font-family: 'Font Awesome 6 Free';
+      font-family: 'Font Awesome 7 Free';
       font-style: normal;
       font-weight: 900;
       font-display: swap;
       src: url('/webfonts/fa-solid-900.woff2') format('woff2');
     }
     @font-face {
-      font-family: 'Font Awesome 6 Brands';
+      font-family: 'Font Awesome 7 Brands';
       font-style: normal;
       font-weight: 400;
       font-display: swap;
@@ -298,18 +299,19 @@
   </section>
 
   <!-- FILTER BAR -->
+  <!-- FIX 3: Renamed icons updated for FA7 (fa-tshirt → fa-shirt, fa-heartbeat → fa-heart-pulse) -->
   <div class="dark-section pb-8 -mt-4 md:-mt-6" style="background:#0D1F1C;">
     <div class="container mx-auto px-4 reveal-left pt-4 md:pt-6">
       <div class="flex flex-wrap justify-center gap-3" id="filterButtons">
         <button data-filter="all" class="filter-btn active flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl transition-all"><i class="fas fa-border-all text-lg"></i><span class="text-[10px] font-medium">All</span></button>
         <button data-filter="logos" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-tag text-lg"></i><span class="text-[10px] font-medium">Logos</span></button>
-        <button data-filter="clothing" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-tshirt text-lg"></i><span class="text-[10px] font-medium">Clothing / Fashion</span></button>
+        <button data-filter="clothing" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-shirt text-lg"></i><span class="text-[10px] font-medium">Clothing / Fashion</span></button>
         <button data-filter="kids" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-child text-lg"></i><span class="text-[10px] font-medium">Kids Clothing</span></button>
         <button data-filter="jewellery" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-gem text-lg"></i><span class="text-[10px] font-medium">Jewellery</span></button>
         <button data-filter="food" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-utensils text-lg"></i><span class="text-[10px] font-medium">Food</span></button>
         <button data-filter="teacoffee" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-mug-hot text-lg"></i><span class="text-[10px] font-medium">Tea / Coffee</span></button>
         <button data-filter="skincare" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-spa text-lg"></i><span class="text-[10px] font-medium">Skin Care</span></button>
-        <button data-filter="health" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-heartbeat text-lg"></i><span class="text-[10px] font-medium">Health Care</span></button>
+        <button data-filter="health" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-heart-pulse text-lg"></i><span class="text-[10px] font-medium">Health Care</span></button>
         <button data-filter="sports" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-dumbbell text-lg"></i><span class="text-[10px] font-medium">Sports / Fitness</span></button>
         <button data-filter="pets" class="filter-btn flex flex-col items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl"><i class="fas fa-paw text-lg"></i><span class="text-[10px] font-medium">Pets</span></button>
       </div>
